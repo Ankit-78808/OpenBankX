@@ -2,7 +2,7 @@
 ### **Open Banking / PSD2 API Gateway & Consent Management System**
 
 OpenBankX is a simplified Open Banking platform inspired by PSD2 standards.  
-It provides secure authentication, TPP onboarding, consent-based data access, and a controlled API gateway — ideal for learning real-world financial API.
+It provides secure authentication, TPP onboarding, consent-based data access, and a controlled API gateway — ideal for learning real-world financial API workflows.
 
 ---
 
