@@ -1,5 +1,7 @@
 package com.cts.openbankx.model;
 
+import java.time.Instant;
+
 import com.cts.openbankx.enums.IncidentCategory;
 import com.cts.openbankx.enums.IncidentStatus;
 
@@ -23,6 +25,11 @@ public class Incident {
 	 @Column(name = "Description", nullable = false, length = 2000)
 	 private String Description;
 	 
+
+	 @Column(name = "DetectedDate", nullable = false)
+	 private Instant detectedDate;
+
+	 
 	 @Enumerated(EnumType.STRING)
 	 @Column(name = "Status", nullable = false, length = 20)
 	 private IncidentStatus Status;
@@ -33,6 +40,14 @@ public class Incident {
 
 	 public void setIncidentID(Long incidentID) {
 		 IncidentID = incidentID;
+	 }
+
+	 public Instant getDetectedDate() {
+		return detectedDate;
+	}
+
+	 public void setDetectedDate(Instant detectedDate) {
+		 this.detectedDate = detectedDate;
 	 }
 
 	 public IncidentCategory getCategory() {
