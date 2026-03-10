@@ -1,5 +1,5 @@
 package com.cts.openbankx.controller;
 
-public class ConsentController {
+public class TPPController {
 
 }
