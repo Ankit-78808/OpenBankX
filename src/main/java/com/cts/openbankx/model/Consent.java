@@ -5,10 +5,11 @@ import java.time.LocalDateTime;
 import com.cts.openbankx.enums.Scope;
 import com.cts.openbankx.enums.Status;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
@@ -16,6 +17,7 @@ import jakarta.persistence.Table;
 @Table(name = "Consent")
 public class Consent{
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long ConsentId;
     private Long UserId;
     private Long TPPAppID;
@@ -23,7 +25,7 @@ public class Consent{
     @Enumerated(EnumType.STRING)
     private Scope ScopeJSON;
     
-    @Column(columnDefinition = "TEXT")
+
     private String ResourceFilterJSON;
 
     private LocalDateTime CreatedDate;
