@@ -2,6 +2,8 @@ package com.cts.openbankx.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface TPP extends JpaRepository<TPP, Long> {
+import com.cts.openbankx.model.TPP;
+
+public interface TPPRepository extends JpaRepository<TPP, Long> {
 
 }
