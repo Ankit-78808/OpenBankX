@@ -5,7 +5,6 @@ import java.time.LocalDateTime;
 import com.cts.openbankx.enums.Scope;
 import com.cts.openbankx.enums.Status;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -59,13 +58,13 @@ public class Consent{
         TPPAppID = tPPAppID;
     }
 
-//    public Scope getScopeJSON() {
-//        return ScopeJSON;
-//    }
-//
-//    public void setScopeJSON(Scope scopeJSON) {
-//        ScopeJSON = scopeJSON;
-//    }
+    public Scope getScopeJSON() {
+        return ScopeJSON;
+    }
+
+    public void setScopeJSON(Scope scopeJSON) {
+        ScopeJSON = scopeJSON;
+    }
 
     public String getResourceFilterJSON() {
         return ResourceFilterJSON;
