@@ -20,7 +20,7 @@ public class Consent{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long ConsentId;
     private Long UserId;
-    private Long TPPAppID;
+    // private Long TPPAppID;
 
     @Enumerated(EnumType.STRING)
     private Scope ScopeJSON;
@@ -50,13 +50,13 @@ public class Consent{
         UserId = userId;
     }
 
-    public Long getTPPAppID() {
-        return TPPAppID;
-    }
+    // public Long getTPPAppID() {
+    //     return TPPAppID;
+    // }
 
-    public void setTPPAppID(Long tPPAppID) {
-        TPPAppID = tPPAppID;
-    }
+    // public void setTPPAppID(Long tPPAppID) {
+    //     TPPAppID = tPPAppID;
+    // }
 
     public Scope getScopeJSON() {
         return ScopeJSON;
