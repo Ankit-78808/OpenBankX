@@ -1,12 +1,12 @@
 # 🚀 **OpenBankX**
 ### **Open Banking / PSD2 API Gateway & Consent Management System**
 
-OpenBankX is a simplified Open Banking platform inspired by PSD2 standards.  
-It provides secure authentication, TPP onboarding, consent-based data access, and a controlled API gateway — ideal for learning real-world financial API workflows.
+OpenBankX is a simplified Open Banking platform inspired by **PSD2 standards**.  
+It provides secure authentication, TPP onboarding, consent‑based data access, and a controlled API gateway — ideal for learning real‑world financial API workflows.
 
 ---
 
-## **🛠️ Tech Stack**
+## 🛠️ **Tech Stack**
 
 ### **Frontend**
 - Angular
@@ -19,20 +19,20 @@ It provides secure authentication, TPP onboarding, consent-based data access, an
 
 ---
 
-## **🔐 Core Features**
+## 🔐 **Core Features**
 - **OAuth2/OIDC authentication** with PKCE  
 - **Strong Customer Authentication (SCA)** using OTP  
 - **TPP onboarding** and application registration  
 - **Consent management** (create, view, revoke)  
 - **API Gateway** with token + consent validation  
-- **Mock banking APIs** (Accounts, Balances, Payments, Transactions)  
-- **Monitoring & analytics** (usage, errors, latency)  
-- **Audit & compliance logs**  
+- **Mock banking APIs**: Accounts, Balances, Payments, Transactions  
+- **Monitoring & analytics** (API usage, errors, latency)  
+- **Audit & compliance logging**  
 - **Notifications & alerts** (consent expiry, rate-limit events)
 
 ---
 
-## **🧩 Modules Included**
+## 🧩 **Modules Included**
 - **Identity, OAuth2, OIDC & SCA**  
 - **TPP Onboarding & App Registration**  
 - **Consent & Grant Management**  
@@ -45,73 +45,5 @@ It provides secure authentication, TPP onboarding, consent-based data access, an
 
 ---
 
-## **🎯 Purpose**
-OpenBankX helps developers understand open banking architecture, PSD2 flows, secure API development, and scalable backend design through a practical, hands-on implementation.
-=======
-🚀 OpenBankX
-Open Banking / PSD2 API Gateway & Consent Management System
-OpenBankX is a simplified, developer‑friendly implementation of Open Banking concepts.
-It includes secure authentication, TPP onboarding, consent management, and a controlled API gateway—built for learning PSD2 workflows, microservices, and financial‑grade API design.
-=======
-# 🚀 **OpenBankX**
-### **Open Banking / PSD2 API Gateway & Consent Management System**
-
-OpenBankX is a simplified Open Banking platform inspired by PSD2 standards.  
-It provides secure authentication, TPP onboarding, consent-based data access, and a controlled API gateway — ideal for learning real-world financial API workflows.
-
----
-
-## **🛠️ Tech Stack**
-
-### **Frontend**
-- Angular
-
-### **Backend**
-- Java Spring Boot
-
-### **Database**
-- MySQL
-
----
-
-## **🔐 Core Features**
-- **OAuth2/OIDC authentication** with PKCE  
-- **Strong Customer Authentication (SCA)** using OTP  
-- **TPP onboarding** and application registration  
-- **Consent management** (create, view, revoke)  
-- **API Gateway** with token + consent validation  
-- **Mock banking APIs** (Accounts, Balances, Payments, Transactions)  
-- **Monitoring & analytics** (usage, errors, latency)  
-- **Audit & compliance logs**  
-- **Notifications & alerts** (consent expiry, rate-limit events)
-
----
-
-## **🧩 Modules Included**
-- **Identity, OAuth2, OIDC & SCA**  
-- **TPP Onboarding & App Registration**  
-- **Consent & Grant Management**  
-- **API Products & Rate-Limiting**  
-- **API Gateway & Routing**  
-- **Accounts & Payments Reference APIs**  
-- **Monitoring & Analytics**  
-- **Audit & Reporting**  
-- **Notifications & Alerts**
-
----
-
-Identity, OAuth2, OIDC & SCA
-TPP Onboarding
-Consent & Grant Management
-API Products, Plans & Throttling
-API Gateway
-Accounts & Payments APIs
-Monitoring & Reporting
-Notifications & Alerts
-
-
-🎯 Purpose
-This project showcases how Open Banking platforms work internally — ideal for learning PSD2, secure API development, and enterprise‑grade backend architecture.
-
-## **🎯 Purpose**
-OpenBankX helps developers understand open banking architecture, PSD2 flows, secure API development, and scalable backend design through a practical, hands-on implementation.
+## 🎯 **Purpose**
+OpenBankX helps developers understand **Open Banking architecture**, **PSD2 flows**, **secure API development**, and **scalable backend design** through a practical, hands-on implementation.
