@@ -1,15 +1,15 @@
-OpenBankX
+# OpenBankX
  
-Open Banking / PSD2 API Gateway & Consent Management System
+### Open Banking / PSD2 API Gateway & Consent Management System
  
-OpenBankX is a simplified Open Banking platform inspired by PSD2 standards.
+OpenBankX is a simplified Open Banking platform inspired by PSD2 standards.  
 It is designed to demonstrate secure authentication, Third Party Provider (TPP) onboarding, consent management, and controlled data access through a modular banking API architecture.
  
 The project aims to help developers understand the architecture behind modern open banking systems and financial API ecosystems through a practical implementation.
  
 ---
  
-Features
+## Features
  
 - Secure authentication and authorization
 - TPP (Third Party Provider) onboarding
@@ -19,7 +19,7 @@ Features
  
 ---
  
-Tech Stack
+## Tech Stack
  
 - Java
 - Spring Boot
@@ -30,46 +30,54 @@ Tech Stack
  
 ---
  
-Project Structure
+## Project Structure
  
+```
 src/
  ├── controller/
  ├── service/
  ├── repository/
  ├── model/
  └── config/
+```
  
 This structure follows a layered architecture separating controllers, services, repositories, and configuration files to maintain clean and scalable code.
  
 ---
  
-Setup Instructions
+## Setup Instructions
  
-1. Clone the repository (master branch)
+### 1. Clone the repository (master branch)
  
+```
 git clone -b master https://github.com/Ankit-78808/OpenBankX.git
+```
  
-2. Navigate to the project folder
+### 2. Navigate to the project folder
  
+```
 cd OpenBankX
+```
  
-3. Run the application
+### 3. Run the application
  
+```
 mvn spring-boot:run
+```
  
 ---
  
-Git Workflow
+## Git Workflow
  
 This project follows a collaborative Git workflow:
  
-- "master" → main integration branch
+- `master` → main integration branch
 - Developers create their own feature branches
-- Changes are merged into "master" using Pull Requests after review
+- Changes are merged into `master` using Pull Requests after review
  
 ---
  
-Contributors
+## Contributors
  
 - Ankit Kumar
 - Ahmed Bajath
@@ -80,11 +88,9 @@ Contributors
  
 ---
  
-Purpose
+## Purpose
  
 The goal of OpenBankX is to build a learning-focused implementation of Open Banking concepts including authentication, consent-based data sharing, and API gateway design used in modern financial platforms.
- 
----
 GitHub - Ankit-78808/OpenBankX: OpenBankX is a simplified Open Banking / PSD2 platform featuring OAuth2/OIDC authentication, Strong Customer Authentication (SCA), TPP onboarding, consent management...
 OpenBankX is a simplified Open Banking / PSD2 platform featuring OAuth2/OIDC authentication, Strong Customer Authentication (SCA), TPP onboarding, consent management, and a secure API gateway. It i...
  
