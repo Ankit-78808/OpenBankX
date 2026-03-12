@@ -1,18 +1,20 @@
+
 package com.cts.openbankx.model;
 
 import jakarta.persistence.*;
 import lombok.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-
 import com.cts.openbankx.enums.TransactionType;
 
 @Entity
-@Table(name = "TransactionRef",
-       indexes = {
-           @Index(name = "idx_txn_account", columnList = "AccountID"),
-           @Index(name = "idx_txn_date", columnList = "TxnDate")
-       })
+@Table(
+    name = "TransactionRef"
+//  , indexes = {
+//      @Index(name = "idx_txn_account", columnList = "AccountID"),
+//      @Index(name = "idx_txn_date", columnList = "TxnDate")
+//    }
+)
 @Getter @Setter
 @NoArgsConstructor
 @AllArgsConstructor
@@ -28,7 +30,7 @@ public class TransactionRef {
     @JoinColumn(
         name = "AccountID",
         nullable = false,
-        foreignKey = @ForeignKey(name = "fk_transactionref_accountref")
+        foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT)
     )
     private AccountRef account;
 
