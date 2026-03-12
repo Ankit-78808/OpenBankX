@@ -6,85 +6,89 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 @Entity
 public class TPPApp {
 		
 		@Id
+		@GeneratedValue(strategy = GenerationType.IDENTITY)
 		@Column(name = "TPPAppID")
-	    private Long TPPAppID;
+	    private Long tPPAppID;
 		
 		@Column(name = "TPPID", nullable = false)
-	    private Long TPPID;
+	    private Long tPPID;
 		 @Column(name = "AppName", nullable = false)
-		 private String AppName;
+		 private String appName;
 		 @Column(name = "RedirectURIs")
-		 private String RedirectURIs;
+		 private String redirectURIs;
 		 @Column(name = "PublicKeysJWKSet")
-		 private String PublicKeysJWKSet;
+		 private String publicKeysJWKSet;
 		 @Column(name = "ScopesRequested")
-		 private String ScopesRequested;
+		 private String scopesRequested;
 		 
 		 @Enumerated(EnumType.STRING)
-		 private TPPAppStatus Status;
+		 private TPPAppStatus status;
 
-		 public Long getTPPAppID() {
-			 return TPPAppID;
+		 public Long gettPPAppID() {
+			 return tPPAppID;
 		 }
 
-		 public void setTPPAppID(Long tPPAppID) {
-			 TPPAppID = tPPAppID;
+		 public void settPPAppID(Long tPPAppID) {
+			 this.tPPAppID = tPPAppID;
 		 }
 
-		 public Long getTPPID() {
-			 return TPPID;
+		 public Long gettPPID() {
+			 return tPPID;
 		 }
 
-		 public void setTPPID(Long tPPID) {
-			 TPPID = tPPID;
+		 public void settPPID(Long tPPID) {
+			 this.tPPID = tPPID;
 		 }
 
 		 public String getAppName() {
-			 return AppName;
+			 return appName;
 		 }
 
 		 public void setAppName(String appName) {
-			 AppName = appName;
+			 this.appName = appName;
 		 }
 
 		 public String getRedirectURIs() {
-			 return RedirectURIs;
+			 return redirectURIs;
 		 }
 
 		 public void setRedirectURIs(String redirectURIs) {
-			 RedirectURIs = redirectURIs;
+			 this.redirectURIs = redirectURIs;
 		 }
 
 		 public String getPublicKeysJWKSet() {
-			 return PublicKeysJWKSet;
+			 return publicKeysJWKSet;
 		 }
 
 		 public void setPublicKeysJWKSet(String publicKeysJWKSet) {
-			 PublicKeysJWKSet = publicKeysJWKSet;
+			 this.publicKeysJWKSet = publicKeysJWKSet;
 		 }
 
 		 public String getScopesRequested() {
-			 return ScopesRequested;
+			 return scopesRequested;
 		 }
 
 		 public void setScopesRequested(String scopesRequested) {
-			 ScopesRequested = scopesRequested;
+			 this.scopesRequested = scopesRequested;
 		 }
 
 		 public TPPAppStatus getStatus() {
-			 return Status;
+			 return status;
 		 }
 
-		 public void setStatus(TPPAppStatus s) {
-			 Status = s;
+		 public void setStatus(TPPAppStatus status) {
+			 this.status = status;
 		 }
-		 
+
+		 		 
 		 
 
 }
