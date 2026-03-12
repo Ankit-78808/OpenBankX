@@ -1,20 +1,22 @@
+
 package com.cts.openbankx.model;
 
 import jakarta.persistence.*;
 import lombok.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-
 import com.cts.openbankx.enums.PaymentStatus;
 
 @Entity
-@Table(name = "PaymentInitiation",
-       indexes = {
-           @Index(name = "idx_payment_tpp", columnList = "TPPAppID"),
-           @Index(name = "idx_payment_created", columnList = "CreatedDate"),
-           @Index(name = "idx_payment_debtor", columnList = "DebtorAccountRef"),
-           @Index(name = "idx_payment_creditor", columnList = "CreditorAccountRef")
-       })
+@Table(
+    name = "PaymentInitiation"
+//  , indexes = {
+//      @Index(name = "idx_payment_tpp", columnList = "TPPAppID"),
+//      @Index(name = "idx_payment_created", columnList = "CreatedDate"),
+//      @Index(name = "idx_payment_debtor", columnList = "DebtorAccountRef"),
+//      @Index(name = "idx_payment_creditor", columnList = "CreditorAccountRef")
+//    }
+)
 @Getter @Setter
 @NoArgsConstructor
 @AllArgsConstructor
@@ -32,18 +34,16 @@ public class PaymentInitiation {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(
         name = "DebtorAccountRef",
-        referencedColumnName = "AccountID",
         nullable = false,
-        foreignKey = @ForeignKey(name = "fk_payment_debtor_account")
+        foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT)
     )
     private AccountRef debtorAccount;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(
         name = "CreditorAccountRef",
-        referencedColumnName = "AccountID",
         nullable = false,
-        foreignKey = @ForeignKey(name = "fk_payment_creditor_account")
+        foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT)
     )
     private AccountRef creditorAccount;
 
