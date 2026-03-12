@@ -1,19 +1,21 @@
+
 package com.cts.openbankx.model;
 
 import jakarta.persistence.*;
 import lombok.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-
 import com.cts.openbankx.enums.FundsCheckResult;
 
 @Entity
-@Table(name = "FundsCheck",
-       indexes = {
-           @Index(name = "idx_fundscheck_tpp", columnList = "TPPAppID"),
-           @Index(name = "idx_fundscheck_account", columnList = "AccountID"),
-           @Index(name = "idx_fundscheck_checked", columnList = "CheckedDate")
-       })
+@Table(
+    name = "FundsCheck"
+//  , indexes = {
+//      @Index(name = "idx_fundscheck_tpp", columnList = "TPPAppID"),
+//      @Index(name = "idx_fundscheck_account", columnList = "AccountID"),
+//      @Index(name = "idx_fundscheck_checked", columnList = "CheckedDate")
+//    }
+)
 @Getter @Setter
 @NoArgsConstructor
 @AllArgsConstructor
@@ -31,9 +33,8 @@ public class FundsCheck {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(
         name = "AccountID",
-        referencedColumnName = "AccountID",
         nullable = false,
-        foreignKey = @ForeignKey(name = "fk_fundscheck_accountref")
+        foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT)
     )
     private AccountRef account;
 
