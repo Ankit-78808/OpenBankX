@@ -18,6 +18,8 @@ public class TPP {
 	 @GeneratedValue(strategy = GenerationType.IDENTITY)
 	 @Column(name = "TPPID")
 	 private Long tPPID;
+	 
+	 
 	 @Column(name = "LegalName", nullable = false, length = 200)
 	 private String legalName;
 	 @Column(name = "RegistrationNumber", nullable = false, length = 100)

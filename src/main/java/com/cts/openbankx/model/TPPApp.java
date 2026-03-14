@@ -16,10 +16,12 @@ public class TPPApp {
 		@Id
 		@GeneratedValue(strategy = GenerationType.IDENTITY)
 		@Column(name = "TPPAppID")
-	    private Long tPPAppID;
+	    private Long tppAppID;
 		
 		@Column(name = "TPPID", nullable = false)
-	    private Long tPPID;
+	    private Long tppID;
+		
+		
 		 @Column(name = "AppName", nullable = false)
 		 private String appName;
 		 @Column(name = "RedirectURIs")
@@ -32,20 +34,22 @@ public class TPPApp {
 		 @Enumerated(EnumType.STRING)
 		 private TPPAppStatus status;
 
-		 public Long gettPPAppID() {
-			 return tPPAppID;
+		
+
+		 public Long getTppAppID() {
+			return tppAppID;
+		}
+
+		 public void setTppAppID(Long tppAppID) {
+			 this.tppAppID = tppAppID;
 		 }
 
-		 public void settPPAppID(Long tPPAppID) {
-			 this.tPPAppID = tPPAppID;
+		 public Long getTppID() {
+			 return tppID;
 		 }
 
-		 public Long gettPPID() {
-			 return tPPID;
-		 }
-
-		 public void settPPID(Long tPPID) {
-			 this.tPPID = tPPID;
+		 public void setTppID(Long tppID) {
+			 this.tppID = tppID;
 		 }
 
 		 public String getAppName() {
