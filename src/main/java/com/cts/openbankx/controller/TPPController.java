@@ -24,14 +24,20 @@ public class TPPController {
 	@Autowired
 	private TPPService service;
 	
-	@PostMapping
-	public TPP registerTPP(@RequestBody TPP tpp) {
-		return service.register(tpp);
+	@PostMapping("/register")
+	public ResponseEntity<?> registerTPP(@RequestBody TPP tpp) {
+		try {
+		TPP savedTPP=service.register(tpp);
+		return ResponseEntity.status(201).body(savedTPP);
+		}
+		catch(RuntimeException e) {
+			return ResponseEntity.status(409).body("TPP already exists");
+		}
 	}
 	
 	@GetMapping
-	public List<TPP> getALLTPP(){
-		return service.getAllData();
+	public ResponseEntity<List<TPP>> getALLTPP(){
+		return ResponseEntity.ok(service.getAllData());
 	}
 	
 	
@@ -56,9 +62,9 @@ public class TPPController {
 	}
 	
 	@DeleteMapping("/{id}")
-	public String deleteTPP(@PathVariable Long id) {
+	public ResponseEntity<?> deleteTPP(@PathVariable Long id) {
 		service.deleteById(id);
-		return "Deleted Successfully";
+		return ResponseEntity.ok().body("Id deleted");
 	}
 	
 	

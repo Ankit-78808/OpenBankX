@@ -1,14 +1,18 @@
 package com.cts.openbankx.model;
 
 import com.cts.openbankx.enums.TPPAppStatus;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class TPPApp {
@@ -18,8 +22,8 @@ public class TPPApp {
 		@Column(name = "TPPAppID")
 	    private Long tppAppID;
 		
-		@Column(name = "TPPID", nullable = false)
-	    private Long tppID;
+//		@Column(name = "TPPID", nullable = false)
+//	    private Long tppID;
 		
 		
 		 @Column(name = "AppName", nullable = false)
@@ -33,8 +37,22 @@ public class TPPApp {
 		 
 		 @Enumerated(EnumType.STRING)
 		 private TPPAppStatus status;
+		 
+		 @ManyToOne
+		 @JoinColumn(name = "TPPID", nullable = false)
+		 @JsonIgnore
+		 private TPP tpp;
+		 
 
 		
+
+		 public TPP getTpp() {
+			return tpp;
+		}
+
+		 public void setTpp(TPP tpp) {
+			 this.tpp = tpp;
+		 }
 
 		 public Long getTppAppID() {
 			return tppAppID;
@@ -44,13 +62,13 @@ public class TPPApp {
 			 this.tppAppID = tppAppID;
 		 }
 
-		 public Long getTppID() {
-			 return tppID;
-		 }
-
-		 public void setTppID(Long tppID) {
-			 this.tppID = tppID;
-		 }
+//		 public Long getTppID() {
+//			 return tppID;
+//		 }
+//
+//		 public void setTppID(Long tppID) {
+//			 this.tppID = tppID;
+//		 }
 
 		 public String getAppName() {
 			 return appName;

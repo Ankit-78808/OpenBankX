@@ -23,9 +23,9 @@ public class TPPAppController {
 	@Autowired
 	private TPPAppService service;
 	
-	@PostMapping
-	public TPPApp register(@RequestBody TPPApp tppapp) {
-		return service.registerData(tppapp);
+	@PostMapping("/{tppId}")
+	public TPPApp register(@PathVariable Long tppId,@RequestBody TPPApp tppapp) {
+		return service.registerData(tppId,tppapp);
 	}
 	
 	@GetMapping

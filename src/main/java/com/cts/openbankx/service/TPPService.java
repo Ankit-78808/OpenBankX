@@ -18,7 +18,9 @@ public class TPPService {
 	private TPPRepository repo;
 	
 	public TPP register(TPP tpp) {
-		// TODO Auto-generated method stub
+		if(repo.existsByTppID(tpp.getTppID()) || repo.existsByRegistrationNumber(tpp.getRegistrationNumber())) {
+			throw new RuntimeException("TPP already exists with same TPP ID or registrationNumber");
+		}
 		return repo.save(tpp);
 	}
 
@@ -42,8 +44,8 @@ public class TPPService {
 			if(tpp.getRegistrationNumber()!=null) {
 				exist.setRegistrationNumber(tpp.getRegistrationNumber());
 			}
-			if(tpp.gettPPID()!=null) {
-				exist.settPPID(tpp.gettPPID());
+			if(tpp.getTppID()!=null) {
+				exist.setTppID(tpp.getTppID());
 			}
 			 
 			return repo.save(exist);

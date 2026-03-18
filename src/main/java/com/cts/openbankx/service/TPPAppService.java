@@ -6,8 +6,10 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.cts.openbankx.model.TPP;
 import com.cts.openbankx.model.TPPApp;
 import com.cts.openbankx.repository.TPPAppRepository;
+import com.cts.openbankx.repository.TPPRepository;
 
 
 @Service
@@ -17,7 +19,14 @@ public class TPPAppService {
 	@Autowired
 	private TPPAppRepository repo;
 	
-	public TPPApp registerData(TPPApp tppapp) {
+	@Autowired
+	private TPPRepository r;
+	
+	public TPPApp registerData(Long tppId,TPPApp tppapp) {
+		TPP t=r.findById(tppId).orElseThrow();
+		
+		
+		tppapp.setTpp(t);
 		return repo.save(tppapp);
 	}
 
