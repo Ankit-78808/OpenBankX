@@ -1,6 +1,6 @@
 package com.cts.openbankx.enums;
 
-public enum PerformedBy {
+public enum NotificationRecipientType {
 	USER,
 	TPP,
 	ADMIN

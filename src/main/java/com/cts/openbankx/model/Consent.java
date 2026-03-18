@@ -1,101 +1,124 @@
 package com.cts.openbankx.model;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
-import com.cts.openbankx.enums.Scope;
-import com.cts.openbankx.enums.Status;
+import com.cts.openbankx.enums.ConsentScope;
+import com.cts.openbankx.enums.ConsentStatus;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+
 
 @Entity
 @Table(name = "Consent")
 public class Consent{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long ConsentId;
-    private Long UserId;
-    private Long TPPAppID;
-
-    @Enumerated(EnumType.STRING)
-    private Scope ScopeJSON;
+    private Long consentId;
+    
+    @ManyToOne
+    @JoinColumn(name = "UserID",
+    			nullable = false,
+    			foreignKey = @ForeignKey(name = "fk_consent_user"))
+    private User user;
+    
+    
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "TPPAppID",
+    			nullable = false,
+    			foreignKey = @ForeignKey(name = "fk_consent_TPPApp"))
+    private TPPApp tppApp;
+    
+	@Enumerated(EnumType.STRING)
+    private ConsentScope scopeJSON;
     
 
-    private String ResourceFilterJSON;
+    private String resourceFilterJSON;
 
-    private LocalDateTime CreatedDate;
-    private LocalDateTime ExpiredDate;
-
+    private LocalDateTime createdDate;
+    private LocalDateTime expiredDate;
+    
     @Enumerated(EnumType.STRING)
-    private Status Status;
-
+    private ConsentStatus status;
+    
+    @OneToMany(mappedBy = "consent", cascade = CascadeType.ALL)
+    @JsonManagedReference
+    private List<ConsentEvent> consentEvents;//it can have many events 
+    
+    
     public Long getConsentId() {
-        return ConsentId;
-    }
+		return consentId;
+	}
 
-    public void setConsentId(Long consentId) {
-        ConsentId = consentId;
-    }
+	public void setConsentId(Long consentId) {
+		this.consentId = consentId;
+	}
 
-    public Long getUserId() {
-        return UserId;
-    }
+	public User getUser() {
+		return user;
+	}
 
-    public void setUserId(Long userId) {
-        UserId = userId;
-    }
+	public void setUser(User user) {
+		this.user = user;
+	}
 
-    public Long getTPPAppID() {
-        return TPPAppID;
-    }
+	public TPPApp getTppApp() {
+		return tppApp;
+	}
 
-    public void setTPPAppID(Long tPPAppID) {
-        TPPAppID = tPPAppID;
-    }
+	public void setTppApp(TPPApp tppApp) {
+		this.tppApp = tppApp;
+	}
 
-    public Scope getScopeJSON() {
-        return ScopeJSON;
-    }
+	public ConsentScope getScopeJSON() {
+		return scopeJSON;
+	}
 
-    public void setScopeJSON(Scope scopeJSON) {
-        ScopeJSON = scopeJSON;
-    }
+	public void setScopeJSON(ConsentScope scopeJSON) {
+		this.scopeJSON = scopeJSON;
+	}
 
-    public String getResourceFilterJSON() {
-        return ResourceFilterJSON;
-    }
+	public String getResourceFilterJSON() {
+		return resourceFilterJSON;
+	}
 
-    public void setResourceFilterJSON(String resourceFilterJSON) {
-        ResourceFilterJSON = resourceFilterJSON;
-    }
+	public void setResourceFilterJSON(String resourceFilterJSON) {
+		this.resourceFilterJSON = resourceFilterJSON;
+	}
 
-    public LocalDateTime getCreatedDate() {
-        return CreatedDate;
-    }
+	public LocalDateTime getCreatedDate() {
+		return createdDate;
+	}
 
-    public void setCreatedDate(LocalDateTime createdDate) {
-        CreatedDate = createdDate;
-    }
+	public void setCreatedDate(LocalDateTime createdDate) {
+		this.createdDate = createdDate;
+	}
 
-    public LocalDateTime getExpiredDate() {
-        return ExpiredDate;
-    }
+	public LocalDateTime getExpiredDate() {
+		return expiredDate;
+	}
 
-    public void setExpiredDate(LocalDateTime expiredDate) {
-        ExpiredDate = expiredDate;
-    }
+	public void setExpiredDate(LocalDateTime expiredDate) {
+		this.expiredDate = expiredDate;
+	}
 
-    public Status getStatus() {
-        return Status;
-    }
+	public ConsentStatus getStatus() {
+		return status;
+	}
 
-    public void setStatus(Status status) {
-        Status = status;
-    }
+	public void setStatus(ConsentStatus status) {
+		this.status = status;
+	}
+
+	public List<ConsentEvent> getConsentEvents() {
+		return consentEvents;
+	}
+
+	public void setConsentEvents(List<ConsentEvent> consentEvents) {
+		this.consentEvents = consentEvents;
+	}
+
+
     
 }

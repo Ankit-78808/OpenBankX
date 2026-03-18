@@ -1,6 +1,6 @@
 package com.cts.openbankx.enums;
 
-public enum Scope {
+public enum ConsentScope {
 	ACCOUNTS_READ,
 	BALANCES_READ,
 	PAYMENTS_WRITE,
