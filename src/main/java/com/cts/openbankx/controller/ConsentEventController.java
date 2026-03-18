@@ -5,11 +5,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.cts.openbankx.enums.EventType;
 import com.cts.openbankx.model.ConsentEvent;
 import com.cts.openbankx.service.ConsentEventService;
 
@@ -20,11 +19,11 @@ public class ConsentEventController {
 	@Autowired
 	private ConsentEventService consentEventService;
 	
-	//Create Event
-	@PostMapping("/{consentId}")
-	public ConsentEvent createEvent(@PathVariable Long consentId) {
-		return consentEventService.createEvent(consentId, EventType.CREATE,"Manual Event");
-	}
+//	//Create Event
+//	@PostMapping("/{consentId}")
+//	public ConsentEvent createEvent(@PathVariable Long consentId) {
+//		return consentEventService.createEvent(consentId, EventType.CREATE,"Manual Event");
+//	}
 	
 	//Get all events
 	@GetMapping("/{consentId}")
