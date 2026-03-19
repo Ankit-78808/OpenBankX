@@ -42,7 +42,7 @@ public class APIPlan {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "environment",nullable = false)
-    private PlanEnvironment environment; // Enum: SANDBOX, PRODUCTION
+    private PlanEnvironment environment; 
    
     @Column(name = "rateLimit_per_min",nullable = false)
     private Integer rateLimitPerMin;
@@ -53,7 +53,7 @@ public class APIPlan {
  
 
 	@Enumerated(EnumType.STRING)
-    private SLATier sla; // Enum for the SLA levels
+    private SLATier sla;
 
     
    

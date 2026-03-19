@@ -40,7 +40,7 @@ public class TPPSubscription {
         
 	    @Column(name="subscribed_date")
 	    private LocalDate subscribedDate;
-	    private SubscriptionStatus status; // Active/Suspended/Cancelled
+	    private SubscriptionStatus status; 
 
 	    
 		private UUID tppAppId;

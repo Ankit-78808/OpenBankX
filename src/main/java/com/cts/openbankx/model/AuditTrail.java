@@ -41,7 +41,7 @@ public class AuditTrail {
     @Column(name = "timestamp", nullable = false)
     private LocalDate timestamp; 
 
-    @JdbcTypeCode(SqlTypes.JSON) // Replaces columnDefinition="JSON"
+    @JdbcTypeCode(SqlTypes.JSON) 
     @Column(name = "metadata")
     private String metadata;
     

@@ -13,71 +13,68 @@ o ExpiresAt
 o Status (Active/Revoked) */
 
 @Entity
-@Table(name = "Token") // keep exact table name
+@Table(name = "Token")
 public class Token {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "TokenID")
-	private Long tokenID;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "TokenID")
+    private Long tokenID;
 
-	// --------- FOREIGN KEYS (ManyToOne) ----------
-	// Token.ClientID -> AuthClient.ClientID (FK)
-	@ManyToOne(optional = false, fetch = FetchType.LAZY)
-	@JoinColumn(name = "ClientID", // FK column in Token table
-			referencedColumnName = "ClientID", // PK column in AuthClient
-			foreignKey = @ForeignKey(name = "FK_Token_AuthClient"))
-	private AuthClient client;
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @JoinColumn(name = "ClientID", 
+            referencedColumnName = "ClientID", 
+            foreignKey = @ForeignKey(name = "FK_Token_AuthClient"))
+    private AuthClient client;
 
-	// Token.UserID -> User.UserID (FK)
-	@ManyToOne(optional = false, fetch = FetchType.LAZY)
-	@JoinColumn(name = "UserID", // FK column in Token table
-			referencedColumnName = "UserID", // PK column in User
-			foreignKey = @ForeignKey(name = "FK_Token_User"))
-	private User user;
+    // --- FIXED SECTION: Changed optional to true and added nullable = true ---
+    @ManyToOne(optional = true, fetch = FetchType.LAZY)
+    @JoinColumn(name = "UserID", 
+            referencedColumnName = "UserID", 
+            nullable = true, // This allows the DB column to accept NULL
+            foreignKey = @ForeignKey(name = "FK_Token_User"))
+    private User user;
+    // -------------------------------------------------------------------------
 
-	// ---------------------------------------------
+    public enum TokenType {
+        Access, Refresh
+    }
 
-	public enum TokenType {
-		Access, Refresh
-	}
+    @Enumerated(EnumType.STRING)
+    @Column(name = "TokenType", nullable = false, length = 20)
+    private TokenType tokenType;
 
-	@Enumerated(EnumType.STRING)
-	@Column(name = "TokenType", nullable = false, length = 20)
-	private TokenType tokenType;
+    @Column(name = "Scope", nullable = false, length = 255)
+    private String scope;
 
-	@Column(name = "Scope", nullable = false, length = 255)
-	private String scope;
+    @CreationTimestamp
+    @Column(name = "IssuedAt", nullable = false, updatable = false)
+    private Instant issuedAt;
 
-	@CreationTimestamp
-	@Column(name = "IssuedAt", nullable = false, updatable = false)
-	private Instant issuedAt;
+    @Column(name = "ExpiresAt", nullable = false)
+    private Instant expiresAt;
 
-	@Column(name = "ExpiresAt", nullable = false)
-	private Instant expiresAt;
+    public enum Status {
+        Active, Revoked
+    }
 
-	public enum Status {
-		Active, Revoked
-	}
+    @Enumerated(EnumType.STRING)
+    @Column(name = "Status", nullable = false, length = 20)
+    private Status status = Status.Active;
 
-	@Enumerated(EnumType.STRING)
-	@Column(name = "Status", nullable = false, length = 20)
-	private Status status = Status.Active;
+    // Standard JPA Default Constructor
+    public Token() {}
 
-	// ---- Constructors
-	protected Token() {
-	}
-
-	public Token(AuthClient client, User user, TokenType tokenType, String scope,Instant issuedAt, Instant expiresAt, Status status) {
-		this.client = client;
-		this.user = user;
-		this.tokenType = tokenType;
-		this.scope = scope;
-		this.issuedAt = issuedAt;
-		this.expiresAt = expiresAt;
-		this.status = status;
-	}
-
+    // Convenience Constructor
+    public Token(AuthClient client, User user, TokenType tokenType, String scope, Instant issuedAt, Instant expiresAt, Status status) {
+        this.client = client;
+        this.user = user;
+        this.tokenType = tokenType;
+        this.scope = scope;
+        this.issuedAt = issuedAt;
+        this.expiresAt = expiresAt;
+        this.status = status;
+    }
 	// ---- Getters & Setters
 	public Long getTokenID() {
 		return tokenID;
