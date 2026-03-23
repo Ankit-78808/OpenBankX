@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.cts.openbankx.enums.ConsentScope;
 import com.cts.openbankx.enums.ConsentStatus;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.*;
@@ -18,6 +19,7 @@ public class Consent{
     private Long consentId;
     
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "UserID",
     			nullable = false,
     			foreignKey = @ForeignKey(name = "fk_consent_user"))
@@ -25,6 +27,7 @@ public class Consent{
     
     
     @ManyToOne(fetch = FetchType.LAZY)
+    @JsonIgnore
     @JoinColumn(name = "TPPAppID",
     			nullable = false,
     			foreignKey = @ForeignKey(name = "fk_consent_TPPApp"))

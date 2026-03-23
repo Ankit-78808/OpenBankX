@@ -67,13 +67,27 @@ public class ConsentService {
  
     // GET ALL
     public List<Consent> getAllConsents() {
-        return consentRepo.findAll();
+        List<Consent> consents = consentRepo.findAll();
+        for(Consent consent : consents) {
+        	if(consent.getExpiredDate() != null 
+        			&& consent.getExpiredDate().isBefore(LocalDateTime.now())
+        			&& consent.getStatus() == ConsentStatus.ACTIVE) {
+        		consent.setStatus(ConsentStatus.EXPIRED);
+        	}
+        }
+        return consents;
     }
  
     // GET BY ID
     public Consent getConsentById(Long id) {
-        return consentRepo.findById(id)
+        Consent consent =  consentRepo.findById(id)
                 .orElseThrow(() -> new RuntimeException("Consent not found"));
+        if(consent.getExpiredDate() != null 
+    			&& consent.getExpiredDate().isBefore(LocalDateTime.now())
+    			&& consent.getStatus() == ConsentStatus.ACTIVE) {
+    		consent.setStatus(ConsentStatus.EXPIRED);
+    	}
+        return consent;
     }
  
     // REVOKE CONSENT
