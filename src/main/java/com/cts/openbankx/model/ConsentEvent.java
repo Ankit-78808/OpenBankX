@@ -4,13 +4,19 @@ import java.time.LocalDateTime;
 
 import com.cts.openbankx.enums.EventType;
 import com.cts.openbankx.enums.PerformedBy;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.ForeignKey;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -20,65 +26,74 @@ public class ConsentEvent {
 	
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long ConsentEventID;
+	@Column(name = "consentEventId")
+	private Long consentEventId;
 	
-	private Long ConsentID;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "consentId",
+				nullable = false,
+				foreignKey = @ForeignKey(name = "fk_consent_event_consent"))
+	@JsonBackReference
+	private Consent consent;
 	
 	@Enumerated(EnumType.STRING)
-	private EventType EventType;
+	private EventType eventType;
 	
-	private LocalDateTime EventDate;
+	private LocalDateTime eventDate;
 	
-	private PerformedBy PerformedBy;
+	@Enumerated(EnumType.STRING)
+	private PerformedBy performedBy;
 	
-	private String Notes;
+	private String notes;
+	
+	
 
-	public Long getConsentEventID() {
-		return ConsentEventID;
+	public Long getConsentEventId() {
+		return consentEventId;
 	}
 
-	public void setConsentEventID(Long consentEventID) {
-		ConsentEventID = consentEventID;
+	public void setConsentEventId(Long consentEventId) {
+		this.consentEventId = consentEventId;
 	}
 
-	public Long getConsentID() {
-		return ConsentID;
+	public Consent getConsent() {
+		return consent;
 	}
 
-	public void setConsentID(Long consentID) {
-		ConsentID = consentID;
+	public void setConsent(Consent consent) {
+		this.consent = consent;
 	}
 
 	public EventType getEventType() {
-		return EventType;
+		return eventType;
 	}
 
 	public void setEventType(EventType eventType) {
-		EventType = eventType;
+		this.eventType = eventType;
 	}
 
 	public LocalDateTime getEventDate() {
-		return EventDate;
+		return eventDate;
 	}
 
 	public void setEventDate(LocalDateTime eventDate) {
-		EventDate = eventDate;
+		this.eventDate = eventDate;
 	}
 
 	public PerformedBy getPerformedBy() {
-		return PerformedBy;
+		return performedBy;
 	}
 
 	public void setPerformedBy(PerformedBy performedBy) {
-		PerformedBy = performedBy;
+		this.performedBy = performedBy;
 	}
 
 	public String getNotes() {
-		return Notes;
+		return notes;
 	}
 
 	public void setNotes(String notes) {
-		Notes = notes;
+		this.notes = notes;
 	}
-	
 }
