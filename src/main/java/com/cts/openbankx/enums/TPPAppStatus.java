@@ -1,7 +1,7 @@
 package com.cts.openbankx.enums;
 
 public enum TPPAppStatus {
-	 PENDING,
+	    PENDING,
 	    APPROVED,
 	    REJECTED
 

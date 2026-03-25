@@ -1,67 +1,93 @@
 package com.cts.openbankx.model;
 
-import com.cts.openbankx.enums.TPPStatus;
+import java.util.List;
 
+import com.cts.openbankx.enums.TPPStatus;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class TPP {
 	
 		
 	 @Id
+	 @GeneratedValue(strategy = GenerationType.IDENTITY)
 	 @Column(name = "TPPID")
-	 private Long TPPID;
+	 private Long tppID;
+	 
+	 
 	 @Column(name = "LegalName", nullable = false, length = 200)
-	 private String LegalName;
+	 private String legalName;
 	 @Column(name = "RegistrationNumber", nullable = false, length = 100)
-	 private String RegistrationNumber;
+	 private String registrationNumber;
 	 @Column(name = "ContactInfo", length = 255)
-	 private String ContactInfo;
+	 private String contactInfo;
 	 @Column(name = "CertificationRef", length = 255)
-	 private String CertificationRef;
+	 private String certificationRef;
 	 @Enumerated(EnumType.STRING)
 	 @Column(name = "Status", nullable = false, length = 20)
-	 private TPPStatus Status;
-	 public Long getTPPID() {
-		 return TPPID;
+	 private TPPStatus status;
+	 
+	
+	 @OneToMany(mappedBy="tpp",cascade=CascadeType.ALL)
+//	 @JsonIgnore
+	 private List<TPPApp> apps;
+	 
+	 public Long getTppID() {
+		return tppID;
+	}
+	 public void setTppID(Long tppID) {
+		 this.tppID = tppID;
 	 }
-	 public void setTPPID(Long tPPID) {
-		 TPPID = tPPID;
+	 public List<TPPApp> getApps() {
+		 return apps;
 	 }
+	 public void setApps(List<TPPApp> apps) {
+		 this.apps = apps;
+	 }
+	
 	 public String getLegalName() {
-		 return LegalName;
+		 return legalName;
 	 }
 	 public void setLegalName(String legalName) {
-		 LegalName = legalName;
+		 this.legalName = legalName;
 	 }
 	 public String getRegistrationNumber() {
-		 return RegistrationNumber;
+		 return registrationNumber;
 	 }
 	 public void setRegistrationNumber(String registrationNumber) {
-		 RegistrationNumber = registrationNumber;
+		 this.registrationNumber = registrationNumber;
 	 }
 	 public String getContactInfo() {
-		 return ContactInfo;
+		 return contactInfo;
 	 }
 	 public void setContactInfo(String contactInfo) {
-		 ContactInfo = contactInfo;
+		 this.contactInfo = contactInfo;
 	 }
 	 public String getCertificationRef() {
-		 return CertificationRef;
+		 return certificationRef;
 	 }
 	 public void setCertificationRef(String certificationRef) {
-		 CertificationRef = certificationRef;
+		 this.certificationRef = certificationRef;
 	 }
-	 public TPPStatus getTppstatus() {
-		 return Status;
+	 public TPPStatus getStatus() {
+		 return status;
 	 }
-	 public void setTppstatus(TPPStatus tppstatus) {
-		 this.Status = tppstatus;
+	 public void setStatus(TPPStatus status) {
+		 this.status = status;
 	 }
+	 
+	 
 	 
 	 
 

@@ -9,21 +9,24 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 @Entity
 public class Incident {
 	
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "IncidentID")
-    private Long IncidentID;
+    private Long incidentID;
 	
 	@Enumerated(EnumType.STRING)
     @Column(name = "Category", nullable = false, length = 20)
-    private IncidentCategory Category;
+    private IncidentCategory category;
 	
 	 @Column(name = "Description", nullable = false, length = 2000)
-	 private String Description;
+	 private String description;
 	 
 
 	 @Column(name = "DetectedDate", nullable = false)
@@ -32,47 +35,59 @@ public class Incident {
 	 
 	 @Enumerated(EnumType.STRING)
 	 @Column(name = "Status", nullable = false, length = 20)
-	 private IncidentStatus Status;
+	 private IncidentStatus status;
+
 
 	 public Long getIncidentID() {
-		 return IncidentID;
+		 return incidentID;
 	 }
+
 
 	 public void setIncidentID(Long incidentID) {
-		 IncidentID = incidentID;
+		 this.incidentID = incidentID;
 	 }
 
+
+	 public IncidentCategory getCategory() {
+		 return category;
+	 }
+
+
+	 public void setCategory(IncidentCategory category) {
+		 this.category = category;
+	 }
+
+
+	 public String getDescription() {
+		 return description;
+	 }
+
+
+	 public void setDescription(String description) {
+		 this.description = description;
+	 }
+
+
 	 public Instant getDetectedDate() {
-		return detectedDate;
-	}
+		 return detectedDate;
+	 }
+
 
 	 public void setDetectedDate(Instant detectedDate) {
 		 this.detectedDate = detectedDate;
 	 }
 
-	 public IncidentCategory getCategory() {
-		 return Category;
-	 }
-
-	 public void setCategory(IncidentCategory category) {
-		 Category = category;
-	 }
-
-	 public String getDescription() {
-		 return Description;
-	 }
-
-	 public void setDescription(String description) {
-		 Description = description;
-	 }
 
 	 public IncidentStatus getStatus() {
-		 return Status;
+		 return status;
 	 }
 
+
 	 public void setStatus(IncidentStatus status) {
-		 Status = status;
+		 this.status = status;
 	 }
+
+	
 	 
 	 
 	 
