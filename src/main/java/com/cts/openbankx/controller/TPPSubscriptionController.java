@@ -16,7 +16,7 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class TPPSubscriptionController {
 
-    private final TPPSubscriptionService subscriptionService;
+    private TPPSubscriptionService subscriptionService;
 
 
     @PostMapping

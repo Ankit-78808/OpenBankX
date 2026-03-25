@@ -2,10 +2,8 @@ package com.cts.openbankx.model;
 
 
 
-import java.util.UUID;
 
 import com.cts.openbankx.enums.PlanEnvironment;
-import com.cts.openbankx.enums.ProductStatus;
 import com.cts.openbankx.enums.SLATier;
 
 import jakarta.persistence.Column;
@@ -19,17 +17,9 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name="api_plan")
-@Data
-@AllArgsConstructor
-@Builder
-@NoArgsConstructor
 public class APIPlan {
 	
 	@Id
@@ -39,8 +29,8 @@ public class APIPlan {
 	@ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="product_id",nullable = false)
     private APIProduct product;
-
-    @Enumerated(EnumType.STRING)
+	
+	@Enumerated(EnumType.STRING)
     @Column(name = "environment",nullable = false)
     private PlanEnvironment environment; // Enum: SANDBOX, PRODUCTION
    
@@ -54,8 +44,75 @@ public class APIPlan {
 
 	@Enumerated(EnumType.STRING)
     private SLATier sla; // Enum for the SLA levels
+	
+    public Long getPlanId() {
+		return planId;
+	}
 
-    
-   
+
+
+	public void setPlanId(Long planId) {
+		this.planId = planId;
+	}
+
+
+
+	public APIProduct getProduct() {
+		return product;
+	}
+
+
+
+	public void setProduct(APIProduct product) {
+		this.product = product;
+	}
+
+
+
+	public PlanEnvironment getEnvironment() {
+		return environment;
+	}
+
+
+
+	public void setEnvironment(PlanEnvironment environment) {
+		this.environment = environment;
+	}
+
+
+
+	public Integer getRateLimitPerMin() {
+		return rateLimitPerMin;
+	}
+
+
+
+	public void setRateLimitPerMin(Integer rateLimitPerMin) {
+		this.rateLimitPerMin = rateLimitPerMin;
+	}
+
+
+
+	public Long getDailyQuota() {
+		return dailyQuota;
+	}
+
+
+
+	public void setDailyQuota(Long dailyQuota) {
+		this.dailyQuota = dailyQuota;
+	}
+
+
+
+	public SLATier getSla() {
+		return sla;
+	}
+
+
+
+	public void setSla(SLATier sla) {
+		this.sla = sla;
+	}
   
 }

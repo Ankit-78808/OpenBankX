@@ -2,11 +2,9 @@
 package com.cts.openbankx.model;
 
 import jakarta.persistence.*;
-import lombok.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import com.cts.openbankx.enums.FundsCheckResult;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(

@@ -16,7 +16,7 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class APIProductController {
 
-    private final APIProductService productService;
+    private APIProductService productService;
 
     @PostMapping
     public ResponseEntity<APIProduct> createProduct(@RequestBody APIProduct product) {

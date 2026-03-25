@@ -19,8 +19,8 @@ import lombok.RequiredArgsConstructor;
 @Transactional
 public class APIPlanService {
     
-    private final APIPlanRepository repository;
-    private final APIProductRepository apiProductRepository; 
+    private  APIPlanRepository repository;
+    private  APIProductRepository apiProductRepository; 
     
     public APIPlan createPlan(APIPlan plan, UUID productid) {
         APIProduct product = apiProductRepository.findById(productid)

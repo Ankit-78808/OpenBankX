@@ -19,8 +19,8 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class TPPSubscriptionService {
     
-    private final TPPSubscriptionRepository repository;
-    private final APIPlanRepository apiPlanRepository;
+    private TPPSubscriptionRepository repository;
+    private APIPlanRepository apiPlanRepository;
     
     public TPPSubscription subscribe(Long planId, UUID tppAppId) {
        
@@ -28,12 +28,11 @@ public class TPPSubscriptionService {
                 .orElseThrow(() -> new RuntimeException("APIPlan not found: " + planId));
         
     
-        TPPSubscription subscription = TPPSubscription.builder()
-                .tppAppId(tppAppId)
-                .plan(plan)
-                .subscribedDate(LocalDate.now())
-                .status(SubscriptionStatus.ACTIVE)
-                .build();
+        TPPSubscription subscription = new TPPSubscription(
+        		tppAppId,
+        		plan,
+        		LocalDate.now(),
+        		SubscriptionStatus.ACTIVE);
                 
         return repository.save(subscription);
     }

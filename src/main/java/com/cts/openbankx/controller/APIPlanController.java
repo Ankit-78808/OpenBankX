@@ -16,7 +16,7 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class APIPlanController {
 
-    private final APIPlanService planService;
+    private APIPlanService planService;
 
     @PostMapping
     public ResponseEntity<APIPlan> createPlan(@RequestBody APIPlan plan, @RequestParam UUID productId) {

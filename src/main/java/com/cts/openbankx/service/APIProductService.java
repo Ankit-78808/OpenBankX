@@ -17,7 +17,7 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class APIProductService {
 
-    private final APIProductRepository repository;
+    private APIProductRepository repository;
 
     public APIProduct createProduct(APIProduct product) {
     	

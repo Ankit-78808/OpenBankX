@@ -2,7 +2,6 @@
 package com.cts.openbankx.model;
 
 import jakarta.persistence.*;
-import lombok.*;
 
 import java.util.List;
 

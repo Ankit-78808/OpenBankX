@@ -1,11 +1,8 @@
 package com.cts.openbankx.model;
 
-import java.sql.Date;
 import java.time.LocalDate;
 import java.util.UUID;
 
-import com.cts.openbankx.enums.PlanEnvironment;
-import com.cts.openbankx.enums.SLATier;
 import com.cts.openbankx.enums.SubscriptionStatus;
 
 import jakarta.persistence.Column;
@@ -17,17 +14,10 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+
 
 @Entity
 @Table(name = "tpp_subscriptions")
-@Data
-@AllArgsConstructor
-@Builder
-@NoArgsConstructor
 public class TPPSubscription {
 	
 	    @Id
@@ -40,10 +30,66 @@ public class TPPSubscription {
         
 	    @Column(name="subscribed_date")
 	    private LocalDate subscribedDate;
-	    private SubscriptionStatus status; // Active/Suspended/Cancelled
+	    
+		private SubscriptionStatus status; // Active/Suspended/Cancelled
 
 	    
 		private UUID tppAppId;
 
+	    
+		public TPPSubscription(UUID tppAppId, APIPlan plan, LocalDate subscribedDate, SubscriptionStatus status) {
+			this.tppAppId = tppAppId;
+			this.plan = plan;
+			this.subscribedDate = subscribedDate;
+			this.status = status;
+		}
+	    public UUID getSubscriptionId() {
+			return subscriptionId;
+		}
+
+
+		public void setSubscriptionId(UUID subscriptionId) {
+			this.subscriptionId = subscriptionId;
+		}
+
+
+		public APIPlan getPlan() {
+			return plan;
+		}
+
+
+		public void setPlan(APIPlan plan) {
+			this.plan = plan;
+		}
+
+
+		public LocalDate getSubscribedDate() {
+			return subscribedDate;
+		}
+
+
+		public void setSubscribedDate(LocalDate subscribedDate) {
+			this.subscribedDate = subscribedDate;
+		}
+
+
+		public SubscriptionStatus getStatus() {
+			return status;
+		}
+
+
+		public void setStatus(SubscriptionStatus status) {
+			this.status = status;
+		}
+
+
+		public UUID getTppAppId() {
+			return tppAppId;
+		}
+
+
+		public void setTppAppId(UUID tppAppId) {
+			this.tppAppId = tppAppId;
+		}
 
 }

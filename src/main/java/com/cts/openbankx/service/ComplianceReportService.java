@@ -2,12 +2,10 @@ package com.cts.openbankx.service;
 
 import com.cts.openbankx.model.ComplianceReport;
 
-import org.springframework.transaction.annotation.Transactional;
 import com.cts.openbankx.repository.ComplianceReportRepository;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
-import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 

@@ -2,11 +2,9 @@
 package com.cts.openbankx.model;
 
 import jakarta.persistence.*;
-import lombok.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import com.cts.openbankx.enums.TransactionType;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(
@@ -16,10 +14,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 //      @Index(name = "idx_txn_date", columnList = "TxnDate")
 //    }
 )
-@Getter @Setter
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
 public class TransactionRef {
 
 

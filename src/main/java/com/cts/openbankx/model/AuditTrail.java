@@ -2,22 +2,13 @@ package com.cts.openbankx.model;
 
 import java.time.LocalDate;
 import java.util.UUID;
-import java.sql.Types; 
 import org.hibernate.type.SqlTypes;
 import com.cts.openbankx.enums.ActorType;
 import org.hibernate.annotations.JdbcTypeCode;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "audit_trails")
-@Data
-@AllArgsConstructor
-@Builder
-@NoArgsConstructor
 public class AuditTrail {
 
     @Id
@@ -25,7 +16,63 @@ public class AuditTrail {
     @Column(name = "trail_id")
     private UUID trailId;
     
-    @Enumerated(EnumType.STRING)
+    public UUID getTrailId() {
+		return trailId;
+	}
+
+	public void setTrailId(UUID trailId) {
+		this.trailId = trailId;
+	}
+
+	public ActorType getActorType() {
+		return actorType;
+	}
+
+	public void setActorType(ActorType actorType) {
+		this.actorType = actorType;
+	}
+
+	public UUID getActorId() {
+		return actorId;
+	}
+
+	public void setActorId(UUID actorId) {
+		this.actorId = actorId;
+	}
+
+	public String getAction() {
+		return action;
+	}
+
+	public void setAction(String action) {
+		this.action = action;
+	}
+
+	public String getResource() {
+		return resource;
+	}
+
+	public void setResource(String resource) {
+		this.resource = resource;
+	}
+
+	public LocalDate getTimestamp() {
+		return timestamp;
+	}
+
+	public void setTimestamp(LocalDate timestamp) {
+		this.timestamp = timestamp;
+	}
+
+	public String getMetadata() {
+		return metadata;
+	}
+
+	public void setMetadata(String metadata) {
+		this.metadata = metadata;
+	}
+
+	@Enumerated(EnumType.STRING)
     @Column(name = "actor_type", nullable = false)
     private ActorType actorType; 
 

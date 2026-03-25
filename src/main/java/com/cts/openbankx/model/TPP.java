@@ -3,8 +3,6 @@ package com.cts.openbankx.model;
 import java.util.List;
 
 import com.cts.openbankx.enums.TPPStatus;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;

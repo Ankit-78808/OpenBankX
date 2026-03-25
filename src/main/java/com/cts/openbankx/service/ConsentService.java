@@ -32,7 +32,7 @@ public class ConsentService {
  
         // 1. Extract IDs from incoming request
         Long userId = consent.getUser().getUserId();
-        Long tppAppId = consent.getTppApp().getTPPAppID();
+        Long tppAppId = consent.getTppApp().getTppAppID();
  
         // 2. Fetch actual objects from DB
         User user = userRepo.findById(userId)
