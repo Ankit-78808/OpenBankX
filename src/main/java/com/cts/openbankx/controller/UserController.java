@@ -30,7 +30,11 @@ public class UserController {
 		response.put("message", "Register Successful");
 		response.put("user", saved);
 
+<<<<<<< HEAD
 		return ResponseEntity.created(URI.create("/api/users/" + saved.getUserId())).body(response);
+=======
+		return ResponseEntity.created(URI.create("/api/users/" + saved.getUserID())).body(response);
+>>>>>>> f13903c99553a308165b9b0e140d3c632674bb53
 	}
 
 	// READ by ID

@@ -1,14 +1,22 @@
 package com.cts.openbankx.model;
 
+<<<<<<< HEAD
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+=======
+>>>>>>> f13903c99553a308165b9b0e140d3c632674bb53
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
 /**
+<<<<<<< HEAD
  * Maps to table: AuthClient.
  * TPPAppID is a foreign key to TPPApp.TPPAppID.
+=======
+ * Maps to table: AuthClient
+ * Columns: ClientID, TPPAppID, ClientType, RedirectURIs, ScopesAllowed, Status
+>>>>>>> f13903c99553a308165b9b0e140d3c632674bb53
  */
 @Entity
 @Table(name = "AuthClient")
@@ -20,6 +28,7 @@ public class AuthClient {
     private Long clientId; // PK
 
     @NotNull
+<<<<<<< HEAD
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(
             name = "TPPAppID",
@@ -27,6 +36,10 @@ public class AuthClient {
             nullable = false,
             foreignKey = @ForeignKey(name = "FK_AuthClient_TPPApp"))
     private TPPApp tppApp;
+=======
+    @Column(name = "TPPAppID", nullable = false)
+    private Long tppAppId;
+>>>>>>> f13903c99553a308165b9b0e140d3c632674bb53
 
     @NotNull
     @Enumerated(EnumType.STRING)
@@ -55,7 +68,11 @@ public class AuthClient {
                       String redirectUris,
                       String scopesAllowed,
                       Status status) {
+<<<<<<< HEAD
         setTppAppId(tppAppId);
+=======
+        this.tppAppId = tppAppId;
+>>>>>>> f13903c99553a308165b9b0e140d3c632674bb53
         this.clientType = clientType;
         this.redirectUris = redirectUris;
         this.scopesAllowed = scopesAllowed;
@@ -71,6 +88,7 @@ public class AuthClient {
         this.clientId = clientId;
     }
 
+<<<<<<< HEAD
     @JsonProperty("tppAppId")
     public Long getTppAppId() {
         return tppApp != null ? tppApp.getTPPAppID() : null;
@@ -97,6 +115,14 @@ public class AuthClient {
     @JsonIgnore
     public void setTppApp(TPPApp tppApp) {
         this.tppApp = tppApp;
+=======
+    public Long getTppAppId() {
+        return tppAppId;
+    }
+
+    public void setTppAppId(Long tppAppId) {
+        this.tppAppId = tppAppId;
+>>>>>>> f13903c99553a308165b9b0e140d3c632674bb53
     }
 
     public ClientType getClientType() {
@@ -139,4 +165,8 @@ public class AuthClient {
     public enum Status {
         Active, Revoked
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> f13903c99553a308165b9b0e140d3c632674bb53

@@ -1,9 +1,13 @@
 package com.cts.openbankx.service;
 
 import com.cts.openbankx.model.AuthClient;
+<<<<<<< HEAD
 import com.cts.openbankx.model.TPPApp;
 import com.cts.openbankx.repository.AuthClientRepository;
 import com.cts.openbankx.repository.TPPAppRepository;
+=======
+import com.cts.openbankx.repository.AuthClientRepository;
+>>>>>>> f13903c99553a308165b9b0e140d3c632674bb53
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,6 +16,7 @@ import java.util.List;
 public class AuthClientService {
 
     private final AuthClientRepository repo;
+<<<<<<< HEAD
     private final TPPAppRepository tppAppRepository;
 
     public AuthClientService(AuthClientRepository repo, TPPAppRepository tppAppRepository) {
@@ -21,6 +26,14 @@ public class AuthClientService {
 
     public AuthClient create(AuthClient client) {
         client.setTppApp(resolveTppApp(client.getTppAppId()));
+=======
+
+    public AuthClientService(AuthClientRepository repo) {
+        this.repo = repo;
+    }
+
+    public AuthClient create(AuthClient client) {
+>>>>>>> f13903c99553a308165b9b0e140d3c632674bb53
         return repo.save(client);
     }
 
@@ -34,7 +47,11 @@ public class AuthClientService {
 
     public AuthClient update(Long id, AuthClient input) {
         return repo.findById(id).map(existing -> {
+<<<<<<< HEAD
             existing.setTppApp(resolveTppApp(input.getTppAppId()));
+=======
+            existing.setTppAppId(input.getTppAppId());
+>>>>>>> f13903c99553a308165b9b0e140d3c632674bb53
             existing.setClientType(input.getClientType());
             existing.setRedirectUris(input.getRedirectUris());
             existing.setScopesAllowed(input.getScopesAllowed());
@@ -48,6 +65,7 @@ public class AuthClientService {
         repo.deleteById(id);
         return true;
     }
+<<<<<<< HEAD
 
     private TPPApp resolveTppApp(Long tppAppId) {
         if (tppAppId == null) {
@@ -58,3 +76,6 @@ public class AuthClientService {
                 .orElseThrow(() -> new IllegalArgumentException("TPPApp not found: " + tppAppId));
     }
 }
+=======
+}
+>>>>>>> f13903c99553a308165b9b0e140d3c632674bb53

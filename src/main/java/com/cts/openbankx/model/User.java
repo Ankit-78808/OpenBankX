@@ -112,4 +112,12 @@ public class User {
 		Active, Locked
 	}
 
+<<<<<<< HEAD
 }
+=======
+	public String getUserID() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+}
+>>>>>>> f13903c99553a308165b9b0e140d3c632674bb53

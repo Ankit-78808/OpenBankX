@@ -63,7 +63,11 @@ public class SCAEvent {
 	private String referenceID;
 
 	// ----- Constructors -----
+<<<<<<< HEAD
 	public SCAEvent() {
+=======
+	protected SCAEvent() {
+>>>>>>> f13903c99553a308165b9b0e140d3c632674bb53
 	}
 
 	public SCAEvent(Long scaEventID, User user, Method method, Result result, Instant eventTime, String referenceID) {
@@ -123,4 +127,8 @@ public class SCAEvent {
 	public void setReferenceID(String referenceID) {
 		this.referenceID = referenceID;
 	}
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> f13903c99553a308165b9b0e140d3c632674bb53
