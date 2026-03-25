@@ -2,6 +2,7 @@ package com.cts.openbankx.model;
 
 import com.cts.openbankx.enums.TPPAppStatus;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -18,7 +19,7 @@ import jakarta.persistence.ForeignKey;
 public class TPPApp {
 		
 		@Id
-		@GeneratedValue(strategy = GenerationType.IDENTITY)
+
 		@Column(name = "TPPAppID")
 	    private Long tppAppID;
 		
