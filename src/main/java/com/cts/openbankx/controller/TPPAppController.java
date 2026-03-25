@@ -17,20 +17,20 @@ import com.cts.openbankx.model.TPPApp;
 import com.cts.openbankx.service.TPPAppService;
 
 @RestController
-@RequestMapping("/api/v1/tppapp")
+@RequestMapping("/api/v1/apps")
 public class TPPAppController {
 	
 	@Autowired
 	private TPPAppService service;
 	
 	@PostMapping("/{tppId}")
-	public TPPApp register(@PathVariable Long tppId,@RequestBody TPPApp tppapp) {
-		return service.registerData(tppId,tppapp);
+	public ResponseEntity<TPPApp> register(@PathVariable Long tppId,@RequestBody TPPApp tppapp) {
+		return ResponseEntity.status(201).body(service.registerData(tppId,tppapp));
 	}
 	
 	@GetMapping
-	public List<TPPApp> getData(){
-		return service.getData();
+	public ResponseEntity<List<TPPApp>> getData(){
+		return ResponseEntity.ok(service.getData());
 	}
 	
 	@GetMapping("/{id}")
@@ -52,13 +52,12 @@ public class TPPAppController {
 			return ResponseEntity.status(404).body("TPPAppId Not Found");
 		}
 			return ResponseEntity.ok(update);
-		
 	}
 	
 	@DeleteMapping("/{id}")
-	public String delete(@PathVariable Long id) {
+	public ResponseEntity<Void> delete(@PathVariable Long id) {
 		service.deleteData(id);
-		return "Data deleted";
+		return ResponseEntity.noContent().build();
 	}
 
 }

@@ -67,8 +67,4 @@ public class TPPController {
 		return ResponseEntity.ok().body("Id deleted");
 	}
 	
-	
-	
-	
-
 }

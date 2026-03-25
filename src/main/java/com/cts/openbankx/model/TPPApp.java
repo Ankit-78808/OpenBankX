@@ -2,7 +2,6 @@ package com.cts.openbankx.model;
 
 import com.cts.openbankx.enums.TPPAppStatus;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -13,6 +12,8 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.ForeignKey;
+
 
 @Entity
 public class TPPApp {
@@ -39,13 +40,12 @@ public class TPPApp {
 		 private TPPAppStatus status;
 		 
 		 @ManyToOne
-		 @JoinColumn(name = "TPPID", nullable = false)
+		 @JoinColumn(name = "TPPID", nullable = false,foreignKey = @ForeignKey(name = "fk_tppapp_tpp"))
 		 @JsonIgnore
 		 private TPP tpp;
 		 
-
-		
-
+		 
+		 
 		 public TPP getTpp() {
 			return tpp;
 		}
