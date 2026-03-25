@@ -10,49 +10,52 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 @Entity
 public class APIUsageReport {
 	
 	   @Id
+	   @GeneratedValue(strategy = GenerationType.IDENTITY)
 	   @Column(name = "ReportID")
-	   private Long ReportID;
+	   private Long reportID;
 
 	    @Column(name = "Scope")
 	    @Enumerated(EnumType.STRING)
-	    private ReportScopeKey Scope;
+	    private ReportScopeKey scope;
 
 	   
 	    @Column(name = "Metrics")
-	    private String Metrics;
+	    private String metrics;
 	    
 	    @CreationTimestamp
 	    @Column(name = "GeneratedDate", nullable = false)
 	    private Instant generatedDate;
 
 		public Long getReportID() {
-			return ReportID;
+			return reportID;
 		}
 
 		public void setReportID(Long reportID) {
-			ReportID = reportID;
+			this.reportID = reportID;
 		}
 
 		public ReportScopeKey getScope() {
-			return Scope;
+			return scope;
 		}
 
 		public void setScope(ReportScopeKey scope) {
-			Scope = scope;
+			this.scope = scope;
 		}
 
 		public String getMetrics() {
-			return Metrics;
+			return metrics;
 		}
 
 		public void setMetrics(String metrics) {
-			Metrics = metrics;
+			this.metrics = metrics;
 		}
 
 		public Instant getGeneratedDate() {
@@ -62,7 +65,8 @@ public class APIUsageReport {
 		public void setGeneratedDate(Instant generatedDate) {
 			this.generatedDate = generatedDate;
 		}
-	    
+
+		
 	    
 	    
 

@@ -1,7 +1,7 @@
 package com.cts.openbankx.enums;
 
 public enum PerformedBy {
-	User,
+	USER,
 	TPP,
-	Admin
+	ADMIN
 }

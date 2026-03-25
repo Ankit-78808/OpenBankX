@@ -1,6 +1,6 @@
 package com.cts.openbankx.enums;
 
-public enum Status {
+public enum ConsentStatus {
     ACTIVE,
     EXPIRED,
     REVOKED
