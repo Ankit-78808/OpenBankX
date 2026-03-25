@@ -2,103 +2,133 @@ package com.cts.openbankx.model;
 
 import java.time.LocalDateTime;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.ForeignKey;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
 
 @Entity
 @Table(name="APILOG")
 public class ApiGateWay 
 {
 	@Id
-	@Column(nullable=false)
-	private Long APILogID;
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="APILogID",nullable=false)
+	private Long apiLogID;
 	
-	@Column(nullable = false)
-	private Long TPPAppID;
+	@ManyToOne(fetch= FetchType.LAZY)
+	@JoinColumn(name="TPPAppID",
+	nullable=false,
+	foreignKey=@ForeignKey(name="fk_APILOG_TPPApp"))
+	@JsonIgnore
+	private TPPApp tppApp;
 	
-	@Column(nullable = false)
-	private Long ClientID;
-	
-	@Column(nullable = false,length = 255)
-	private String Endpoint;
-	
-	@Column(nullable = false,length=20)
-	private String Method;
-	
-	@Column(nullable = false)
-	private Integer StatusCode;
-	
-	@Column(nullable = false)
-	private Long LatencyMS;
-	
-	@Column(nullable = false)
-	private LocalDateTime Timestamp;
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="ClientID",
+	nullable=false,
+	foreignKey=@ForeignKey(name="fk_APILOG_AuthClient"))
+	@JsonIgnore
+	private AuthClient authclient;
 
-	public Long getAPILogID() {
-		return APILogID;
+	@Column(name="EndPoint",nullable = false,length = 255)
+	private String endPoint;
+	
+	@Column(name="Method",nullable = false,length=20)
+	private String method;
+	
+
+	@Column(name="StatusCode",nullable = false)
+	private Integer statusCode;
+	
+	@Column(name="LatencyMS",nullable = false)
+	private Long latencyMs;
+	
+	@Column(name="TimeStamp",nullable = false)
+	private LocalDateTime timestamp;
+	
+	
+	
+
+	public Long getApiLogID() {
+		return apiLogID;
 	}
 
-	public void setAPILogID(Long aPILogID) {
-		APILogID = aPILogID;
+	public void setApiLogID(Long apiLogID) {
+		this.apiLogID = apiLogID;
 	}
 
-	public Long getTPPAppID() {
-		return TPPAppID;
+	public TPPApp getTppApp() {
+		return tppApp;
 	}
 
-	public void setTPPAppID(Long tPPAppID) {
-		TPPAppID = tPPAppID;
+	public void setTppApp(TPPApp tppApp) {
+		this.tppApp = tppApp;
 	}
 
-	public Long getClientID() {
-		return ClientID;
+	public AuthClient getAuthclient() {
+		return authclient;
 	}
 
-	public void setClientID(Long clientID) {
-		ClientID = clientID;
+	public void setAuthclient(AuthClient authclient) {
+		this.authclient = authclient;
 	}
 
-	public String getEndpoint() {
-		return Endpoint;
+	public String getEndPoint() {
+		return endPoint;
 	}
 
-	public void setEndpoint(String endpoint) {
-		Endpoint = endpoint;
+	public void setEndPoint(String endPoint) {
+		this.endPoint = endPoint;
 	}
 
 	public String getMethod() {
-		return Method;
+		return method;
 	}
 
 	public void setMethod(String method) {
-		Method = method;
+		this.method = method;
 	}
 
 	public Integer getStatusCode() {
-		return StatusCode;
+		return statusCode;
 	}
 
 	public void setStatusCode(Integer statusCode) {
-		StatusCode = statusCode;
+		this.statusCode = statusCode;
 	}
 
-	public Long getLatencyMS() {
-		return LatencyMS;
+	public Long getLatencyMs() {
+		return latencyMs;
 	}
 
-	public void setLatencyMS(Long latencyMS) {
-		LatencyMS = latencyMS;
+	public void setLatencyMs(Long latencyMs) {
+		this.latencyMs = latencyMs;
 	}
 
 	public LocalDateTime getTimestamp() {
-		return Timestamp;
+		return timestamp;
 	}
 
 	public void setTimestamp(LocalDateTime timestamp) {
-		Timestamp = timestamp;
+		this.timestamp = timestamp;
 	}
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 

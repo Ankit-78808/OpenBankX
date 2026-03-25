@@ -1,6 +1,7 @@
 package com.cts.openbankx.model;
 
 import com.cts.openbankx.enums.TPPAppStatus;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -12,6 +13,7 @@ import jakarta.persistence.Id;
 public class TPPApp {
 		
 		@Id
+		@JsonProperty("TPPAppID")
 		@Column(name = "TPPAppID")
 	    private Long TPPAppID;
 		

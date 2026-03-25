@@ -1,14 +1,22 @@
 package com.cts.openbankx.model;
 
+
 import java.time.LocalDateTime;
 
 import com.cts.openbankx.enums.LimitWindow;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.ForeignKey;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -16,16 +24,23 @@ import jakarta.persistence.Table;
 public class RateLimit 
 {
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(nullable = false)
+	@JsonProperty("CounterID")
 	private Long CounterID;
 	
-	@Column(nullable = false)
-	private Long TPPAppID;
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="TPPAppID",
+	nullable=false,
+	foreignKey=@ForeignKey(name="fk_RateLimitCounter_TPPApp"))
+	private TPPApp tppApp;
 	
 	@Column(nullable = false)
+	@JsonProperty("PeriodStart")
 	private LocalDateTime PeriodStart;
 	
 	@Column(nullable = false)
+	@JsonProperty("Count")
 	private Integer Count;
 	
 	@Enumerated(EnumType.STRING)
@@ -39,12 +54,12 @@ public class RateLimit
 		CounterID = counterID;
 	}
 
-	public Long getTPPAppID() {
-		return TPPAppID;
+	public TPPApp getTPPApp() {
+		return tppApp;
 	}
 
-	public void setTPPAppID(Long tPPAppID) {
-		TPPAppID = tPPAppID;
+	public void setTPPApp(TPPApp tPPApp) {
+		this.tppApp = tPPApp;
 	}
 
 	public LocalDateTime getPeriodStart() {
