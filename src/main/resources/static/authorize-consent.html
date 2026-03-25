@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consent Authorization</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f6f8;
+            color: #1f2937;
+        }
+
+        .shell {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 24px 16px 40px;
+        }
+
+        .masthead {
+            margin-bottom: 20px;
+        }
+
+        .masthead h1 {
+            margin: 0 0 8px;
+            font-size: 28px;
+        }
+
+        .masthead p {
+            margin: 0;
+            color: #4b5563;
+        }
+
+        .consent-chip {
+            margin-top: 12px;
+            display: inline-block;
+            padding: 8px 12px;
+            background: #e5eefb;
+            border-radius: 8px;
+            font-weight: 600;
+        }
+
+        .alert {
+            display: none;
+            margin-bottom: 16px;
+            padding: 12px 14px;
+            border-radius: 8px;
+        }
+
+        .alert.visible {
+            display: block;
+        }
+
+        .alert.error {
+            background: #fee2e2;
+            color: #991b1b;
+            border: 1px solid #fecaca;
+        }
+
+        .alert.success {
+            background: #dcfce7;
+            color: #166534;
+            border: 1px solid #bbf7d0;
+        }
+
+        .layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+
+        .panel {
+            background: #ffffff;
+            border: 1px solid #dbe1e8;
+            border-radius: 10px;
+            padding: 20px;
+        }
+
+        .panel h2 {
+            margin-top: 0;
+            margin-bottom: 8px;
+            font-size: 20px;
+        }
+
+        .step-note,
+        .helper,
+        .status-card p {
+            color: #4b5563;
+            line-height: 1.5;
+        }
+
+        .form-grid {
+            display: grid;
+            gap: 12px;
+        }
+
+        .field {
+            display: grid;
+            gap: 6px;
+        }
+
+        .field label {
+            font-weight: 600;
+        }
+
+        .field input,
+        .field textarea {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            font: inherit;
+            background: #fff;
+        }
+
+        .field textarea {
+            min-height: 90px;
+            resize: vertical;
+        }
+
+        .button-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        button {
+            padding: 10px 14px;
+            border-radius: 8px;
+            border: 1px solid transparent;
+            cursor: pointer;
+            font: inherit;
+            font-weight: 600;
+        }
+
+        .primary {
+            background: #2563eb;
+            color: #fff;
+        }
+
+        .secondary {
+            background: #f59e0b;
+            color: #fff;
+        }
+
+        .ghost {
+            background: #fff;
+            color: #1f2937;
+            border-color: #cbd5e1;
+        }
+
+        .summary-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .summary-item {
+            padding: 12px;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            background: #f9fafb;
+        }
+
+        .summary-item strong,
+        .summary-item span {
+            display: block;
+        }
+
+        .summary-item strong {
+            margin-bottom: 6px;
+            font-size: 13px;
+            color: #6b7280;
+            text-transform: uppercase;
+        }
+
+        .summary-item--wide {
+            grid-column: 1 / -1;
+        }
+
+        .mono-block {
+            margin: 0;
+            padding: 10px;
+            background: #fff;
+            border: 1px solid #dbe1e8;
+            border-radius: 8px;
+            font-family: Consolas, monospace;
+            white-space: pre-wrap;
+            word-break: break-word;
+        }
+
+        .status-rail {
+            display: grid;
+            gap: 12px;
+        }
+
+        .status-card {
+            padding: 12px;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            background: #f9fafb;
+        }
+
+        .status-badge {
+            display: inline-block;
+            margin-top: 8px;
+            padding: 6px 10px;
+            border-radius: 999px;
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .status-badge.pending {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .status-badge.complete {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .status-badge.expired {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        @media (max-width: 900px) {
+            .layout,
+            .summary-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+<main class="shell">
+    <header class="masthead">
+        <h1>Consent Authorization</h1>
+        <p>Review the consent request, verify the customer, and complete strong customer authentication.</p>
+        <div class="consent-chip">Consent <span id="consent-id-chip">--</span></div>
+    </header>
+
+    <div id="alert" class="alert" role="alert"></div>
+
+    <section class="layout">
+        <article class="panel">
+            <h2>Customer Sign In</h2>
+            <p class="step-note">Enter the customer email and phone number linked to this consent.</p>
+
+            <form id="login-form" class="form-grid">
+                <div class="field">
+                    <label for="email">Email</label>
+                    <input id="email" name="email" type="email" required>
+                </div>
+                <div class="field">
+                    <label for="phone">Phone</label>
+                    <input id="phone" name="phone" type="tel" required>
+                </div>
+                <div class="button-row">
+                    <button id="sign-in-button" class="primary" type="submit">Verify Customer</button>
+                    <button id="reset-button" class="ghost hidden" type="button">Reset Session</button>
+                </div>
+            </form>
+
+            <div class="status-rail" style="margin-top: 16px;">
+                <div class="status-card">
+                    <strong>Customer</strong>
+                    <p id="customer-summary">Sign in to load the customer details for this consent.</p>
+                </div>
+                <div class="status-card">
+                    <strong>Next Step</strong>
+                    <p id="journey-next-step">Load a consent to begin.</p>
+                </div>
+            </div>
+        </article>
+
+        <article class="panel">
+            <h2>Consent Details</h2>
+            <p class="step-note">These are the details requested by the TPP application.</p>
+
+            <div class="summary-grid">
+                <div class="summary-item">
+                    <strong>TPP App</strong>
+                    <span id="tpp-app-name">--</span>
+                </div>
+                <div class="summary-item">
+                    <strong>Status</strong>
+                    <span id="consent-status">--</span>
+                </div>
+                <div class="summary-item">
+                    <strong>Scope</strong>
+                    <span id="consent-scope">--</span>
+                </div>
+                <div class="summary-item">
+                    <strong>Requested Scopes</strong>
+                    <span id="tpp-scopes">--</span>
+                </div>
+                <div class="summary-item">
+                    <strong>Created Date</strong>
+                    <span id="created-date">--</span>
+                </div>
+                <div class="summary-item">
+                    <strong>Expiry Date</strong>
+                    <span id="expiry-date">--</span>
+                </div>
+                <div class="summary-item summary-item--wide">
+                    <strong>Resource Filter</strong>
+                    <pre id="resource-filter" class="mono-block">--</pre>
+                </div>
+            </div>
+        </article>
+    </section>
+
+    <section class="layout">
+        <aside class="panel">
+            <h2>Status</h2>
+            <p class="step-note">Current browser-session state for this consent review.</p>
+
+            <div class="status-rail">
+                <div class="status-card">
+                    <strong>Customer Authentication</strong>
+                    <div id="auth-badge" class="status-badge pending">Awaiting Sign In</div>
+                    <p id="auth-status-copy">A customer must be verified before continuing.</p>
+                </div>
+            </div>
+        </aside>
+    </section>
+</main>
+
+<script>
+    const state = {
+        consentId: null,
+        review: null
+    };
+
+    const alertBox = document.getElementById("alert");
+    const consentChip = document.getElementById("consent-id-chip");
+    const journeyNextStep = document.getElementById("journey-next-step");
+    const customerSummary = document.getElementById("customer-summary");
+    const authBadge = document.getElementById("auth-badge");
+    const authStatusCopy = document.getElementById("auth-status-copy");
+    const resetButton = document.getElementById("reset-button");
+
+    document.getElementById("login-form").addEventListener("submit", handleLogin);
+    resetButton.addEventListener("click", clearConsentSession);
+
+    initialize();
+
+    async function initialize() {
+        const params = new URLSearchParams(window.location.search);
+        const consentId = params.get("consentId");
+        state.consentId = consentId ? Number(consentId) : null;
+
+        if (!state.consentId) {
+            showAlert("Consent id is missing from the URL. Open this page with ?consentId=<value>.", "error");
+            return;
+        }
+
+        consentChip.textContent = state.consentId;
+        await loadContext();
+    }
+
+    async function loadContext() {
+        try {
+            const payload = await callApi("/api/v1/auth/authorize/context?consentId=" + encodeURIComponent(state.consentId));
+            state.review = payload.review;
+            render();
+        } catch (error) {
+            showAlert(error.message, "error");
+        }
+    }
+
+    async function handleLogin(event) {
+        event.preventDefault();
+        clearAlert();
+
+        const email = document.getElementById("email").value.trim();
+        const phone = document.getElementById("phone").value.trim();
+
+        try {
+            const payload = await callApi("/api/v1/auth/authorize/login", {
+                method: "POST",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify({
+                    consentId: state.consentId,
+                    email,
+                    phone
+                })
+            });
+
+            state.review = payload.review;
+            render();
+            showAlert(payload.message, "success");
+        } catch (error) {
+            showAlert(error.message, "error");
+        }
+    }
+
+    async function clearConsentSession() {
+        try {
+            await callApi("/api/v1/auth/authorize/logout", {
+                method: "POST",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify({consentId: state.consentId})
+            });
+
+            document.getElementById("login-form").reset();
+            state.review = null;
+            await loadContext();
+            showAlert("Consent review session reset.", "success");
+        } catch (error) {
+            showAlert(error.message, "error");
+        }
+    }
+
+    function render() {
+        const review = state.review;
+        if (!review) {
+            return;
+        }
+
+        consentChip.textContent = review.consentId;
+        document.getElementById("tpp-app-name").textContent = review.tppAppName || "--";
+        document.getElementById("consent-status").textContent = review.consentStatus || "--";
+        document.getElementById("consent-scope").textContent = review.scope || "--";
+        document.getElementById("tpp-scopes").textContent = review.tppScopesRequested || "--";
+        document.getElementById("created-date").textContent = formatDateTime(review.createdDate);
+        document.getElementById("expiry-date").textContent = formatDateTime(review.expiredDate);
+        document.getElementById("resource-filter").textContent = review.resourceFilterJSON || "--";
+
+        journeyNextStep.textContent = review.nextStep || "--";
+
+        if (review.authenticatedCustomer) {
+            customerSummary.textContent =
+                (review.customerName || "Customer") +
+                " authenticated for review. Email: " +
+                (review.maskedEmail || "--") +
+                ", phone: " +
+                (review.maskedPhone || "--") +
+                ".";
+            authBadge.textContent = "Customer Verified";
+            authBadge.className = "status-badge complete";
+            authStatusCopy.textContent = "Customer identity matched to the consent owner.";
+            resetButton.classList.remove("hidden");
+        } else {
+            customerSummary.textContent = "Sign in to load the customer details for this consent.";
+            authBadge.textContent = review.expired ? "Consent Expired" : "Awaiting Sign In";
+            authBadge.className = "status-badge " + (review.expired ? "expired" : "pending");
+            authStatusCopy.textContent = review.expired
+                ? "The consent has expired."
+                : "A customer must be verified before continuing.";
+            resetButton.classList.add("hidden");
+        }
+    }
+
+    async function callApi(url, options = {}) {
+        const response = await fetch(url, {
+            credentials: "same-origin",
+            ...options
+        });
+
+        const text = await response.text();
+        let payload = {};
+        if (text) {
+            try {
+                payload = JSON.parse(text);
+            } catch (error) {
+                payload = {message: text};
+            }
+        }
+
+        if (!response.ok) {
+            throw new Error(payload.message || "Request failed.");
+        }
+
+        return payload;
+    }
+
+    function showAlert(message, type) {
+        alertBox.textContent = message;
+        alertBox.className = "alert visible " + type;
+    }
+
+    function clearAlert() {
+        alertBox.textContent = "";
+        alertBox.className = "alert";
+    }
+
+    function formatDateTime(value) {
+        if (!value) {
+            return "--";
+        }
+        const parsed = new Date(value);
+        if (Number.isNaN(parsed.getTime())) {
+            return value;
+        }
+        return parsed.toLocaleString();
+    }
+
+</script>
+</body>
+</html>
