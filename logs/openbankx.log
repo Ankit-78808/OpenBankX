@@ -1,0 +1,2667 @@
+2026-03-28 10:32:04.591 INFO  [main] c.cts.openbankx.OpenBankXApplication - Starting OpenBankXApplication using Java 21.0.2 with PID 21688 (C:\Users\2478956\Downloads\OpenBankXF\OpenBankXF\OpenBankX_Final\OpenBankXF\target\classes started by 2478956 in C:\Users\2478956\Downloads\OpenBankXF\OpenBankXF\OpenBankX_Final\OpenBankXF)
+2026-03-28 10:32:04.610 INFO  [main] c.cts.openbankx.OpenBankXApplication - No active profile set, falling back to 1 default profile: "default"
+2026-03-28 10:32:06.277 INFO  [main] o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-03-28 10:32:06.585 INFO  [main] o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 294 ms. Found 23 JPA repository interfaces.
+2026-03-28 10:32:08.090 INFO  [main] o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8081 (http)
+2026-03-28 10:32:08.114 INFO  [main] o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-03-28 10:32:08.114 INFO  [main] o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.36]
+2026-03-28 10:32:08.230 INFO  [main] o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2026-03-28 10:32:08.230 INFO  [main] o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 3505 ms
+2026-03-28 10:32:08.571 INFO  [main] o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-03-28 10:32:08.778 INFO  [main] org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.8.Final
+2026-03-28 10:32:08.879 INFO  [main] o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2026-03-28 10:32:09.690 INFO  [main] o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-03-28 10:32:09.792 INFO  [main] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-03-28 10:32:10.269 INFO  [main] com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@688d619c
+2026-03-28 10:32:10.272 INFO  [main] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-03-28 10:32:10.370 WARN  [main] org.hibernate.orm.deprecation - HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-03-28 10:32:10.414 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0.44
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-03-28 10:32:12.080 INFO  [main] o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-03-28 10:32:12.163 DEBUG [main] org.hibernate.SQL - 
+    create table authorization_code (
+        id bigint not null auto_increment,
+        code varchar(255) not null,
+        expires_at datetime(6) not null,
+        issued_at datetime(6) not null,
+        used bit not null,
+        client_id bigint not null,
+        consent_id bigint not null,
+        user_id bigint not null,
+        primary key (id)
+    ) engine=InnoDB
+2026-03-28 10:32:12.256 DEBUG [main] org.hibernate.SQL - 
+    alter table authorization_code 
+       drop index UKd5sya0t19jj2fdaik5iv09cmh
+2026-03-28 10:32:12.716 DEBUG [main] org.hibernate.SQL - 
+    alter table authorization_code 
+       add constraint UKd5sya0t19jj2fdaik5iv09cmh unique (code)
+2026-03-28 10:32:12.784 DEBUG [main] org.hibernate.SQL - 
+    alter table authorization_code 
+       add constraint FKmreaif3h3v4ldh1k328wa39r1 
+       foreign key (client_id) 
+       references auth_client (client_id)
+2026-03-28 10:32:12.900 DEBUG [main] org.hibernate.SQL - 
+    alter table authorization_code 
+       add constraint FKmdvxevn3ympq601h0axd0eybk 
+       foreign key (consent_id) 
+       references consent (consent_id)
+2026-03-28 10:32:13.011 DEBUG [main] org.hibernate.SQL - 
+    alter table authorization_code 
+       add constraint FK8ip3ma10ocxlkh2y8yiw8bjju 
+       foreign key (user_id) 
+       references users (user_id)
+2026-03-28 10:32:13.202 INFO  [main] o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-03-28 10:32:14.972 WARN  [main] o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-03-28 10:32:15.021 INFO  [main] o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
+2026-03-28 10:32:16.664 INFO  [main] o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8081 (http) with context path '/'
+2026-03-28 10:32:16.675 INFO  [main] c.cts.openbankx.OpenBankXApplication - Started OpenBankXApplication in 12.747 seconds (process running for 13.354)
+2026-03-28 10:39:25.255 INFO  [http-nio-8081-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-03-28 10:39:25.255 INFO  [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2026-03-28 10:39:25.265 INFO  [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet - Completed initialization in 10 ms
+2026-03-28 10:39:25.551 DEBUG [http-nio-8081-exec-1] org.hibernate.SQL - 
+    insert 
+    into
+        api_log
+        (client_id, endpoint, latency_ms, method, status_code, timestamp, tpp_app_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?)
+2026-03-28 10:39:25.584 WARN  [http-nio-8081-exec-1] o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1048, SQLState: 23000
+2026-03-28 10:39:25.584 ERROR [http-nio-8081-exec-1] o.h.e.jdbc.spi.SqlExceptionHelper - Column 'tpp_app_id' cannot be null
+2026-03-28 10:39:25.634 ERROR [http-nio-8081-exec-1] o.a.c.c.C.[.[.[.[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception
+org.springframework.dao.DataIntegrityViolationException: could not execute statement [Column 'tpp_app_id' cannot be null] [insert into api_log (client_id,endpoint,latency_ms,method,status_code,timestamp,tpp_app_id) values (?,?,?,?,?,?,?)]; SQL [insert into api_log (client_id,endpoint,latency_ms,method,status_code,timestamp,tpp_app_id) values (?,?,?,?,?,?,?)]; constraint [null]
+	at org.springframework.orm.jpa.vendor.HibernateJpaDialect.convertHibernateAccessException(HibernateJpaDialect.java:290)
+	at org.springframework.orm.jpa.vendor.HibernateJpaDialect.translateExceptionIfPossible(HibernateJpaDialect.java:241)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.translateExceptionIfPossible(AbstractEntityManagerFactoryBean.java:560)
+	at org.springframework.dao.support.ChainedPersistenceExceptionTranslator.translateExceptionIfPossible(ChainedPersistenceExceptionTranslator.java:61)
+	at org.springframework.dao.support.DataAccessUtils.translateIfNecessary(DataAccessUtils.java:343)
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:160)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+	at org.springframework.data.jpa.repository.support.CrudMethodMetadataPostProcessor$CrudMethodMetadataPopulatingMethodInterceptor.invoke(CrudMethodMetadataPostProcessor.java:165)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:223)
+	at jdk.proxy2/jdk.proxy2.$Proxy136.save(Unknown Source)
+	at com.cts.openbankx.service.APILogService.save(APILogService.java:21)
+	at com.cts.openbankx.gateway.ApiGatewayFilter.doFilterInternal(ApiGatewayFilter.java:122)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at com.cts.openbankx.config.JwtAuthFilter.doFilterInternal(JwtAuthFilter.java:63)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:107)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:93)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90)
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:82)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:69)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:62)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:233)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:191)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.servlet.handler.HandlerMappingIntrospector.lambda$createCacheFilter$3(HandlerMappingIntrospector.java:243)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74)
+	at org.springframework.security.config.annotation.web.configuration.WebMvcSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebMvcSecurityConfiguration.java:238)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:362)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:278)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:905)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1743)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+Caused by: org.hibernate.exception.ConstraintViolationException: could not execute statement [Column 'tpp_app_id' cannot be null] [insert into api_log (client_id,endpoint,latency_ms,method,status_code,timestamp,tpp_app_id) values (?,?,?,?,?,?,?)]
+	at org.hibernate.exception.internal.SQLExceptionTypeDelegate.convert(SQLExceptionTypeDelegate.java:62)
+	at org.hibernate.exception.internal.StandardSQLExceptionConverter.convert(StandardSQLExceptionConverter.java:58)
+	at org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:108)
+	at org.hibernate.engine.jdbc.internal.ResultSetReturnImpl.executeUpdate(ResultSetReturnImpl.java:197)
+	at org.hibernate.id.insert.GetGeneratedKeysDelegate.performMutation(GetGeneratedKeysDelegate.java:116)
+	at org.hibernate.engine.jdbc.mutation.internal.MutationExecutorSingleNonBatched.performNonBatchedOperations(MutationExecutorSingleNonBatched.java:47)
+	at org.hibernate.engine.jdbc.mutation.internal.AbstractMutationExecutor.execute(AbstractMutationExecutor.java:55)
+	at org.hibernate.persister.entity.mutation.InsertCoordinatorStandard.doStaticInserts(InsertCoordinatorStandard.java:194)
+	at org.hibernate.persister.entity.mutation.InsertCoordinatorStandard.coordinateInsert(InsertCoordinatorStandard.java:132)
+	at org.hibernate.persister.entity.mutation.InsertCoordinatorStandard.insert(InsertCoordinatorStandard.java:95)
+	at org.hibernate.action.internal.EntityIdentityInsertAction.execute(EntityIdentityInsertAction.java:85)
+	at org.hibernate.engine.spi.ActionQueue.execute(ActionQueue.java:682)
+	at org.hibernate.engine.spi.ActionQueue.addResolvedEntityInsertAction(ActionQueue.java:293)
+	at org.hibernate.engine.spi.ActionQueue.addInsertAction(ActionQueue.java:274)
+	at org.hibernate.engine.spi.ActionQueue.addAction(ActionQueue.java:324)
+	at org.hibernate.event.internal.AbstractSaveEventListener.addInsertAction(AbstractSaveEventListener.java:393)
+	at org.hibernate.event.internal.AbstractSaveEventListener.performSaveOrReplicate(AbstractSaveEventListener.java:307)
+	at org.hibernate.event.internal.AbstractSaveEventListener.performSave(AbstractSaveEventListener.java:223)
+	at org.hibernate.event.internal.AbstractSaveEventListener.saveWithGeneratedId(AbstractSaveEventListener.java:136)
+	at org.hibernate.event.internal.DefaultPersistEventListener.entityIsTransient(DefaultPersistEventListener.java:177)
+	at org.hibernate.event.internal.DefaultPersistEventListener.persist(DefaultPersistEventListener.java:95)
+	at org.hibernate.event.internal.DefaultPersistEventListener.onPersist(DefaultPersistEventListener.java:79)
+	at org.hibernate.event.internal.DefaultPersistEventListener.onPersist(DefaultPersistEventListener.java:55)
+	at org.hibernate.event.service.internal.EventListenerGroupImpl.fireEventOnEachListener(EventListenerGroupImpl.java:127)
+	at org.hibernate.internal.SessionImpl.firePersist(SessionImpl.java:761)
+	at org.hibernate.internal.SessionImpl.persist(SessionImpl.java:745)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.orm.jpa.SharedEntityManagerCreator$SharedEntityManagerInvocationHandler.invoke(SharedEntityManagerCreator.java:320)
+	at jdk.proxy2/jdk.proxy2.$Proxy133.persist(Unknown Source)
+	at org.springframework.data.jpa.repository.support.SimpleJpaRepository.save(SimpleJpaRepository.java:636)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:359)
+	at org.springframework.data.repository.core.support.RepositoryMethodInvoker$RepositoryFragmentMethodInvoker.lambda$new$0(RepositoryMethodInvoker.java:277)
+	at org.springframework.data.repository.core.support.RepositoryMethodInvoker.doInvoke(RepositoryMethodInvoker.java:170)
+	at org.springframework.data.repository.core.support.RepositoryMethodInvoker.invoke(RepositoryMethodInvoker.java:158)
+	at org.springframework.data.repository.core.support.RepositoryComposition$RepositoryFragments.invoke(RepositoryComposition.java:515)
+	at org.springframework.data.repository.core.support.RepositoryComposition.invoke(RepositoryComposition.java:284)
+	at org.springframework.data.repository.core.support.RepositoryFactorySupport$ImplementationMethodExecutionInterceptor.invoke(RepositoryFactorySupport.java:752)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.doInvoke(QueryExecutorMethodInterceptor.java:174)
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.invoke(QueryExecutorMethodInterceptor.java:149)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+	at org.springframework.data.projection.DefaultMethodInvokingMethodInterceptor.invoke(DefaultMethodInvokingMethodInterceptor.java:69)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:380)
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:119)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:138)
+	... 67 common frames omitted
+Caused by: java.sql.SQLIntegrityConstraintViolationException: Column 'tpp_app_id' cannot be null
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:109)
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:114)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeInternal(ClientPreparedStatement.java:988)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdateInternal(ClientPreparedStatement.java:1166)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdateInternal(ClientPreparedStatement.java:1101)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeLargeUpdate(ClientPreparedStatement.java:1467)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdate(ClientPreparedStatement.java:1084)
+	at com.zaxxer.hikari.pool.ProxyPreparedStatement.executeUpdate(ProxyPreparedStatement.java:61)
+	at com.zaxxer.hikari.pool.HikariProxyPreparedStatement.executeUpdate(HikariProxyPreparedStatement.java)
+	at org.hibernate.engine.jdbc.internal.ResultSetReturnImpl.executeUpdate(ResultSetReturnImpl.java:194)
+	... 113 common frames omitted
+2026-03-28 10:55:20.670 INFO  [main] c.cts.openbankx.OpenBankXApplication - Starting OpenBankXApplication using Java 21.0.2 with PID 16120 (C:\Users\2478956\Downloads\OpenBankXF\OpenBankXF\OpenBankX_Final\OpenBankXF\target\classes started by 2478956 in C:\Users\2478956\Downloads\OpenBankXF\OpenBankXF\OpenBankX_Final\OpenBankXF)
+2026-03-28 10:55:20.674 INFO  [main] c.cts.openbankx.OpenBankXApplication - No active profile set, falling back to 1 default profile: "default"
+2026-03-28 10:55:21.785 INFO  [main] o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-03-28 10:55:21.931 INFO  [main] o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 134 ms. Found 23 JPA repository interfaces.
+2026-03-28 10:55:23.088 INFO  [main] o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8081 (http)
+2026-03-28 10:55:23.113 INFO  [main] o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-03-28 10:55:23.114 INFO  [main] o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.36]
+2026-03-28 10:55:23.199 INFO  [main] o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2026-03-28 10:55:23.200 INFO  [main] o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2471 ms
+2026-03-28 10:55:23.461 INFO  [main] o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-03-28 10:55:23.581 INFO  [main] org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.8.Final
+2026-03-28 10:55:23.626 INFO  [main] o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2026-03-28 10:55:24.019 INFO  [main] o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-03-28 10:55:24.046 INFO  [main] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-03-28 10:55:24.367 INFO  [main] com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@6acb45c1
+2026-03-28 10:55:24.369 INFO  [main] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-03-28 10:55:24.429 WARN  [main] org.hibernate.orm.deprecation - HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-03-28 10:55:24.448 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0.44
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-03-28 10:55:25.492 INFO  [main] o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-03-28 10:55:25.642 INFO  [main] o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-03-28 10:55:26.890 WARN  [main] o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-03-28 10:55:26.934 INFO  [main] o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
+2026-03-28 10:55:28.280 INFO  [main] o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8081 (http) with context path '/'
+2026-03-28 10:55:28.288 INFO  [main] c.cts.openbankx.OpenBankXApplication - Started OpenBankXApplication in 8.074 seconds (process running for 8.471)
+2026-03-28 10:55:36.904 INFO  [http-nio-8081-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-03-28 10:55:36.904 INFO  [http-nio-8081-exec-2] o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2026-03-28 10:55:36.904 INFO  [http-nio-8081-exec-2] o.s.web.servlet.DispatcherServlet - Completed initialization in 0 ms
+2026-03-28 10:57:47.079 DEBUG [http-nio-8081-exec-3] org.hibernate.SQL - 
+    insert 
+    into
+        users
+        (email, name, password, phone, role, status) 
+    values
+        (?, ?, ?, ?, ?, ?)
+2026-03-28 11:22:57.218 INFO  [main] c.cts.openbankx.OpenBankXApplication - Starting OpenBankXApplication using Java 21.0.2 with PID 10252 (C:\Users\2478956\Downloads\OpenBankXF\OpenBankXF\OpenBankX_Final\OpenBankXF\target\classes started by 2478956 in C:\Users\2478956\Downloads\OpenBankXF\OpenBankXF\OpenBankX_Final\OpenBankXF)
+2026-03-28 11:22:57.221 INFO  [main] c.cts.openbankx.OpenBankXApplication - No active profile set, falling back to 1 default profile: "default"
+2026-03-28 11:22:58.232 INFO  [main] o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-03-28 11:22:58.385 INFO  [main] o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 142 ms. Found 23 JPA repository interfaces.
+2026-03-28 11:22:59.371 INFO  [main] o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8081 (http)
+2026-03-28 11:22:59.396 INFO  [main] o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-03-28 11:22:59.397 INFO  [main] o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.36]
+2026-03-28 11:22:59.503 INFO  [main] o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2026-03-28 11:22:59.504 INFO  [main] o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2233 ms
+2026-03-28 11:22:59.794 INFO  [main] o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-03-28 11:22:59.909 INFO  [main] org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.8.Final
+2026-03-28 11:22:59.960 INFO  [main] o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2026-03-28 11:23:00.408 INFO  [main] o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-03-28 11:23:00.437 INFO  [main] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-03-28 11:23:00.781 INFO  [main] com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@2444c3df
+2026-03-28 11:23:00.784 INFO  [main] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-03-28 11:23:00.850 WARN  [main] org.hibernate.orm.deprecation - HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-03-28 11:23:00.868 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0.44
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-03-28 11:23:01.999 INFO  [main] o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-03-28 11:23:02.218 INFO  [main] o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-03-28 11:23:03.364 WARN  [main] o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-03-28 11:23:03.396 INFO  [main] o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
+2026-03-28 11:23:04.493 INFO  [main] o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8081 (http) with context path '/'
+2026-03-28 11:23:04.499 INFO  [main] c.cts.openbankx.OpenBankXApplication - Started OpenBankXApplication in 7.697 seconds (process running for 8.04)
+2026-03-28 11:26:57.172 INFO  [http-nio-8081-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-03-28 11:26:57.172 INFO  [http-nio-8081-exec-2] o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2026-03-28 11:26:57.172 INFO  [http-nio-8081-exec-2] o.s.web.servlet.DispatcherServlet - Completed initialization in 0 ms
+2026-03-28 11:26:57.671 DEBUG [http-nio-8081-exec-2] org.hibernate.SQL - 
+    insert 
+    into
+        tpp
+        (certification_ref, contact_info, legal_name, registration_number, status) 
+    values
+        (?, ?, ?, ?, ?)
+2026-03-28 11:32:27.595 DEBUG [http-nio-8081-exec-5] org.hibernate.SQL - 
+    insert 
+    into
+        tpp_app
+        (app_name, public_keysjwkset, redirecturis, scopes_requested, status, tpp_id) 
+    values
+        (?, ?, ?, ?, ?, ?)
+2026-03-28 11:34:04.060 DEBUG [http-nio-8081-exec-10] org.hibernate.SQL - 
+    select
+        ar1_0.report_id,
+        ar1_0.generated_date,
+        ar1_0.metrics,
+        ar1_0.scope 
+    from
+        api_usage_report ar1_0 
+    where
+        ar1_0.scope=? 
+    order by
+        ar1_0.generated_date desc 
+    limit
+        ?
+2026-03-28 11:34:04.112 DEBUG [http-nio-8081-exec-10] org.hibernate.SQL - 
+    select
+        a1_0.api_log_id,
+        a1_0.client_id,
+        a1_0.endpoint,
+        a1_0.latency_ms,
+        a1_0.method,
+        a1_0.status_code,
+        a1_0.timestamp,
+        a1_0.tpp_app_id 
+    from
+        api_log a1_0 
+    left join
+        tpp_app ta1_0 
+            on ta1_0.tpp_app_id=a1_0.tpp_app_id 
+    where
+        ta1_0.tpp_app_id=?
+2026-03-28 11:34:04.126 DEBUG [http-nio-8081-exec-10] org.hibernate.SQL - 
+    insert 
+    into
+        api_usage_report
+        (generated_date, metrics, scope) 
+    values
+        (?, ?, ?)
+2026-03-28 11:38:12.829 DEBUG [http-nio-8081-exec-3] org.hibernate.SQL - 
+    insert 
+    into
+        tpp
+        (certification_ref, contact_info, legal_name, registration_number, status) 
+    values
+        (?, ?, ?, ?, ?)
+2026-03-28 11:38:42.671 DEBUG [http-nio-8081-exec-4] org.hibernate.SQL - 
+    insert 
+    into
+        tpp
+        (certification_ref, contact_info, legal_name, registration_number, status) 
+    values
+        (?, ?, ?, ?, ?)
+2026-03-28 11:39:00.613 DEBUG [http-nio-8081-exec-5] org.hibernate.SQL - 
+    insert 
+    into
+        tpp_app
+        (app_name, public_keysjwkset, redirecturis, scopes_requested, status, tpp_id) 
+    values
+        (?, ?, ?, ?, ?, ?)
+2026-03-28 11:40:17.227 DEBUG [http-nio-8081-exec-8] org.hibernate.SQL - 
+    insert 
+    into
+        tpp_app
+        (app_name, public_keysjwkset, redirecturis, scopes_requested, status, tpp_id) 
+    values
+        (?, ?, ?, ?, ?, ?)
+2026-03-28 11:40:31.821 DEBUG [http-nio-8081-exec-9] org.hibernate.SQL - 
+    insert 
+    into
+        tpp_app
+        (app_name, public_keysjwkset, redirecturis, scopes_requested, status, tpp_id) 
+    values
+        (?, ?, ?, ?, ?, ?)
+2026-03-28 11:40:40.013 DEBUG [http-nio-8081-exec-10] org.hibernate.SQL - 
+    insert 
+    into
+        tpp_app
+        (app_name, public_keysjwkset, redirecturis, scopes_requested, status, tpp_id) 
+    values
+        (?, ?, ?, ?, ?, ?)
+2026-03-28 11:41:14.272 DEBUG [http-nio-8081-exec-1] org.hibernate.SQL - 
+    select
+        t1_0.tpp_app_id,
+        t1_0.app_name,
+        t1_0.public_keysjwkset,
+        t1_0.redirecturis,
+        t1_0.scopes_requested,
+        t1_0.status,
+        t1_0.tpp_id 
+    from
+        tpp_app t1_0 
+    where
+        t1_0.tpp_app_id=?
+2026-03-28 11:41:32.237 DEBUG [http-nio-8081-exec-3] org.hibernate.SQL - 
+    select
+        t1_0.tpp_app_id,
+        t1_0.app_name,
+        t1_0.public_keysjwkset,
+        t1_0.redirecturis,
+        t1_0.scopes_requested,
+        t1_0.status,
+        t1_0.tpp_id 
+    from
+        tpp_app t1_0 
+    where
+        t1_0.tpp_app_id=?
+2026-03-28 11:41:32.271 DEBUG [http-nio-8081-exec-3] org.hibernate.SQL - 
+    update
+        tpp_app 
+    set
+        app_name=?,
+        public_keysjwkset=?,
+        redirecturis=?,
+        scopes_requested=?,
+        status=?,
+        tpp_id=? 
+    where
+        tpp_app_id=?
+2026-03-28 11:41:32.289 DEBUG [http-nio-8081-exec-3] org.hibernate.SQL - 
+    select
+        t1_0.tpp_id,
+        t1_0.certification_ref,
+        t1_0.contact_info,
+        t1_0.legal_name,
+        t1_0.registration_number,
+        t1_0.status 
+    from
+        tpp t1_0 
+    where
+        t1_0.tpp_id=?
+2026-03-28 11:46:47.533 DEBUG [http-nio-8081-exec-10] org.hibernate.SQL - 
+    select
+        u1_0.user_id,
+        u1_0.email,
+        u1_0.name,
+        u1_0.password,
+        u1_0.phone,
+        u1_0.role,
+        u1_0.status 
+    from
+        users u1_0 
+    where
+        u1_0.user_id=?
+2026-03-28 11:47:03.078 DEBUG [http-nio-8081-exec-2] org.hibernate.SQL - 
+    select
+        u1_0.user_id,
+        u1_0.email,
+        u1_0.name,
+        u1_0.password,
+        u1_0.phone,
+        u1_0.role,
+        u1_0.status 
+    from
+        users u1_0 
+    where
+        u1_0.user_id=?
+2026-03-28 11:53:13.940 DEBUG [http-nio-8081-exec-6] org.hibernate.SQL - 
+    insert 
+    into
+        users
+        (email, name, password, phone, role, status) 
+    values
+        (?, ?, ?, ?, ?, ?)
+2026-03-28 11:55:51.822 DEBUG [http-nio-8081-exec-9] org.hibernate.SQL - 
+    select
+        u1_0.user_id,
+        u1_0.email,
+        u1_0.name,
+        u1_0.password,
+        u1_0.phone,
+        u1_0.role,
+        u1_0.status 
+    from
+        users u1_0 
+    where
+        u1_0.user_id=?
+2026-03-28 11:55:51.822 DEBUG [http-nio-8081-exec-9] org.hibernate.SQL - 
+    select
+        t1_0.tpp_app_id,
+        t1_0.app_name,
+        t1_0.public_keysjwkset,
+        t1_0.redirecturis,
+        t1_0.scopes_requested,
+        t1_0.status,
+        t1_0.tpp_id 
+    from
+        tpp_app t1_0 
+    where
+        t1_0.tpp_app_id=?
+2026-03-28 11:55:51.838 DEBUG [http-nio-8081-exec-9] org.hibernate.SQL - 
+    insert 
+    into
+        consent
+        (created_date, expiry_date, resource_filterjson, scopejson, status, tpp_app_id, user_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?)
+2026-03-28 11:55:51.856 DEBUG [http-nio-8081-exec-9] org.hibernate.SQL - 
+    insert 
+    into
+        consent_event
+        (consent_id, event_date, event_type, notes, performed_by) 
+    values
+        (?, ?, ?, ?, ?)
+2026-03-28 11:55:51.872 DEBUG [http-nio-8081-exec-9] org.hibernate.SQL - 
+    select
+        t1_0.tpp_id,
+        t1_0.certification_ref,
+        t1_0.contact_info,
+        t1_0.legal_name,
+        t1_0.registration_number,
+        t1_0.status 
+    from
+        tpp t1_0 
+    where
+        t1_0.tpp_id=?
+2026-03-28 12:09:03.361 DEBUG [http-nio-8081-exec-2] org.hibernate.SQL - 
+    select
+        u1_0.user_id,
+        u1_0.email,
+        u1_0.name,
+        u1_0.password,
+        u1_0.phone,
+        u1_0.role,
+        u1_0.status 
+    from
+        users u1_0 
+    where
+        u1_0.user_id=?
+2026-03-28 12:09:03.377 DEBUG [http-nio-8081-exec-2] org.hibernate.SQL - 
+    select
+        c1_0.consent_id,
+        c1_0.created_date,
+        c1_0.expiry_date,
+        c1_0.resource_filterjson,
+        c1_0.scopejson,
+        c1_0.status,
+        c1_0.tpp_app_id,
+        c1_0.user_id 
+    from
+        consent c1_0 
+    where
+        c1_0.consent_id=?
+2026-03-28 12:09:03.388 DEBUG [http-nio-8081-exec-2] org.hibernate.SQL - 
+    select
+        t1_0.tpp_app_id,
+        t1_0.app_name,
+        t1_0.public_keysjwkset,
+        t1_0.redirecturis,
+        t1_0.scopes_requested,
+        t1_0.status,
+        t1_0.tpp_id 
+    from
+        tpp_app t1_0 
+    where
+        t1_0.tpp_app_id=?
+2026-03-28 12:16:28.966 DEBUG [http-nio-8081-exec-9] org.hibernate.SQL - 
+    select
+        u1_0.user_id,
+        u1_0.email,
+        u1_0.name,
+        u1_0.password,
+        u1_0.phone,
+        u1_0.role,
+        u1_0.status 
+    from
+        users u1_0 
+    where
+        u1_0.user_id=?
+2026-03-28 12:16:28.968 DEBUG [http-nio-8081-exec-9] org.hibernate.SQL - 
+    select
+        c1_0.consent_id,
+        c1_0.created_date,
+        c1_0.expiry_date,
+        c1_0.resource_filterjson,
+        c1_0.scopejson,
+        c1_0.status,
+        c1_0.tpp_app_id,
+        c1_0.user_id 
+    from
+        consent c1_0 
+    where
+        c1_0.consent_id=?
+2026-03-28 12:16:28.968 DEBUG [http-nio-8081-exec-9] org.hibernate.SQL - 
+    select
+        t1_0.tpp_app_id,
+        t1_0.app_name,
+        t1_0.public_keysjwkset,
+        t1_0.redirecturis,
+        t1_0.scopes_requested,
+        t1_0.status,
+        t1_0.tpp_id 
+    from
+        tpp_app t1_0 
+    where
+        t1_0.tpp_app_id=?
+2026-03-28 12:16:53.568 DEBUG [http-nio-8081-exec-10] org.hibernate.SQL - 
+    select
+        u1_0.user_id,
+        u1_0.email,
+        u1_0.name,
+        u1_0.password,
+        u1_0.phone,
+        u1_0.role,
+        u1_0.status 
+    from
+        users u1_0 
+    where
+        u1_0.user_id=?
+2026-03-28 12:16:53.585 DEBUG [http-nio-8081-exec-10] org.hibernate.SQL - 
+    insert 
+    into
+        sca_event
+        (event_time, method, reference_id, result, user_id) 
+    values
+        (?, ?, ?, ?, ?)
+2026-03-28 12:18:49.195 DEBUG [http-nio-8081-exec-3] org.hibernate.SQL - 
+    select
+        ac1_0.id,
+        ac1_0.client_id,
+        ac1_0.code,
+        ac1_0.consent_id,
+        ac1_0.expires_at,
+        ac1_0.issued_at,
+        ac1_0.used,
+        ac1_0.user_id 
+    from
+        authorization_code ac1_0 
+    where
+        ac1_0.code=? 
+        and not(ac1_0.used)
+2026-03-28 12:30:55.401 ERROR [http-nio-8081-exec-5] o.a.c.c.C.[.[.[.[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception
+java.lang.NumberFormatException: Cannot parse null string
+	at java.base/java.lang.Long.parseLong(Long.java:672)
+	at java.base/java.lang.Long.valueOf(Long.java:1157)
+	at com.cts.openbankx.security.SystemSecurityFilter.doFilterInternal(SystemSecurityFilter.java:48)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:107)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:93)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90)
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:82)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:69)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:62)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:233)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:191)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.servlet.handler.HandlerMappingIntrospector.lambda$createCacheFilter$3(HandlerMappingIntrospector.java:243)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74)
+	at org.springframework.security.config.annotation.web.configuration.WebMvcSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebMvcSecurityConfiguration.java:238)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:362)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:278)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:905)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1743)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+2026-03-28 12:34:36.057 INFO  [main] c.cts.openbankx.OpenBankXApplication - Starting OpenBankXApplication using Java 21.0.2 with PID 25688 (C:\Users\2478956\Downloads\OpenBankXF\OpenBankXF\OpenBankX_Final\OpenBankXF\target\classes started by 2478956 in C:\Users\2478956\Downloads\OpenBankXF\OpenBankXF\OpenBankX_Final\OpenBankXF)
+2026-03-28 12:34:36.059 INFO  [main] c.cts.openbankx.OpenBankXApplication - No active profile set, falling back to 1 default profile: "default"
+2026-03-28 12:34:37.035 INFO  [main] o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-03-28 12:34:37.182 INFO  [main] o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 132 ms. Found 23 JPA repository interfaces.
+2026-03-28 12:34:38.098 INFO  [main] o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8081 (http)
+2026-03-28 12:34:38.121 INFO  [main] o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-03-28 12:34:38.122 INFO  [main] o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.36]
+2026-03-28 12:34:38.212 INFO  [main] o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2026-03-28 12:34:38.212 INFO  [main] o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2108 ms
+2026-03-28 12:34:38.458 INFO  [main] o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-03-28 12:34:38.569 INFO  [main] org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.8.Final
+2026-03-28 12:34:38.638 INFO  [main] o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2026-03-28 12:34:39.026 INFO  [main] o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-03-28 12:34:39.064 INFO  [main] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-03-28 12:34:39.467 INFO  [main] com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@3a48c398
+2026-03-28 12:34:39.473 INFO  [main] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-03-28 12:34:39.549 WARN  [main] org.hibernate.orm.deprecation - HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-03-28 12:34:39.567 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0.44
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-03-28 12:34:40.707 INFO  [main] o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-03-28 12:34:40.906 INFO  [main] o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-03-28 12:34:42.126 WARN  [main] o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-03-28 12:34:42.154 INFO  [main] o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
+2026-03-28 12:34:43.176 INFO  [main] o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8081 (http) with context path '/'
+2026-03-28 12:34:43.184 INFO  [main] c.cts.openbankx.OpenBankXApplication - Started OpenBankXApplication in 7.516 seconds (process running for 7.875)
+2026-03-28 12:45:00.241 INFO  [http-nio-8081-exec-4] o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-03-28 12:45:00.242 INFO  [http-nio-8081-exec-4] o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2026-03-28 12:45:00.245 INFO  [http-nio-8081-exec-4] o.s.web.servlet.DispatcherServlet - Completed initialization in 3 ms
+2026-03-28 12:45:00.517 DEBUG [http-nio-8081-exec-4] org.hibernate.SQL - 
+    select
+        t1_0.tpp_app_id,
+        t1_0.app_name,
+        t1_0.public_keysjwkset,
+        t1_0.redirecturis,
+        t1_0.scopes_requested,
+        t1_0.status,
+        t1_0.tpp_id 
+    from
+        tpp_app t1_0 
+    where
+        t1_0.tpp_app_id=?
+2026-03-28 12:45:01.059 DEBUG [http-nio-8081-exec-4] org.hibernate.SQL - 
+    select
+        c1_0.consent_id,
+        c1_0.created_date,
+        c1_0.expiry_date,
+        c1_0.resource_filterjson,
+        c1_0.scopejson,
+        c1_0.status,
+        c1_0.tpp_app_id,
+        c1_0.user_id 
+    from
+        consent c1_0 
+    left join
+        tpp_app ta1_0 
+            on ta1_0.tpp_app_id=c1_0.tpp_app_id 
+    where
+        ta1_0.tpp_app_id=?
+2026-03-28 12:45:01.198 DEBUG [http-nio-8081-exec-4] org.hibernate.SQL - 
+    insert 
+    into
+        token
+        (client_id, expires_at, issued_at, scope, status, token_type, user_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?)
+2026-03-28 12:45:02.207 WARN  [http-nio-8081-exec-4] o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1048, SQLState: 23000
+2026-03-28 12:45:02.207 ERROR [http-nio-8081-exec-4] o.h.e.jdbc.spi.SqlExceptionHelper - Column 'client_id' cannot be null
+2026-03-28 12:45:02.241 ERROR [http-nio-8081-exec-4] o.a.c.c.C.[.[.[.[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception
+org.springframework.dao.DataIntegrityViolationException: could not execute statement [Column 'client_id' cannot be null] [insert into token (client_id,expires_at,issued_at,scope,status,token_type,user_id) values (?,?,?,?,?,?,?)]; SQL [insert into token (client_id,expires_at,issued_at,scope,status,token_type,user_id) values (?,?,?,?,?,?,?)]; constraint [null]
+	at org.springframework.orm.jpa.vendor.HibernateJpaDialect.convertHibernateAccessException(HibernateJpaDialect.java:290)
+	at org.springframework.orm.jpa.vendor.HibernateJpaDialect.translateExceptionIfPossible(HibernateJpaDialect.java:241)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.translateExceptionIfPossible(AbstractEntityManagerFactoryBean.java:560)
+	at org.springframework.dao.support.ChainedPersistenceExceptionTranslator.translateExceptionIfPossible(ChainedPersistenceExceptionTranslator.java:61)
+	at org.springframework.dao.support.DataAccessUtils.translateIfNecessary(DataAccessUtils.java:343)
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:160)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+	at org.springframework.data.jpa.repository.support.CrudMethodMetadataPostProcessor$CrudMethodMetadataPopulatingMethodInterceptor.invoke(CrudMethodMetadataPostProcessor.java:165)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:223)
+	at jdk.proxy2/jdk.proxy2.$Proxy138.save(Unknown Source)
+	at com.cts.openbankx.service.TokenService.save(TokenService.java:44)
+	at com.cts.openbankx.security.SystemTokenService.resolveToken(SystemTokenService.java:58)
+	at com.cts.openbankx.security.SystemSecurityFilter.doFilterInternal(SystemSecurityFilter.java:74)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:107)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:93)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90)
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:82)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:69)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:62)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:233)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:191)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.servlet.handler.HandlerMappingIntrospector.lambda$createCacheFilter$3(HandlerMappingIntrospector.java:243)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74)
+	at org.springframework.security.config.annotation.web.configuration.WebMvcSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebMvcSecurityConfiguration.java:238)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:362)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:278)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:905)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1743)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+Caused by: org.hibernate.exception.ConstraintViolationException: could not execute statement [Column 'client_id' cannot be null] [insert into token (client_id,expires_at,issued_at,scope,status,token_type,user_id) values (?,?,?,?,?,?,?)]
+	at org.hibernate.exception.internal.SQLExceptionTypeDelegate.convert(SQLExceptionTypeDelegate.java:62)
+	at org.hibernate.exception.internal.StandardSQLExceptionConverter.convert(StandardSQLExceptionConverter.java:58)
+	at org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:108)
+	at org.hibernate.engine.jdbc.internal.ResultSetReturnImpl.executeUpdate(ResultSetReturnImpl.java:197)
+	at org.hibernate.id.insert.GetGeneratedKeysDelegate.performMutation(GetGeneratedKeysDelegate.java:116)
+	at org.hibernate.engine.jdbc.mutation.internal.MutationExecutorSingleNonBatched.performNonBatchedOperations(MutationExecutorSingleNonBatched.java:47)
+	at org.hibernate.engine.jdbc.mutation.internal.AbstractMutationExecutor.execute(AbstractMutationExecutor.java:55)
+	at org.hibernate.persister.entity.mutation.InsertCoordinatorStandard.doStaticInserts(InsertCoordinatorStandard.java:194)
+	at org.hibernate.persister.entity.mutation.InsertCoordinatorStandard.coordinateInsert(InsertCoordinatorStandard.java:132)
+	at org.hibernate.persister.entity.mutation.InsertCoordinatorStandard.insert(InsertCoordinatorStandard.java:95)
+	at org.hibernate.action.internal.EntityIdentityInsertAction.execute(EntityIdentityInsertAction.java:85)
+	at org.hibernate.engine.spi.ActionQueue.execute(ActionQueue.java:682)
+	at org.hibernate.engine.spi.ActionQueue.addResolvedEntityInsertAction(ActionQueue.java:293)
+	at org.hibernate.engine.spi.ActionQueue.addInsertAction(ActionQueue.java:274)
+	at org.hibernate.engine.spi.ActionQueue.addAction(ActionQueue.java:324)
+	at org.hibernate.event.internal.AbstractSaveEventListener.addInsertAction(AbstractSaveEventListener.java:393)
+	at org.hibernate.event.internal.AbstractSaveEventListener.performSaveOrReplicate(AbstractSaveEventListener.java:307)
+	at org.hibernate.event.internal.AbstractSaveEventListener.performSave(AbstractSaveEventListener.java:223)
+	at org.hibernate.event.internal.AbstractSaveEventListener.saveWithGeneratedId(AbstractSaveEventListener.java:136)
+	at org.hibernate.event.internal.DefaultPersistEventListener.entityIsTransient(DefaultPersistEventListener.java:177)
+	at org.hibernate.event.internal.DefaultPersistEventListener.persist(DefaultPersistEventListener.java:95)
+	at org.hibernate.event.internal.DefaultPersistEventListener.onPersist(DefaultPersistEventListener.java:79)
+	at org.hibernate.event.internal.DefaultPersistEventListener.onPersist(DefaultPersistEventListener.java:55)
+	at org.hibernate.event.service.internal.EventListenerGroupImpl.fireEventOnEachListener(EventListenerGroupImpl.java:127)
+	at org.hibernate.internal.SessionImpl.firePersist(SessionImpl.java:761)
+	at org.hibernate.internal.SessionImpl.persist(SessionImpl.java:745)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.orm.jpa.SharedEntityManagerCreator$SharedEntityManagerInvocationHandler.invoke(SharedEntityManagerCreator.java:320)
+	at jdk.proxy2/jdk.proxy2.$Proxy132.persist(Unknown Source)
+	at org.springframework.data.jpa.repository.support.SimpleJpaRepository.save(SimpleJpaRepository.java:636)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:359)
+	at org.springframework.data.repository.core.support.RepositoryMethodInvoker$RepositoryFragmentMethodInvoker.lambda$new$0(RepositoryMethodInvoker.java:277)
+	at org.springframework.data.repository.core.support.RepositoryMethodInvoker.doInvoke(RepositoryMethodInvoker.java:170)
+	at org.springframework.data.repository.core.support.RepositoryMethodInvoker.invoke(RepositoryMethodInvoker.java:158)
+	at org.springframework.data.repository.core.support.RepositoryComposition$RepositoryFragments.invoke(RepositoryComposition.java:515)
+	at org.springframework.data.repository.core.support.RepositoryComposition.invoke(RepositoryComposition.java:284)
+	at org.springframework.data.repository.core.support.RepositoryFactorySupport$ImplementationMethodExecutionInterceptor.invoke(RepositoryFactorySupport.java:752)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.doInvoke(QueryExecutorMethodInterceptor.java:174)
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.invoke(QueryExecutorMethodInterceptor.java:149)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+	at org.springframework.data.projection.DefaultMethodInvokingMethodInterceptor.invoke(DefaultMethodInvokingMethodInterceptor.java:69)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:380)
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:119)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:138)
+	... 65 common frames omitted
+Caused by: java.sql.SQLIntegrityConstraintViolationException: Column 'client_id' cannot be null
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:109)
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:114)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeInternal(ClientPreparedStatement.java:988)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdateInternal(ClientPreparedStatement.java:1166)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdateInternal(ClientPreparedStatement.java:1101)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeLargeUpdate(ClientPreparedStatement.java:1467)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdate(ClientPreparedStatement.java:1084)
+	at com.zaxxer.hikari.pool.ProxyPreparedStatement.executeUpdate(ProxyPreparedStatement.java:61)
+	at com.zaxxer.hikari.pool.HikariProxyPreparedStatement.executeUpdate(HikariProxyPreparedStatement.java)
+	at org.hibernate.engine.jdbc.internal.ResultSetReturnImpl.executeUpdate(ResultSetReturnImpl.java:194)
+	... 111 common frames omitted
+2026-03-28 12:45:16.770 INFO  [main] c.cts.openbankx.OpenBankXApplication - Starting OpenBankXApplication using Java 21.0.2 with PID 13504 (C:\Users\2478956\Downloads\OpenBankXF\OpenBankXF\OpenBankX_Final\OpenBankXF\target\classes started by 2478956 in C:\Users\2478956\Downloads\OpenBankXF\OpenBankXF\OpenBankX_Final\OpenBankXF)
+2026-03-28 12:45:16.773 INFO  [main] c.cts.openbankx.OpenBankXApplication - No active profile set, falling back to 1 default profile: "default"
+2026-03-28 12:45:17.751 INFO  [main] o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-03-28 12:45:17.889 INFO  [main] o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 129 ms. Found 23 JPA repository interfaces.
+2026-03-28 12:45:18.736 INFO  [main] o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8081 (http)
+2026-03-28 12:45:18.754 INFO  [main] o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-03-28 12:45:18.754 INFO  [main] o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.36]
+2026-03-28 12:45:18.821 INFO  [main] o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2026-03-28 12:45:18.823 INFO  [main] o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2000 ms
+2026-03-28 12:45:19.095 INFO  [main] o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-03-28 12:45:19.178 INFO  [main] org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.8.Final
+2026-03-28 12:45:19.223 INFO  [main] o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2026-03-28 12:45:19.541 INFO  [main] o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-03-28 12:45:19.569 INFO  [main] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-03-28 12:45:19.864 INFO  [main] com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@5a583720
+2026-03-28 12:45:19.867 INFO  [main] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-03-28 12:45:19.919 WARN  [main] org.hibernate.orm.deprecation - HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-03-28 12:45:19.938 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0.44
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-03-28 12:45:21.009 INFO  [main] o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-03-28 12:45:21.219 INFO  [main] o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-03-28 12:45:22.421 WARN  [main] o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-03-28 12:45:22.452 INFO  [main] o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
+2026-03-28 12:45:23.527 INFO  [main] o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8081 (http) with context path '/'
+2026-03-28 12:45:23.535 INFO  [main] c.cts.openbankx.OpenBankXApplication - Started OpenBankXApplication in 7.186 seconds (process running for 7.541)
+2026-03-28 12:48:07.766 INFO  [http-nio-8081-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-03-28 12:48:07.766 INFO  [http-nio-8081-exec-2] o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2026-03-28 12:48:07.781 INFO  [http-nio-8081-exec-2] o.s.web.servlet.DispatcherServlet - Completed initialization in 2 ms
+2026-03-28 12:48:07.912 DEBUG [http-nio-8081-exec-2] org.hibernate.SQL - 
+    select
+        t1_0.tpp_app_id,
+        t1_0.app_name,
+        t1_0.public_keysjwkset,
+        t1_0.redirecturis,
+        t1_0.scopes_requested,
+        t1_0.status,
+        t1_0.tpp_id 
+    from
+        tpp_app t1_0 
+    where
+        t1_0.tpp_app_id=?
+2026-03-28 12:48:08.352 DEBUG [http-nio-8081-exec-2] org.hibernate.SQL - 
+    select
+        c1_0.consent_id,
+        c1_0.created_date,
+        c1_0.expiry_date,
+        c1_0.resource_filterjson,
+        c1_0.scopejson,
+        c1_0.status,
+        c1_0.tpp_app_id,
+        c1_0.user_id 
+    from
+        consent c1_0 
+    left join
+        tpp_app ta1_0 
+            on ta1_0.tpp_app_id=c1_0.tpp_app_id 
+    where
+        ta1_0.tpp_app_id=?
+2026-03-28 12:48:08.432 DEBUG [http-nio-8081-exec-2] org.hibernate.SQL - 
+    insert 
+    into
+        token
+        (client_id, expires_at, issued_at, scope, status, token_type, user_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?)
+2026-03-28 12:48:09.512 WARN  [http-nio-8081-exec-2] o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1048, SQLState: 23000
+2026-03-28 12:48:09.512 ERROR [http-nio-8081-exec-2] o.h.e.jdbc.spi.SqlExceptionHelper - Column 'client_id' cannot be null
+2026-03-28 12:48:09.539 ERROR [http-nio-8081-exec-2] o.a.c.c.C.[.[.[.[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception
+org.springframework.dao.DataIntegrityViolationException: could not execute statement [Column 'client_id' cannot be null] [insert into token (client_id,expires_at,issued_at,scope,status,token_type,user_id) values (?,?,?,?,?,?,?)]; SQL [insert into token (client_id,expires_at,issued_at,scope,status,token_type,user_id) values (?,?,?,?,?,?,?)]; constraint [null]
+	at org.springframework.orm.jpa.vendor.HibernateJpaDialect.convertHibernateAccessException(HibernateJpaDialect.java:290)
+	at org.springframework.orm.jpa.vendor.HibernateJpaDialect.translateExceptionIfPossible(HibernateJpaDialect.java:241)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.translateExceptionIfPossible(AbstractEntityManagerFactoryBean.java:560)
+	at org.springframework.dao.support.ChainedPersistenceExceptionTranslator.translateExceptionIfPossible(ChainedPersistenceExceptionTranslator.java:61)
+	at org.springframework.dao.support.DataAccessUtils.translateIfNecessary(DataAccessUtils.java:343)
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:160)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+	at org.springframework.data.jpa.repository.support.CrudMethodMetadataPostProcessor$CrudMethodMetadataPopulatingMethodInterceptor.invoke(CrudMethodMetadataPostProcessor.java:165)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:223)
+	at jdk.proxy2/jdk.proxy2.$Proxy138.save(Unknown Source)
+	at com.cts.openbankx.service.TokenService.save(TokenService.java:44)
+	at com.cts.openbankx.security.SystemTokenService.resolveToken(SystemTokenService.java:58)
+	at com.cts.openbankx.security.SystemSecurityFilter.doFilterInternal(SystemSecurityFilter.java:74)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:107)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:93)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90)
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:82)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:69)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:62)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:233)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:191)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.servlet.handler.HandlerMappingIntrospector.lambda$createCacheFilter$3(HandlerMappingIntrospector.java:243)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74)
+	at org.springframework.security.config.annotation.web.configuration.WebMvcSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebMvcSecurityConfiguration.java:238)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:362)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:278)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:905)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1743)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+Caused by: org.hibernate.exception.ConstraintViolationException: could not execute statement [Column 'client_id' cannot be null] [insert into token (client_id,expires_at,issued_at,scope,status,token_type,user_id) values (?,?,?,?,?,?,?)]
+	at org.hibernate.exception.internal.SQLExceptionTypeDelegate.convert(SQLExceptionTypeDelegate.java:62)
+	at org.hibernate.exception.internal.StandardSQLExceptionConverter.convert(StandardSQLExceptionConverter.java:58)
+	at org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:108)
+	at org.hibernate.engine.jdbc.internal.ResultSetReturnImpl.executeUpdate(ResultSetReturnImpl.java:197)
+	at org.hibernate.id.insert.GetGeneratedKeysDelegate.performMutation(GetGeneratedKeysDelegate.java:116)
+	at org.hibernate.engine.jdbc.mutation.internal.MutationExecutorSingleNonBatched.performNonBatchedOperations(MutationExecutorSingleNonBatched.java:47)
+	at org.hibernate.engine.jdbc.mutation.internal.AbstractMutationExecutor.execute(AbstractMutationExecutor.java:55)
+	at org.hibernate.persister.entity.mutation.InsertCoordinatorStandard.doStaticInserts(InsertCoordinatorStandard.java:194)
+	at org.hibernate.persister.entity.mutation.InsertCoordinatorStandard.coordinateInsert(InsertCoordinatorStandard.java:132)
+	at org.hibernate.persister.entity.mutation.InsertCoordinatorStandard.insert(InsertCoordinatorStandard.java:95)
+	at org.hibernate.action.internal.EntityIdentityInsertAction.execute(EntityIdentityInsertAction.java:85)
+	at org.hibernate.engine.spi.ActionQueue.execute(ActionQueue.java:682)
+	at org.hibernate.engine.spi.ActionQueue.addResolvedEntityInsertAction(ActionQueue.java:293)
+	at org.hibernate.engine.spi.ActionQueue.addInsertAction(ActionQueue.java:274)
+	at org.hibernate.engine.spi.ActionQueue.addAction(ActionQueue.java:324)
+	at org.hibernate.event.internal.AbstractSaveEventListener.addInsertAction(AbstractSaveEventListener.java:393)
+	at org.hibernate.event.internal.AbstractSaveEventListener.performSaveOrReplicate(AbstractSaveEventListener.java:307)
+	at org.hibernate.event.internal.AbstractSaveEventListener.performSave(AbstractSaveEventListener.java:223)
+	at org.hibernate.event.internal.AbstractSaveEventListener.saveWithGeneratedId(AbstractSaveEventListener.java:136)
+	at org.hibernate.event.internal.DefaultPersistEventListener.entityIsTransient(DefaultPersistEventListener.java:177)
+	at org.hibernate.event.internal.DefaultPersistEventListener.persist(DefaultPersistEventListener.java:95)
+	at org.hibernate.event.internal.DefaultPersistEventListener.onPersist(DefaultPersistEventListener.java:79)
+	at org.hibernate.event.internal.DefaultPersistEventListener.onPersist(DefaultPersistEventListener.java:55)
+	at org.hibernate.event.service.internal.EventListenerGroupImpl.fireEventOnEachListener(EventListenerGroupImpl.java:127)
+	at org.hibernate.internal.SessionImpl.firePersist(SessionImpl.java:761)
+	at org.hibernate.internal.SessionImpl.persist(SessionImpl.java:745)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.orm.jpa.SharedEntityManagerCreator$SharedEntityManagerInvocationHandler.invoke(SharedEntityManagerCreator.java:320)
+	at jdk.proxy2/jdk.proxy2.$Proxy132.persist(Unknown Source)
+	at org.springframework.data.jpa.repository.support.SimpleJpaRepository.save(SimpleJpaRepository.java:636)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:359)
+	at org.springframework.data.repository.core.support.RepositoryMethodInvoker$RepositoryFragmentMethodInvoker.lambda$new$0(RepositoryMethodInvoker.java:277)
+	at org.springframework.data.repository.core.support.RepositoryMethodInvoker.doInvoke(RepositoryMethodInvoker.java:170)
+	at org.springframework.data.repository.core.support.RepositoryMethodInvoker.invoke(RepositoryMethodInvoker.java:158)
+	at org.springframework.data.repository.core.support.RepositoryComposition$RepositoryFragments.invoke(RepositoryComposition.java:515)
+	at org.springframework.data.repository.core.support.RepositoryComposition.invoke(RepositoryComposition.java:284)
+	at org.springframework.data.repository.core.support.RepositoryFactorySupport$ImplementationMethodExecutionInterceptor.invoke(RepositoryFactorySupport.java:752)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.doInvoke(QueryExecutorMethodInterceptor.java:174)
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.invoke(QueryExecutorMethodInterceptor.java:149)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+	at org.springframework.data.projection.DefaultMethodInvokingMethodInterceptor.invoke(DefaultMethodInvokingMethodInterceptor.java:69)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:380)
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:119)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:138)
+	... 65 common frames omitted
+Caused by: java.sql.SQLIntegrityConstraintViolationException: Column 'client_id' cannot be null
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:109)
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:114)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeInternal(ClientPreparedStatement.java:988)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdateInternal(ClientPreparedStatement.java:1166)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdateInternal(ClientPreparedStatement.java:1101)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeLargeUpdate(ClientPreparedStatement.java:1467)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdate(ClientPreparedStatement.java:1084)
+	at com.zaxxer.hikari.pool.ProxyPreparedStatement.executeUpdate(ProxyPreparedStatement.java:61)
+	at com.zaxxer.hikari.pool.HikariProxyPreparedStatement.executeUpdate(HikariProxyPreparedStatement.java)
+	at org.hibernate.engine.jdbc.internal.ResultSetReturnImpl.executeUpdate(ResultSetReturnImpl.java:194)
+	... 111 common frames omitted
+2026-03-28 13:08:56.121 INFO  [main] c.cts.openbankx.OpenBankXApplication - Starting OpenBankXApplication using Java 21.0.2 with PID 19960 (C:\Users\2478956\Downloads\OpenBankXF\OpenBankXF\OpenBankX_Final\OpenBankXF\target\classes started by 2478956 in C:\Users\2478956\Downloads\OpenBankXF\OpenBankXF\OpenBankX_Final\OpenBankXF)
+2026-03-28 13:08:56.125 INFO  [main] c.cts.openbankx.OpenBankXApplication - No active profile set, falling back to 1 default profile: "default"
+2026-03-28 13:08:57.166 INFO  [main] o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-03-28 13:08:57.317 INFO  [main] o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 134 ms. Found 23 JPA repository interfaces.
+2026-03-28 13:08:58.222 INFO  [main] o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8081 (http)
+2026-03-28 13:08:58.240 INFO  [main] o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-03-28 13:08:58.241 INFO  [main] o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.36]
+2026-03-28 13:08:58.312 INFO  [main] o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2026-03-28 13:08:58.313 INFO  [main] o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2136 ms
+2026-03-28 13:08:58.572 INFO  [main] o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-03-28 13:08:58.653 INFO  [main] org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.8.Final
+2026-03-28 13:08:58.703 INFO  [main] o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2026-03-28 13:08:59.059 INFO  [main] o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-03-28 13:08:59.101 INFO  [main] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-03-28 13:08:59.446 INFO  [main] com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@b339a08
+2026-03-28 13:08:59.449 INFO  [main] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-03-28 13:08:59.517 WARN  [main] org.hibernate.orm.deprecation - HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-03-28 13:08:59.531 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0.44
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-03-28 13:09:00.572 INFO  [main] o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-03-28 13:09:00.779 INFO  [main] o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-03-28 13:09:01.887 WARN  [main] o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-03-28 13:09:01.920 INFO  [main] o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
+2026-03-28 13:09:03.191 INFO  [main] o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8081 (http) with context path '/'
+2026-03-28 13:09:03.202 INFO  [main] c.cts.openbankx.OpenBankXApplication - Started OpenBankXApplication in 7.517 seconds (process running for 7.871)
+2026-03-28 13:09:16.361 INFO  [http-nio-8081-exec-4] o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-03-28 13:09:16.361 INFO  [http-nio-8081-exec-4] o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2026-03-28 13:09:16.372 INFO  [http-nio-8081-exec-4] o.s.web.servlet.DispatcherServlet - Completed initialization in 9 ms
+2026-03-28 13:09:16.626 DEBUG [http-nio-8081-exec-4] org.hibernate.SQL - 
+    select
+        t1_0.tpp_app_id,
+        t1_0.app_name,
+        t1_0.public_keysjwkset,
+        t1_0.redirecturis,
+        t1_0.scopes_requested,
+        t1_0.status,
+        t1_0.tpp_id 
+    from
+        tpp_app t1_0 
+    where
+        t1_0.tpp_app_id=?
+2026-03-28 13:09:17.083 DEBUG [http-nio-8081-exec-4] org.hibernate.SQL - 
+    select
+        c1_0.consent_id,
+        c1_0.created_date,
+        c1_0.expiry_date,
+        c1_0.resource_filterjson,
+        c1_0.scopejson,
+        c1_0.status,
+        c1_0.tpp_app_id,
+        c1_0.user_id 
+    from
+        consent c1_0 
+    left join
+        tpp_app ta1_0 
+            on ta1_0.tpp_app_id=c1_0.tpp_app_id 
+    where
+        ta1_0.tpp_app_id=?
+2026-03-28 13:09:17.146 DEBUG [http-nio-8081-exec-4] org.hibernate.SQL - 
+    insert 
+    into
+        token
+        (client_id, expires_at, issued_at, scope, status, token_type, user_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?)
+2026-03-28 13:09:17.192 DEBUG [http-nio-8081-exec-4] org.hibernate.SQL - 
+    select
+        t1_0.tpp_app_id,
+        t1_0.app_name,
+        t1_0.public_keysjwkset,
+        t1_0.redirecturis,
+        t1_0.scopes_requested,
+        t1_0.status,
+        t1_0.tpp_id 
+    from
+        tpp_app t1_0 
+    where
+        t1_0.tpp_app_id=?
+2026-03-28 13:09:17.216 DEBUG [http-nio-8081-exec-4] org.hibernate.SQL - 
+    insert 
+    into
+        api_log
+        (client_id, endpoint, latency_ms, method, status_code, timestamp, tpp_app_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?)
+2026-03-28 13:11:39.715 INFO  [main] c.cts.openbankx.OpenBankXApplication - Starting OpenBankXApplication using Java 21.0.2 with PID 10800 (C:\Users\2478956\Downloads\OpenBankXF\OpenBankXF\OpenBankX_Final\OpenBankXF\target\classes started by 2478956 in C:\Users\2478956\Downloads\OpenBankXF\OpenBankXF\OpenBankX_Final\OpenBankXF)
+2026-03-28 13:11:39.717 INFO  [main] c.cts.openbankx.OpenBankXApplication - No active profile set, falling back to 1 default profile: "default"
+2026-03-28 13:11:40.722 INFO  [main] o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-03-28 13:11:40.862 INFO  [main] o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 131 ms. Found 23 JPA repository interfaces.
+2026-03-28 13:11:41.807 INFO  [main] o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8081 (http)
+2026-03-28 13:11:41.824 INFO  [main] o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-03-28 13:11:41.824 INFO  [main] o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.36]
+2026-03-28 13:11:41.889 INFO  [main] o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2026-03-28 13:11:41.889 INFO  [main] o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2119 ms
+2026-03-28 13:11:42.130 INFO  [main] o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-03-28 13:11:42.208 INFO  [main] org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.8.Final
+2026-03-28 13:11:42.266 INFO  [main] o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2026-03-28 13:11:42.551 INFO  [main] o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-03-28 13:11:42.582 INFO  [main] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-03-28 13:11:42.882 INFO  [main] com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@42dd7d82
+2026-03-28 13:11:42.885 INFO  [main] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-03-28 13:11:42.940 WARN  [main] org.hibernate.orm.deprecation - HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-03-28 13:11:42.954 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0.44
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-03-28 13:11:43.874 INFO  [main] o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-03-28 13:11:44.033 INFO  [main] o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-03-28 13:11:45.014 WARN  [main] o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-03-28 13:11:45.050 INFO  [main] o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
+2026-03-28 13:11:46.289 INFO  [main] o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8081 (http) with context path '/'
+2026-03-28 13:11:46.299 INFO  [main] c.cts.openbankx.OpenBankXApplication - Started OpenBankXApplication in 7.032 seconds (process running for 7.408)
+2026-03-28 13:13:06.873 INFO  [http-nio-8081-exec-3] o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-03-28 13:13:06.875 INFO  [http-nio-8081-exec-3] o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2026-03-28 13:13:06.875 INFO  [http-nio-8081-exec-3] o.s.web.servlet.DispatcherServlet - Completed initialization in 0 ms
+2026-03-28 13:13:07.006 DEBUG [http-nio-8081-exec-3] org.hibernate.SQL - 
+    select
+        t1_0.tpp_app_id,
+        t1_0.app_name,
+        t1_0.public_keysjwkset,
+        t1_0.redirecturis,
+        t1_0.scopes_requested,
+        t1_0.status,
+        t1_0.tpp_id 
+    from
+        tpp_app t1_0 
+    where
+        t1_0.tpp_app_id=?
+2026-03-28 13:13:07.385 DEBUG [http-nio-8081-exec-3] org.hibernate.SQL - 
+    select
+        c1_0.consent_id,
+        c1_0.created_date,
+        c1_0.expiry_date,
+        c1_0.resource_filterjson,
+        c1_0.scopejson,
+        c1_0.status,
+        c1_0.tpp_app_id,
+        c1_0.user_id 
+    from
+        consent c1_0 
+    left join
+        tpp_app ta1_0 
+            on ta1_0.tpp_app_id=c1_0.tpp_app_id 
+    where
+        ta1_0.tpp_app_id=?
+2026-03-28 13:13:07.462 DEBUG [http-nio-8081-exec-3] org.hibernate.SQL - 
+    insert 
+    into
+        token
+        (client_id, expires_at, issued_at, scope, status, token_type, user_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?)
+2026-03-28 13:13:07.522 DEBUG [http-nio-8081-exec-3] org.hibernate.SQL - 
+    select
+        t1_0.tpp_app_id,
+        t1_0.app_name,
+        t1_0.public_keysjwkset,
+        t1_0.redirecturis,
+        t1_0.scopes_requested,
+        t1_0.status,
+        t1_0.tpp_id 
+    from
+        tpp_app t1_0 
+    where
+        t1_0.tpp_app_id=?
+2026-03-28 13:13:07.532 DEBUG [http-nio-8081-exec-3] org.hibernate.SQL - 
+    insert 
+    into
+        api_log
+        (client_id, endpoint, latency_ms, method, status_code, timestamp, tpp_app_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?)
+2026-03-28 13:15:10.300 DEBUG [http-nio-8081-exec-6] org.hibernate.SQL - 
+    select
+        t1_0.tpp_app_id,
+        t1_0.app_name,
+        t1_0.public_keysjwkset,
+        t1_0.redirecturis,
+        t1_0.scopes_requested,
+        t1_0.status,
+        t1_0.tpp_id 
+    from
+        tpp_app t1_0 
+    where
+        t1_0.tpp_app_id=?
+2026-03-28 13:15:10.333 DEBUG [http-nio-8081-exec-6] org.hibernate.SQL - 
+    update
+        tpp_app 
+    set
+        app_name=?,
+        public_keysjwkset=?,
+        redirecturis=?,
+        scopes_requested=?,
+        status=?,
+        tpp_id=? 
+    where
+        tpp_app_id=?
+2026-03-28 13:15:10.383 DEBUG [http-nio-8081-exec-6] org.hibernate.SQL - 
+    select
+        t1_0.tpp_id,
+        t1_0.certification_ref,
+        t1_0.contact_info,
+        t1_0.legal_name,
+        t1_0.registration_number,
+        t1_0.status 
+    from
+        tpp t1_0 
+    where
+        t1_0.tpp_id=?
+2026-03-28 13:15:17.136 DEBUG [http-nio-8081-exec-8] org.hibernate.SQL - 
+    select
+        t1_0.tpp_app_id,
+        t1_0.app_name,
+        t1_0.public_keysjwkset,
+        t1_0.redirecturis,
+        t1_0.scopes_requested,
+        t1_0.status,
+        t1_0.tpp_id 
+    from
+        tpp_app t1_0 
+    where
+        t1_0.tpp_app_id=?
+2026-03-28 13:15:17.153 DEBUG [http-nio-8081-exec-8] org.hibernate.SQL - 
+    select
+        t1_0.tpp_app_id,
+        t1_0.app_name,
+        t1_0.public_keysjwkset,
+        t1_0.redirecturis,
+        t1_0.scopes_requested,
+        t1_0.status,
+        t1_0.tpp_id 
+    from
+        tpp_app t1_0 
+    where
+        t1_0.tpp_app_id=?
+2026-03-28 13:15:17.166 DEBUG [http-nio-8081-exec-8] org.hibernate.SQL - 
+    insert 
+    into
+        api_log
+        (client_id, endpoint, latency_ms, method, status_code, timestamp, tpp_app_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?)
+2026-03-28 13:15:50.217 DEBUG [http-nio-8081-exec-5] org.hibernate.SQL - 
+    select
+        t1_0.tpp_app_id,
+        t1_0.app_name,
+        t1_0.public_keysjwkset,
+        t1_0.redirecturis,
+        t1_0.scopes_requested,
+        t1_0.status,
+        t1_0.tpp_id 
+    from
+        tpp_app t1_0 
+    where
+        t1_0.tpp_app_id=?
+2026-03-28 13:15:50.217 DEBUG [http-nio-8081-exec-5] org.hibernate.SQL - 
+    select
+        t1_0.tpp_app_id,
+        t1_0.app_name,
+        t1_0.public_keysjwkset,
+        t1_0.redirecturis,
+        t1_0.scopes_requested,
+        t1_0.status,
+        t1_0.tpp_id 
+    from
+        tpp_app t1_0 
+    where
+        t1_0.tpp_app_id=?
+2026-03-28 13:15:50.233 DEBUG [http-nio-8081-exec-5] org.hibernate.SQL - 
+    insert 
+    into
+        api_log
+        (client_id, endpoint, latency_ms, method, status_code, timestamp, tpp_app_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?)
+2026-03-28 13:24:57.172 INFO  [main] c.cts.openbankx.OpenBankXApplication - Starting OpenBankXApplication using Java 21.0.2 with PID 5924 (C:\Users\2478956\Downloads\OpenBankXF\OpenBankXF\OpenBankX_Final\OpenBankXF\target\classes started by 2478956 in C:\Users\2478956\Downloads\OpenBankXF\OpenBankXF\OpenBankX_Final\OpenBankXF)
+2026-03-28 13:24:57.174 INFO  [main] c.cts.openbankx.OpenBankXApplication - No active profile set, falling back to 1 default profile: "default"
+2026-03-28 13:24:58.064 INFO  [main] o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-03-28 13:24:58.216 INFO  [main] o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 139 ms. Found 23 JPA repository interfaces.
+2026-03-28 13:24:59.090 INFO  [main] o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8081 (http)
+2026-03-28 13:24:59.108 INFO  [main] o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-03-28 13:24:59.109 INFO  [main] o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.36]
+2026-03-28 13:24:59.181 INFO  [main] o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2026-03-28 13:24:59.181 INFO  [main] o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1962 ms
+2026-03-28 13:24:59.410 INFO  [main] o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-03-28 13:24:59.493 INFO  [main] org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.8.Final
+2026-03-28 13:24:59.567 INFO  [main] o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2026-03-28 13:25:00.051 INFO  [main] o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-03-28 13:25:00.122 INFO  [main] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-03-28 13:25:01.101 INFO  [main] com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@5a583720
+2026-03-28 13:25:01.105 INFO  [main] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-03-28 13:25:01.312 WARN  [main] org.hibernate.orm.deprecation - HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-03-28 13:25:01.373 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0.44
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-03-28 13:25:05.214 INFO  [main] o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-03-28 13:25:05.424 INFO  [main] o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-03-28 13:25:06.693 WARN  [main] o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-03-28 13:25:06.744 INFO  [main] o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
+2026-03-28 13:25:07.974 INFO  [main] o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8081 (http) with context path '/'
+2026-03-28 13:25:07.984 INFO  [main] c.cts.openbankx.OpenBankXApplication - Started OpenBankXApplication in 11.224 seconds (process running for 11.55)
+2026-03-28 13:25:42.707 INFO  [http-nio-8081-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-03-28 13:25:42.707 INFO  [http-nio-8081-exec-2] o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2026-03-28 13:25:42.707 INFO  [http-nio-8081-exec-2] o.s.web.servlet.DispatcherServlet - Completed initialization in 0 ms
+2026-03-28 13:30:28.834 INFO  [main] c.cts.openbankx.OpenBankXApplication - Starting OpenBankXApplication using Java 21.0.2 with PID 13248 (C:\Users\2478956\Downloads\OpenBankXF\OpenBankXF\OpenBankX_Final\OpenBankXF\target\classes started by 2478956 in C:\Users\2478956\Downloads\OpenBankXF\OpenBankXF\OpenBankX_Final\OpenBankXF)
+2026-03-28 13:30:28.835 INFO  [main] c.cts.openbankx.OpenBankXApplication - No active profile set, falling back to 1 default profile: "default"
+2026-03-28 13:30:29.742 INFO  [main] o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-03-28 13:30:29.895 INFO  [main] o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 141 ms. Found 23 JPA repository interfaces.
+2026-03-28 13:30:30.849 INFO  [main] o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8081 (http)
+2026-03-28 13:30:30.871 INFO  [main] o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-03-28 13:30:30.872 INFO  [main] o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.36]
+2026-03-28 13:30:30.945 INFO  [main] o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2026-03-28 13:30:30.945 INFO  [main] o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2063 ms
+2026-03-28 13:30:31.168 INFO  [main] o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-03-28 13:30:31.238 INFO  [main] org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.8.Final
+2026-03-28 13:30:31.298 INFO  [main] o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2026-03-28 13:30:31.621 INFO  [main] o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-03-28 13:30:31.652 INFO  [main] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-03-28 13:30:31.934 INFO  [main] com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@3c743d40
+2026-03-28 13:30:31.936 INFO  [main] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-03-28 13:30:31.988 WARN  [main] org.hibernate.orm.deprecation - HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-03-28 13:30:32.002 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0.44
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-03-28 13:30:32.958 INFO  [main] o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-03-28 13:30:33.107 INFO  [main] o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-03-28 13:30:34.174 WARN  [main] o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-03-28 13:30:34.214 INFO  [main] o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
+2026-03-28 13:30:35.468 INFO  [main] o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8081 (http) with context path '/'
+2026-03-28 13:30:35.480 INFO  [main] c.cts.openbankx.OpenBankXApplication - Started OpenBankXApplication in 7.058 seconds (process running for 7.391)
+2026-03-28 13:30:45.262 INFO  [http-nio-8081-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-03-28 13:30:45.262 INFO  [http-nio-8081-exec-2] o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2026-03-28 13:30:45.268 INFO  [http-nio-8081-exec-2] o.s.web.servlet.DispatcherServlet - Completed initialization in 3 ms
+2026-03-28 13:36:28.174 INFO  [main] c.cts.openbankx.OpenBankXApplication - Starting OpenBankXApplication using Java 21.0.2 with PID 21096 (C:\Users\2478956\Downloads\OpenBankXF\OpenBankXF\OpenBankX_Final\OpenBankXF\target\classes started by 2478956 in C:\Users\2478956\Downloads\OpenBankXF\OpenBankXF\OpenBankX_Final\OpenBankXF)
+2026-03-28 13:36:28.176 INFO  [main] c.cts.openbankx.OpenBankXApplication - No active profile set, falling back to 1 default profile: "default"
+2026-03-28 13:36:29.067 INFO  [main] o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-03-28 13:36:29.209 INFO  [main] o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 127 ms. Found 23 JPA repository interfaces.
+2026-03-28 13:36:30.050 INFO  [main] o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8081 (http)
+2026-03-28 13:36:30.072 INFO  [main] o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-03-28 13:36:30.073 INFO  [main] o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.36]
+2026-03-28 13:36:30.148 INFO  [main] o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2026-03-28 13:36:30.149 INFO  [main] o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1928 ms
+2026-03-28 13:36:30.384 INFO  [main] o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-03-28 13:36:30.488 INFO  [main] org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.8.Final
+2026-03-28 13:36:30.531 INFO  [main] o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2026-03-28 13:36:30.845 INFO  [main] o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-03-28 13:36:30.890 INFO  [main] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-03-28 13:36:31.165 INFO  [main] com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@29f8134
+2026-03-28 13:36:31.168 INFO  [main] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-03-28 13:36:31.224 WARN  [main] org.hibernate.orm.deprecation - HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-03-28 13:36:31.239 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0.44
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-03-28 13:36:32.205 INFO  [main] o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-03-28 13:36:32.351 INFO  [main] o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-03-28 13:36:33.397 WARN  [main] o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-03-28 13:36:33.427 INFO  [main] o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
+2026-03-28 13:36:34.601 INFO  [main] o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8081 (http) with context path '/'
+2026-03-28 13:36:34.611 INFO  [main] c.cts.openbankx.OpenBankXApplication - Started OpenBankXApplication in 6.849 seconds (process running for 7.181)
+2026-03-28 13:37:15.331 INFO  [http-nio-8081-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-03-28 13:37:15.333 INFO  [http-nio-8081-exec-2] o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2026-03-28 13:37:15.336 INFO  [http-nio-8081-exec-2] o.s.web.servlet.DispatcherServlet - Completed initialization in 2 ms
+2026-03-28 13:41:51.057 INFO  [main] c.cts.openbankx.OpenBankXApplication - Starting OpenBankXApplication using Java 21.0.2 with PID 16024 (C:\Users\2478956\Downloads\OpenBankXF\OpenBankXF\OpenBankX_Final\OpenBankXF\target\classes started by 2478956 in C:\Users\2478956\Downloads\OpenBankXF\OpenBankXF\OpenBankX_Final\OpenBankXF)
+2026-03-28 13:41:51.059 INFO  [main] c.cts.openbankx.OpenBankXApplication - No active profile set, falling back to 1 default profile: "default"
+2026-03-28 13:41:52.151 INFO  [main] o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-03-28 13:41:52.316 INFO  [main] o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 136 ms. Found 23 JPA repository interfaces.
+2026-03-28 13:41:53.317 INFO  [main] o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8081 (http)
+2026-03-28 13:41:53.381 INFO  [main] o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-03-28 13:41:53.381 INFO  [main] o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.36]
+2026-03-28 13:41:53.601 INFO  [main] o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2026-03-28 13:41:53.606 INFO  [main] o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2497 ms
+2026-03-28 13:41:54.282 INFO  [main] o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-03-28 13:41:54.478 INFO  [main] org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.8.Final
+2026-03-28 13:41:54.623 INFO  [main] o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2026-03-28 13:41:55.623 INFO  [main] o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-03-28 13:41:55.706 INFO  [main] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-03-28 13:41:56.672 INFO  [main] com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@4407b042
+2026-03-28 13:41:56.690 INFO  [main] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-03-28 13:41:56.856 WARN  [main] org.hibernate.orm.deprecation - HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-03-28 13:41:56.911 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0.44
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-03-28 13:42:00.256 INFO  [main] o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-03-28 13:42:00.511 INFO  [main] o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-03-28 13:42:01.593 WARN  [main] o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-03-28 13:42:01.638 INFO  [main] o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
+2026-03-28 13:42:02.882 INFO  [main] o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8081 (http) with context path '/'
+2026-03-28 13:42:02.892 INFO  [main] c.cts.openbankx.OpenBankXApplication - Started OpenBankXApplication in 12.287 seconds (process running for 12.652)
+2026-03-28 13:42:19.274 INFO  [http-nio-8081-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-03-28 13:42:19.274 INFO  [http-nio-8081-exec-2] o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2026-03-28 13:42:19.274 INFO  [http-nio-8081-exec-2] o.s.web.servlet.DispatcherServlet - Completed initialization in 0 ms
+2026-03-28 13:57:09.206 WARN  [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=8m10s960ms234µs800ns).
+2026-03-28 14:20:32.416 WARN  [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=23m23s204ms114µs201ns).
+2026-03-28 15:27:38.464 INFO  [main] c.cts.openbankx.OpenBankXApplication - Starting OpenBankXApplication using Java 21.0.2 with PID 15084 (C:\Users\2478956\Downloads\OpenBankXF\OpenBankXF\OpenBankX_Final\OpenBankXF\target\classes started by 2478956 in C:\Users\2478956\Downloads\OpenBankXF\OpenBankXF\OpenBankX_Final\OpenBankXF)
+2026-03-28 15:27:38.468 INFO  [main] c.cts.openbankx.OpenBankXApplication - No active profile set, falling back to 1 default profile: "default"
+2026-03-28 15:27:40.540 INFO  [main] o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-03-28 15:27:41.390 INFO  [main] o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 779 ms. Found 23 JPA repository interfaces.
+2026-03-28 15:27:46.496 INFO  [main] o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8081 (http)
+2026-03-28 15:27:46.596 INFO  [main] o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-03-28 15:27:46.598 INFO  [main] o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.36]
+2026-03-28 15:27:47.140 INFO  [main] o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2026-03-28 15:27:47.142 INFO  [main] o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 8591 ms
+2026-03-28 15:27:48.470 INFO  [main] o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-03-28 15:27:48.946 INFO  [main] org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.8.Final
+2026-03-28 15:27:49.185 INFO  [main] o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2026-03-28 15:27:51.155 INFO  [main] o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-03-28 15:27:51.362 INFO  [main] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-03-28 15:27:53.357 INFO  [main] com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@27ec0d06
+2026-03-28 15:27:53.373 INFO  [main] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-03-28 15:27:53.740 WARN  [main] org.hibernate.orm.deprecation - HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-03-28 15:27:53.964 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0.44
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-03-28 15:28:00.632 INFO  [main] o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-03-28 15:28:01.342 INFO  [main] o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-03-28 15:28:07.378 WARN  [main] o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-03-28 15:28:07.500 INFO  [main] o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
+2026-03-28 15:28:13.165 INFO  [main] o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8081 (http) with context path '/'
+2026-03-28 15:28:13.230 INFO  [main] c.cts.openbankx.OpenBankXApplication - Started OpenBankXApplication in 35.479 seconds (process running for 36.134)
+2026-03-28 15:28:24.077 INFO  [http-nio-8081-exec-4] o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-03-28 15:28:24.077 INFO  [http-nio-8081-exec-4] o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2026-03-28 15:28:24.084 INFO  [http-nio-8081-exec-4] o.s.web.servlet.DispatcherServlet - Completed initialization in 7 ms
+2026-03-28 15:32:07.735 INFO  [main] c.cts.openbankx.OpenBankXApplication - Starting OpenBankXApplication using Java 21.0.2 with PID 23900 (C:\Users\2478956\Downloads\OpenBankXF\OpenBankXF\OpenBankX_Final\OpenBankXF\target\classes started by 2478956 in C:\Users\2478956\Downloads\OpenBankXF\OpenBankXF\OpenBankX_Final\OpenBankXF)
+2026-03-28 15:32:07.740 INFO  [main] c.cts.openbankx.OpenBankXApplication - No active profile set, falling back to 1 default profile: "default"
+2026-03-28 15:32:09.061 INFO  [main] o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-03-28 15:32:09.254 INFO  [main] o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 178 ms. Found 23 JPA repository interfaces.
+2026-03-28 15:32:10.430 INFO  [main] o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8081 (http)
+2026-03-28 15:32:10.454 INFO  [main] o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-03-28 15:32:10.455 INFO  [main] o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.36]
+2026-03-28 15:32:10.568 INFO  [main] o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2026-03-28 15:32:10.569 INFO  [main] o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2749 ms
+2026-03-28 15:32:10.911 INFO  [main] o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-03-28 15:32:11.001 INFO  [main] org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.8.Final
+2026-03-28 15:32:11.067 INFO  [main] o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2026-03-28 15:32:11.500 INFO  [main] o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-03-28 15:32:11.560 INFO  [main] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-03-28 15:32:11.988 INFO  [main] com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@2a65e237
+2026-03-28 15:32:11.991 INFO  [main] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-03-28 15:32:12.053 WARN  [main] org.hibernate.orm.deprecation - HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-03-28 15:32:12.075 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0.44
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-03-28 15:32:13.502 INFO  [main] o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-03-28 15:32:13.690 INFO  [main] o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-03-28 15:32:15.122 WARN  [main] o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-03-28 15:32:15.161 INFO  [main] o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
+2026-03-28 15:32:16.698 INFO  [main] o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8081 (http) with context path '/'
+2026-03-28 15:32:16.710 INFO  [main] c.cts.openbankx.OpenBankXApplication - Started OpenBankXApplication in 9.739 seconds (process running for 10.312)
+2026-03-28 15:44:36.257 INFO  [main] c.cts.openbankx.OpenBankXApplication - Starting OpenBankXApplication using Java 21.0.2 with PID 22972 (C:\Users\2478956\Downloads\OpenBankXF\OpenBankXF\OpenBankX_Final\OpenBankXF\target\classes started by 2478956 in C:\Users\2478956\Downloads\OpenBankXF\OpenBankXF\OpenBankX_Final\OpenBankXF)
+2026-03-28 15:44:36.261 INFO  [main] c.cts.openbankx.OpenBankXApplication - No active profile set, falling back to 1 default profile: "default"
+2026-03-28 15:44:38.531 INFO  [main] o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-03-28 15:44:39.429 INFO  [main] o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 828 ms. Found 23 JPA repository interfaces.
+2026-03-28 15:44:45.253 INFO  [main] o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8081 (http)
+2026-03-28 15:44:45.349 INFO  [main] o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-03-28 15:44:45.365 INFO  [main] o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.36]
+2026-03-28 15:44:45.766 INFO  [main] o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2026-03-28 15:44:45.766 INFO  [main] o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 9420 ms
+2026-03-28 15:44:47.329 INFO  [main] o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-03-28 15:44:47.858 INFO  [main] org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.8.Final
+2026-03-28 15:44:48.146 INFO  [main] o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2026-03-28 15:44:49.693 INFO  [main] o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-03-28 15:44:49.786 INFO  [main] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-03-28 15:44:50.259 INFO  [main] com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@1eb6037d
+2026-03-28 15:44:50.264 INFO  [main] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-03-28 15:44:50.359 WARN  [main] org.hibernate.orm.deprecation - HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-03-28 15:44:50.382 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0.44
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-03-28 15:44:52.177 INFO  [main] o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-03-28 15:44:52.355 INFO  [main] o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-03-28 15:44:53.791 WARN  [main] o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-03-28 15:44:53.831 INFO  [main] o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
+2026-03-28 15:44:55.288 INFO  [main] o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8081 (http) with context path '/'
+2026-03-28 15:44:55.303 INFO  [main] c.cts.openbankx.OpenBankXApplication - Started OpenBankXApplication in 19.801 seconds (process running for 20.399)
+2026-03-28 15:53:01.827 INFO  [main] c.cts.openbankx.OpenBankXApplication - Starting OpenBankXApplication using Java 21.0.2 with PID 16268 (C:\Users\2478956\Downloads\OpenBankXF\OpenBankXF\OpenBankX_Final\OpenBankXF\target\classes started by 2478956 in C:\Users\2478956\Downloads\OpenBankXF\OpenBankXF\OpenBankX_Final\OpenBankXF)
+2026-03-28 15:53:01.832 INFO  [main] c.cts.openbankx.OpenBankXApplication - No active profile set, falling back to 1 default profile: "default"
+2026-03-28 15:53:03.268 INFO  [main] o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-03-28 15:53:03.917 INFO  [main] o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 600 ms. Found 23 JPA repository interfaces.
+2026-03-28 15:53:08.503 INFO  [main] o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8081 (http)
+2026-03-28 15:53:08.576 INFO  [main] o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-03-28 15:53:08.580 INFO  [main] o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.36]
+2026-03-28 15:53:09.004 INFO  [main] o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2026-03-28 15:53:09.004 INFO  [main] o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 7095 ms
+2026-03-28 15:53:10.153 INFO  [main] o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-03-28 15:53:10.552 INFO  [main] org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.8.Final
+2026-03-28 15:53:10.809 INFO  [main] o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2026-03-28 15:53:12.915 INFO  [main] o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-03-28 15:53:13.109 INFO  [main] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-03-28 15:53:14.772 INFO  [main] com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@6da646b8
+2026-03-28 15:53:14.783 INFO  [main] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-03-28 15:53:15.077 WARN  [main] org.hibernate.orm.deprecation - HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-03-28 15:53:15.195 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0.44
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-03-28 15:53:22.123 INFO  [main] o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-03-28 15:53:22.727 INFO  [main] o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-03-28 15:53:28.577 WARN  [main] o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-03-28 15:53:28.768 INFO  [main] o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
+2026-03-28 15:53:34.260 INFO  [main] o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8081 (http) with context path '/'
+2026-03-28 15:53:34.306 INFO  [main] c.cts.openbankx.OpenBankXApplication - Started OpenBankXApplication in 33.193 seconds (process running for 33.775)
+2026-03-28 15:53:50.287 INFO  [http-nio-8081-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-03-28 15:53:50.287 INFO  [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2026-03-28 15:53:50.297 INFO  [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet - Completed initialization in 10 ms
+2026-03-28 16:12:02.507 DEBUG [http-nio-8081-exec-1] org.hibernate.SQL - 
+    select
+        t1_0.tpp_app_id,
+        t1_0.app_name,
+        t1_0.public_keysjwkset,
+        t1_0.redirecturis,
+        t1_0.scopes_requested,
+        t1_0.status,
+        t1_0.tpp_id 
+    from
+        tpp_app t1_0 
+    where
+        t1_0.tpp_app_id=?
+2026-03-28 16:12:03.003 DEBUG [http-nio-8081-exec-1] org.hibernate.SQL - 
+    select
+        c1_0.consent_id,
+        c1_0.created_date,
+        c1_0.expiry_date,
+        c1_0.resource_filterjson,
+        c1_0.scopejson,
+        c1_0.status,
+        c1_0.tpp_app_id,
+        c1_0.user_id 
+    from
+        consent c1_0 
+    left join
+        tpp_app ta1_0 
+            on ta1_0.tpp_app_id=c1_0.tpp_app_id 
+    where
+        ta1_0.tpp_app_id=?
+2026-03-28 16:12:03.082 DEBUG [http-nio-8081-exec-1] org.hibernate.SQL - 
+    insert 
+    into
+        token
+        (client_id, expires_at, issued_at, scope, status, token_type, user_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?)
+2026-03-28 16:12:03.154 DEBUG [http-nio-8081-exec-1] org.hibernate.SQL - 
+    select
+        t1_0.tpp_app_id,
+        t1_0.app_name,
+        t1_0.public_keysjwkset,
+        t1_0.redirecturis,
+        t1_0.scopes_requested,
+        t1_0.status,
+        t1_0.tpp_id 
+    from
+        tpp_app t1_0 
+    where
+        t1_0.tpp_app_id=?
+2026-03-28 16:12:03.173 DEBUG [http-nio-8081-exec-1] org.hibernate.SQL - 
+    insert 
+    into
+        api_log
+        (client_id, endpoint, latency_ms, method, status_code, timestamp, tpp_app_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?)
+2026-03-28 16:16:41.784 INFO  [main] c.cts.openbankx.OpenBankXApplication - Starting OpenBankXApplication using Java 21.0.2 with PID 20660 (C:\Users\2478956\Downloads\OpenBankXF\OpenBankXF\OpenBankX_Final\OpenBankXF\target\classes started by 2478956 in C:\Users\2478956\Downloads\OpenBankXF\OpenBankXF\OpenBankX_Final\OpenBankXF)
+2026-03-28 16:16:41.786 INFO  [main] c.cts.openbankx.OpenBankXApplication - No active profile set, falling back to 1 default profile: "default"
+2026-03-28 16:16:42.886 INFO  [main] o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-03-28 16:16:43.034 INFO  [main] o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 136 ms. Found 23 JPA repository interfaces.
+2026-03-28 16:16:44.285 INFO  [main] o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8081 (http)
+2026-03-28 16:16:44.351 INFO  [main] o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-03-28 16:16:44.351 INFO  [main] o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.36]
+2026-03-28 16:16:44.618 INFO  [main] o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2026-03-28 16:16:44.622 INFO  [main] o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2773 ms
+2026-03-28 16:16:45.520 INFO  [main] o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-03-28 16:16:45.791 INFO  [main] org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.8.Final
+2026-03-28 16:16:45.984 INFO  [main] o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2026-03-28 16:16:47.297 INFO  [main] o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-03-28 16:16:47.398 INFO  [main] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-03-28 16:16:48.449 INFO  [main] com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@42dd7d82
+2026-03-28 16:16:48.458 INFO  [main] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-03-28 16:16:48.639 WARN  [main] org.hibernate.orm.deprecation - HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-03-28 16:16:48.699 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0.44
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-03-28 16:16:52.116 INFO  [main] o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-03-28 16:16:52.522 INFO  [main] o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-03-28 16:16:56.371 WARN  [main] o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-03-28 16:16:56.468 INFO  [main] o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
+2026-03-28 16:16:59.660 INFO  [main] o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8081 (http) with context path '/'
+2026-03-28 16:16:59.701 INFO  [main] c.cts.openbankx.OpenBankXApplication - Started OpenBankXApplication in 18.349 seconds (process running for 18.658)
+2026-03-28 16:17:17.854 INFO  [http-nio-8081-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-03-28 16:17:17.854 INFO  [http-nio-8081-exec-2] o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2026-03-28 16:17:17.863 INFO  [http-nio-8081-exec-2] o.s.web.servlet.DispatcherServlet - Completed initialization in 9 ms
+2026-03-28 16:17:18.032 DEBUG [http-nio-8081-exec-2] org.hibernate.SQL - 
+    select
+        t1_0.tpp_app_id,
+        t1_0.app_name,
+        t1_0.public_keysjwkset,
+        t1_0.redirecturis,
+        t1_0.scopes_requested,
+        t1_0.status,
+        t1_0.tpp_id 
+    from
+        tpp_app t1_0 
+    where
+        t1_0.tpp_app_id=?
+2026-03-28 16:17:18.490 DEBUG [http-nio-8081-exec-2] org.hibernate.SQL - 
+    select
+        c1_0.consent_id,
+        c1_0.created_date,
+        c1_0.expiry_date,
+        c1_0.resource_filterjson,
+        c1_0.scopejson,
+        c1_0.status,
+        c1_0.tpp_app_id,
+        c1_0.user_id 
+    from
+        consent c1_0 
+    left join
+        tpp_app ta1_0 
+            on ta1_0.tpp_app_id=c1_0.tpp_app_id 
+    where
+        ta1_0.tpp_app_id=?
+2026-03-28 16:17:18.581 DEBUG [http-nio-8081-exec-2] org.hibernate.SQL - 
+    insert 
+    into
+        token
+        (client_id, expires_at, issued_at, scope, status, token_type, user_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?)
+2026-03-28 16:17:18.654 DEBUG [http-nio-8081-exec-2] org.hibernate.SQL - 
+    select
+        t1_0.tpp_app_id,
+        t1_0.app_name,
+        t1_0.public_keysjwkset,
+        t1_0.redirecturis,
+        t1_0.scopes_requested,
+        t1_0.status,
+        t1_0.tpp_id 
+    from
+        tpp_app t1_0 
+    where
+        t1_0.tpp_app_id=?
+2026-03-28 16:17:18.714 DEBUG [http-nio-8081-exec-2] org.hibernate.SQL - 
+    select
+        ar1_0.account_id,
+        ar1_0.account_number_masked,
+        ar1_0.currency,
+        ar1_0.status,
+        ar1_0.type,
+        ar1_0.user_id 
+    from
+        account_ref ar1_0 
+    left join
+        users u1_0 
+            on u1_0.user_id=ar1_0.user_id 
+    where
+        u1_0.user_id=?
+2026-03-28 16:17:18.871 DEBUG [http-nio-8081-exec-2] org.hibernate.SQL - 
+    select
+        u1_0.user_id,
+        u1_0.email,
+        u1_0.name,
+        u1_0.password,
+        u1_0.phone,
+        u1_0.role,
+        u1_0.status 
+    from
+        users u1_0 
+    where
+        u1_0.user_id=?
+2026-03-28 16:17:18.893 DEBUG [http-nio-8081-exec-2] org.hibernate.SQL - 
+    insert 
+    into
+        api_log
+        (client_id, endpoint, latency_ms, method, status_code, timestamp, tpp_app_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?)
+2026-03-28 16:30:11.082 DEBUG [http-nio-8081-exec-5] org.hibernate.SQL - 
+    select
+        t1_0.tpp_app_id,
+        t1_0.app_name,
+        t1_0.public_keysjwkset,
+        t1_0.redirecturis,
+        t1_0.scopes_requested,
+        t1_0.status,
+        t1_0.tpp_id 
+    from
+        tpp_app t1_0 
+    where
+        t1_0.tpp_app_id=?
+2026-03-28 16:30:11.098 DEBUG [http-nio-8081-exec-5] org.hibernate.SQL - 
+    select
+        c1_0.consent_id,
+        c1_0.created_date,
+        c1_0.expiry_date,
+        c1_0.resource_filterjson,
+        c1_0.scopejson,
+        c1_0.status,
+        c1_0.tpp_app_id,
+        c1_0.user_id 
+    from
+        consent c1_0 
+    left join
+        tpp_app ta1_0 
+            on ta1_0.tpp_app_id=c1_0.tpp_app_id 
+    where
+        ta1_0.tpp_app_id=?
+2026-03-28 16:30:11.100 ERROR [http-nio-8081-exec-5] o.a.c.c.C.[.[.[.[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception
+java.lang.RuntimeException: No active consent for scope
+	at com.cts.openbankx.security.SystemTokenService.lambda$2(SystemTokenService.java:47)
+	at java.base/java.util.Optional.orElseThrow(Optional.java:403)
+	at com.cts.openbankx.security.SystemTokenService.resolveToken(SystemTokenService.java:46)
+	at com.cts.openbankx.security.SystemSecurityFilter.doFilterInternal(SystemSecurityFilter.java:73)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:107)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:93)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90)
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:82)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:69)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:62)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:233)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:191)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.servlet.handler.HandlerMappingIntrospector.lambda$createCacheFilter$3(HandlerMappingIntrospector.java:243)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74)
+	at org.springframework.security.config.annotation.web.configuration.WebMvcSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebMvcSecurityConfiguration.java:238)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:362)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:278)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:905)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1743)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+2026-03-28 16:34:49.545 DEBUG [http-nio-8081-exec-7] org.hibernate.SQL - 
+    select
+        t1_0.tpp_app_id,
+        t1_0.app_name,
+        t1_0.public_keysjwkset,
+        t1_0.redirecturis,
+        t1_0.scopes_requested,
+        t1_0.status,
+        t1_0.tpp_id 
+    from
+        tpp_app t1_0 
+    where
+        t1_0.tpp_app_id=?
+2026-03-28 16:34:49.561 DEBUG [http-nio-8081-exec-7] org.hibernate.SQL - 
+    select
+        c1_0.consent_id,
+        c1_0.created_date,
+        c1_0.expiry_date,
+        c1_0.resource_filterjson,
+        c1_0.scopejson,
+        c1_0.status,
+        c1_0.tpp_app_id,
+        c1_0.user_id 
+    from
+        consent c1_0 
+    left join
+        tpp_app ta1_0 
+            on ta1_0.tpp_app_id=c1_0.tpp_app_id 
+    where
+        ta1_0.tpp_app_id=?
+2026-03-28 16:34:49.565 ERROR [http-nio-8081-exec-7] o.a.c.c.C.[.[.[.[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception
+java.lang.RuntimeException: No active consent for scope
+	at com.cts.openbankx.security.SystemTokenService.lambda$2(SystemTokenService.java:47)
+	at java.base/java.util.Optional.orElseThrow(Optional.java:403)
+	at com.cts.openbankx.security.SystemTokenService.resolveToken(SystemTokenService.java:46)
+	at com.cts.openbankx.security.SystemSecurityFilter.doFilterInternal(SystemSecurityFilter.java:73)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:107)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:93)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90)
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:82)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:69)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:62)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:233)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:191)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.servlet.handler.HandlerMappingIntrospector.lambda$createCacheFilter$3(HandlerMappingIntrospector.java:243)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74)
+	at org.springframework.security.config.annotation.web.configuration.WebMvcSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebMvcSecurityConfiguration.java:238)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:362)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:278)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:905)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1743)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+2026-03-28 16:36:53.644 DEBUG [http-nio-8081-exec-9] org.hibernate.SQL - 
+    select
+        t1_0.tpp_app_id,
+        t1_0.app_name,
+        t1_0.public_keysjwkset,
+        t1_0.redirecturis,
+        t1_0.scopes_requested,
+        t1_0.status,
+        t1_0.tpp_id 
+    from
+        tpp_app t1_0 
+    where
+        t1_0.tpp_app_id=?
+2026-03-28 16:36:53.675 DEBUG [http-nio-8081-exec-9] org.hibernate.SQL - 
+    update
+        tpp_app 
+    set
+        app_name=?,
+        public_keysjwkset=?,
+        redirecturis=?,
+        scopes_requested=?,
+        status=?,
+        tpp_id=? 
+    where
+        tpp_app_id=?
+2026-03-28 16:36:53.694 DEBUG [http-nio-8081-exec-9] org.hibernate.SQL - 
+    select
+        t1_0.tpp_id,
+        t1_0.certification_ref,
+        t1_0.contact_info,
+        t1_0.legal_name,
+        t1_0.registration_number,
+        t1_0.status 
+    from
+        tpp t1_0 
+    where
+        t1_0.tpp_id=?
+2026-03-28 16:37:10.627 DEBUG [http-nio-8081-exec-10] org.hibernate.SQL - 
+    select
+        t1_0.tpp_app_id,
+        t1_0.app_name,
+        t1_0.public_keysjwkset,
+        t1_0.redirecturis,
+        t1_0.scopes_requested,
+        t1_0.status,
+        t1_0.tpp_id 
+    from
+        tpp_app t1_0 
+    where
+        t1_0.tpp_app_id=?
+2026-03-28 16:37:10.629 DEBUG [http-nio-8081-exec-10] org.hibernate.SQL - 
+    select
+        c1_0.consent_id,
+        c1_0.created_date,
+        c1_0.expiry_date,
+        c1_0.resource_filterjson,
+        c1_0.scopejson,
+        c1_0.status,
+        c1_0.tpp_app_id,
+        c1_0.user_id 
+    from
+        consent c1_0 
+    left join
+        tpp_app ta1_0 
+            on ta1_0.tpp_app_id=c1_0.tpp_app_id 
+    where
+        ta1_0.tpp_app_id=?
+2026-03-28 16:37:10.642 ERROR [http-nio-8081-exec-10] o.a.c.c.C.[.[.[.[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception
+java.lang.RuntimeException: No active consent for scope
+	at com.cts.openbankx.security.SystemTokenService.lambda$2(SystemTokenService.java:47)
+	at java.base/java.util.Optional.orElseThrow(Optional.java:403)
+	at com.cts.openbankx.security.SystemTokenService.resolveToken(SystemTokenService.java:46)
+	at com.cts.openbankx.security.SystemSecurityFilter.doFilterInternal(SystemSecurityFilter.java:73)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:107)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:93)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90)
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:82)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:69)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:62)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:233)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:191)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.servlet.handler.HandlerMappingIntrospector.lambda$createCacheFilter$3(HandlerMappingIntrospector.java:243)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74)
+	at org.springframework.security.config.annotation.web.configuration.WebMvcSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebMvcSecurityConfiguration.java:238)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:362)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:278)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:905)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1743)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+2026-03-28 16:37:38.477 DEBUG [http-nio-8081-exec-2] org.hibernate.SQL - 
+    select
+        t1_0.tpp_app_id,
+        t1_0.app_name,
+        t1_0.public_keysjwkset,
+        t1_0.redirecturis,
+        t1_0.scopes_requested,
+        t1_0.status,
+        t1_0.tpp_id 
+    from
+        tpp_app t1_0 
+    where
+        t1_0.tpp_app_id=?
+2026-03-28 16:37:38.501 DEBUG [http-nio-8081-exec-2] org.hibernate.SQL - 
+    select
+        c1_0.consent_id,
+        c1_0.created_date,
+        c1_0.expiry_date,
+        c1_0.resource_filterjson,
+        c1_0.scopejson,
+        c1_0.status,
+        c1_0.tpp_app_id,
+        c1_0.user_id 
+    from
+        consent c1_0 
+    left join
+        tpp_app ta1_0 
+            on ta1_0.tpp_app_id=c1_0.tpp_app_id 
+    where
+        ta1_0.tpp_app_id=?
+2026-03-28 16:37:38.503 ERROR [http-nio-8081-exec-2] o.a.c.c.C.[.[.[.[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception
+java.lang.RuntimeException: No active consent for scope
+	at com.cts.openbankx.security.SystemTokenService.lambda$2(SystemTokenService.java:47)
+	at java.base/java.util.Optional.orElseThrow(Optional.java:403)
+	at com.cts.openbankx.security.SystemTokenService.resolveToken(SystemTokenService.java:46)
+	at com.cts.openbankx.security.SystemSecurityFilter.doFilterInternal(SystemSecurityFilter.java:73)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:107)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:93)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90)
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:82)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:69)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:62)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:233)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:191)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.servlet.handler.HandlerMappingIntrospector.lambda$createCacheFilter$3(HandlerMappingIntrospector.java:243)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74)
+	at org.springframework.security.config.annotation.web.configuration.WebMvcSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebMvcSecurityConfiguration.java:238)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:362)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:278)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:905)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1743)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+2026-03-28 16:44:48.143 DEBUG [http-nio-8081-exec-4] org.hibernate.SQL - 
+    select
+        t1_0.tpp_app_id,
+        t1_0.app_name,
+        t1_0.public_keysjwkset,
+        t1_0.redirecturis,
+        t1_0.scopes_requested,
+        t1_0.status,
+        t1_0.tpp_id 
+    from
+        tpp_app t1_0 
+    where
+        t1_0.tpp_app_id=?
+2026-03-28 16:44:48.163 DEBUG [http-nio-8081-exec-4] org.hibernate.SQL - 
+    select
+        c1_0.consent_id,
+        c1_0.created_date,
+        c1_0.expiry_date,
+        c1_0.resource_filterjson,
+        c1_0.scopejson,
+        c1_0.status,
+        c1_0.tpp_app_id,
+        c1_0.user_id 
+    from
+        consent c1_0 
+    left join
+        tpp_app ta1_0 
+            on ta1_0.tpp_app_id=c1_0.tpp_app_id 
+    where
+        ta1_0.tpp_app_id=?
+2026-03-28 16:44:48.172 DEBUG [http-nio-8081-exec-4] org.hibernate.SQL - 
+    insert 
+    into
+        token
+        (client_id, expires_at, issued_at, scope, status, token_type, user_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?)
+2026-03-28 16:44:48.191 DEBUG [http-nio-8081-exec-4] org.hibernate.SQL - 
+    select
+        t1_0.tpp_app_id,
+        t1_0.app_name,
+        t1_0.public_keysjwkset,
+        t1_0.redirecturis,
+        t1_0.scopes_requested,
+        t1_0.status,
+        t1_0.tpp_id 
+    from
+        tpp_app t1_0 
+    where
+        t1_0.tpp_app_id=?
+2026-03-28 16:44:48.378 DEBUG [http-nio-8081-exec-4] org.hibernate.SQL - 
+    insert 
+    into
+        payment_initiation
+        (amount, created_date, creditor_account_ref, currency, debtor_account_ref, status, tpp_app_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?)
+2026-03-28 16:44:49.288 WARN  [http-nio-8081-exec-4] o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1048, SQLState: 23000
+2026-03-28 16:44:49.290 ERROR [http-nio-8081-exec-4] o.h.e.jdbc.spi.SqlExceptionHelper - Column 'tpp_app_id' cannot be null
+2026-03-28 16:44:49.335 DEBUG [http-nio-8081-exec-4] org.hibernate.SQL - 
+    insert 
+    into
+        api_log
+        (client_id, endpoint, latency_ms, method, status_code, timestamp, tpp_app_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?)
+2026-03-28 17:03:00.111 INFO  [main] c.cts.openbankx.OpenBankXApplication - Starting OpenBankXApplication using Java 21.0.2 with PID 20048 (C:\Users\2478956\Downloads\OpenBankXF\OpenBankXF\OpenBankX_Final\OpenBankXF\target\classes started by 2478956 in C:\Users\2478956\Downloads\OpenBankXF\OpenBankXF\OpenBankX_Final\OpenBankXF)
+2026-03-28 17:03:00.113 INFO  [main] c.cts.openbankx.OpenBankXApplication - No active profile set, falling back to 1 default profile: "default"
+2026-03-28 17:03:01.289 INFO  [main] o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-03-28 17:03:01.455 INFO  [main] o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 154 ms. Found 23 JPA repository interfaces.
+2026-03-28 17:03:02.949 INFO  [main] o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8081 (http)
+2026-03-28 17:03:02.977 INFO  [main] o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-03-28 17:03:02.978 INFO  [main] o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.36]
+2026-03-28 17:03:03.058 INFO  [main] o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2026-03-28 17:03:03.059 INFO  [main] o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2883 ms
+2026-03-28 17:03:03.307 INFO  [main] o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-03-28 17:03:03.417 INFO  [main] org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.8.Final
+2026-03-28 17:03:03.468 INFO  [main] o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2026-03-28 17:03:03.907 INFO  [main] o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-03-28 17:03:03.941 INFO  [main] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-03-28 17:03:04.277 INFO  [main] com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@2a65e237
+2026-03-28 17:03:04.278 INFO  [main] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-03-28 17:03:04.337 WARN  [main] org.hibernate.orm.deprecation - HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-03-28 17:03:04.355 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0.44
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-03-28 17:03:05.550 INFO  [main] o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-03-28 17:03:05.743 INFO  [main] o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-03-28 17:03:06.724 WARN  [main] o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-03-28 17:03:06.759 INFO  [main] o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
+2026-03-28 17:03:07.663 INFO  [main] o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8081 (http) with context path '/'
+2026-03-28 17:03:07.672 INFO  [main] c.cts.openbankx.OpenBankXApplication - Started OpenBankXApplication in 8.039 seconds (process running for 8.354)
+2026-03-28 17:03:31.164 INFO  [http-nio-8081-exec-3] o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-03-28 17:03:31.173 INFO  [http-nio-8081-exec-3] o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2026-03-28 17:03:31.176 INFO  [http-nio-8081-exec-3] o.s.web.servlet.DispatcherServlet - Completed initialization in 3 ms
+2026-03-28 17:03:31.347 DEBUG [http-nio-8081-exec-3] org.hibernate.SQL - 
+    select
+        t1_0.tpp_app_id,
+        t1_0.app_name,
+        t1_0.public_keysjwkset,
+        t1_0.redirecturis,
+        t1_0.scopes_requested,
+        t1_0.status,
+        t1_0.tpp_id 
+    from
+        tpp_app t1_0 
+    where
+        t1_0.tpp_app_id=?
+2026-03-28 17:03:31.780 DEBUG [http-nio-8081-exec-3] org.hibernate.SQL - 
+    select
+        c1_0.consent_id,
+        c1_0.created_date,
+        c1_0.expiry_date,
+        c1_0.resource_filterjson,
+        c1_0.scopejson,
+        c1_0.status,
+        c1_0.tpp_app_id,
+        c1_0.user_id 
+    from
+        consent c1_0 
+    left join
+        tpp_app ta1_0 
+            on ta1_0.tpp_app_id=c1_0.tpp_app_id 
+    where
+        ta1_0.tpp_app_id=?
+2026-03-28 17:03:31.912 DEBUG [http-nio-8081-exec-3] org.hibernate.SQL - 
+    insert 
+    into
+        token
+        (client_id, expires_at, issued_at, scope, status, token_type, user_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?)
+2026-03-28 17:03:31.980 DEBUG [http-nio-8081-exec-3] org.hibernate.SQL - 
+    select
+        t1_0.tpp_app_id,
+        t1_0.app_name,
+        t1_0.public_keysjwkset,
+        t1_0.redirecturis,
+        t1_0.scopes_requested,
+        t1_0.status,
+        t1_0.tpp_id 
+    from
+        tpp_app t1_0 
+    where
+        t1_0.tpp_app_id=?
+2026-03-28 17:03:32.279 DEBUG [http-nio-8081-exec-3] org.hibernate.SQL - 
+    insert 
+    into
+        payment_initiation
+        (amount, created_date, creditor_account_ref, currency, debtor_account_ref, status, tpp_app_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?)
+2026-03-28 17:03:33.192 WARN  [http-nio-8081-exec-3] o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1048, SQLState: 23000
+2026-03-28 17:03:33.192 ERROR [http-nio-8081-exec-3] o.h.e.jdbc.spi.SqlExceptionHelper - Column 'tpp_app_id' cannot be null
+2026-03-28 17:03:33.305 DEBUG [http-nio-8081-exec-3] org.hibernate.SQL - 
+    insert 
+    into
+        api_log
+        (client_id, endpoint, latency_ms, method, status_code, timestamp, tpp_app_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?)
+2026-03-28 17:07:46.624 DEBUG [http-nio-8081-exec-4] org.hibernate.SQL - 
+    select
+        t1_0.tpp_app_id,
+        t1_0.app_name,
+        t1_0.public_keysjwkset,
+        t1_0.redirecturis,
+        t1_0.scopes_requested,
+        t1_0.status,
+        t1_0.tpp_id 
+    from
+        tpp_app t1_0 
+    where
+        t1_0.tpp_app_id=?
+2026-03-28 17:07:46.637 DEBUG [http-nio-8081-exec-4] org.hibernate.SQL - 
+    select
+        c1_0.consent_id,
+        c1_0.created_date,
+        c1_0.expiry_date,
+        c1_0.resource_filterjson,
+        c1_0.scopejson,
+        c1_0.status,
+        c1_0.tpp_app_id,
+        c1_0.user_id 
+    from
+        consent c1_0 
+    left join
+        tpp_app ta1_0 
+            on ta1_0.tpp_app_id=c1_0.tpp_app_id 
+    where
+        ta1_0.tpp_app_id=?
+2026-03-28 17:07:46.646 ERROR [http-nio-8081-exec-4] o.a.c.c.C.[.[.[.[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception
+java.lang.RuntimeException: No active consent for scope
+	at com.cts.openbankx.security.SystemTokenService.lambda$2(SystemTokenService.java:47)
+	at java.base/java.util.Optional.orElseThrow(Optional.java:403)
+	at com.cts.openbankx.security.SystemTokenService.resolveToken(SystemTokenService.java:46)
+	at com.cts.openbankx.security.SystemSecurityFilter.doFilterInternal(SystemSecurityFilter.java:77)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:107)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:93)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90)
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:82)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:69)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:62)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:233)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:191)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.servlet.handler.HandlerMappingIntrospector.lambda$createCacheFilter$3(HandlerMappingIntrospector.java:243)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74)
+	at org.springframework.security.config.annotation.web.configuration.WebMvcSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebMvcSecurityConfiguration.java:238)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:362)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:278)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:905)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1743)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+2026-03-28 17:12:38.319 DEBUG [http-nio-8081-exec-6] org.hibernate.SQL - 
+    select
+        t1_0.tpp_app_id,
+        t1_0.app_name,
+        t1_0.public_keysjwkset,
+        t1_0.redirecturis,
+        t1_0.scopes_requested,
+        t1_0.status,
+        t1_0.tpp_id 
+    from
+        tpp_app t1_0 
+    where
+        t1_0.tpp_app_id=?
+2026-03-28 17:12:38.328 DEBUG [http-nio-8081-exec-6] org.hibernate.SQL - 
+    select
+        c1_0.consent_id,
+        c1_0.created_date,
+        c1_0.expiry_date,
+        c1_0.resource_filterjson,
+        c1_0.scopejson,
+        c1_0.status,
+        c1_0.tpp_app_id,
+        c1_0.user_id 
+    from
+        consent c1_0 
+    left join
+        tpp_app ta1_0 
+            on ta1_0.tpp_app_id=c1_0.tpp_app_id 
+    where
+        ta1_0.tpp_app_id=?
+2026-03-28 17:12:38.337 DEBUG [http-nio-8081-exec-6] org.hibernate.SQL - 
+    insert 
+    into
+        token
+        (client_id, expires_at, issued_at, scope, status, token_type, user_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?)
+2026-03-28 17:12:38.354 DEBUG [http-nio-8081-exec-6] org.hibernate.SQL - 
+    select
+        t1_0.tpp_app_id,
+        t1_0.app_name,
+        t1_0.public_keysjwkset,
+        t1_0.redirecturis,
+        t1_0.scopes_requested,
+        t1_0.status,
+        t1_0.tpp_id 
+    from
+        tpp_app t1_0 
+    where
+        t1_0.tpp_app_id=?
+2026-03-28 17:12:38.388 DEBUG [http-nio-8081-exec-6] org.hibernate.SQL - 
+    insert 
+    into
+        api_log
+        (client_id, endpoint, latency_ms, method, status_code, timestamp, tpp_app_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?)
+2026-03-28 17:13:43.453 DEBUG [http-nio-8081-exec-8] org.hibernate.SQL - 
+    select
+        t1_0.tpp_app_id,
+        t1_0.app_name,
+        t1_0.public_keysjwkset,
+        t1_0.redirecturis,
+        t1_0.scopes_requested,
+        t1_0.status,
+        t1_0.tpp_id 
+    from
+        tpp_app t1_0 
+    where
+        t1_0.tpp_app_id=?
+2026-03-28 17:13:43.472 DEBUG [http-nio-8081-exec-8] org.hibernate.SQL - 
+    select
+        t1_0.tpp_app_id,
+        t1_0.app_name,
+        t1_0.public_keysjwkset,
+        t1_0.redirecturis,
+        t1_0.scopes_requested,
+        t1_0.status,
+        t1_0.tpp_id 
+    from
+        tpp_app t1_0 
+    where
+        t1_0.tpp_app_id=?
+2026-03-28 17:13:43.490 DEBUG [http-nio-8081-exec-8] org.hibernate.SQL - 
+    select
+        c1_0.consent_id,
+        c1_0.created_date,
+        c1_0.expiry_date,
+        c1_0.resource_filterjson,
+        c1_0.scopejson,
+        c1_0.status,
+        c1_0.tpp_app_id,
+        c1_0.user_id 
+    from
+        consent c1_0 
+    where
+        c1_0.consent_id=?
+2026-03-28 17:13:43.507 DEBUG [http-nio-8081-exec-8] org.hibernate.SQL - 
+    select
+        tr1_0.txn_ref_id,
+        tr1_0.account_id,
+        tr1_0.amount,
+        tr1_0.narrative,
+        tr1_0.txn_date,
+        tr1_0.txn_type 
+    from
+        transaction_ref tr1_0 
+    left join
+        account_ref ar1_0 
+            on ar1_0.account_id=tr1_0.account_id 
+    where
+        ar1_0.account_id is null
+2026-03-28 17:13:43.521 WARN  [http-nio-8081-exec-8] o.h.a.i.UnresolvedEntityInsertActions - HHH000437: Attempting to save one or more entities that have a non-nullable association with an unsaved transient entity. The unsaved transient entity must be saved in an operation prior to saving these dependent entities.
+	Unsaved transient entity: ([com.cts.openbankx.model.AccountRef#<null>])
+	Dependent entities: ([[com.cts.openbankx.model.FundsCheck#<null>]])
+	Non-nullable association(s): ([com.cts.openbankx.model.FundsCheck.accountRef])
+2026-03-28 17:13:43.539 DEBUG [http-nio-8081-exec-8] org.hibernate.SQL - 
+    insert 
+    into
+        api_log
+        (client_id, endpoint, latency_ms, method, status_code, timestamp, tpp_app_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?)
+2026-03-28 17:31:06.916 INFO  [main] c.cts.openbankx.OpenBankXApplication - Starting OpenBankXApplication using Java 21.0.2 with PID 13476 (C:\Users\2478956\Downloads\OpenBankXF\OpenBankXF\OpenBankX_Final\OpenBankXF\target\classes started by 2478956 in C:\Users\2478956\Downloads\OpenBankXF\OpenBankXF\OpenBankX_Final\OpenBankXF)
+2026-03-28 17:31:06.918 INFO  [main] c.cts.openbankx.OpenBankXApplication - No active profile set, falling back to 1 default profile: "default"
+2026-03-28 17:31:07.867 INFO  [main] o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-03-28 17:31:08.004 INFO  [main] o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 126 ms. Found 23 JPA repository interfaces.
+2026-03-28 17:31:08.888 INFO  [main] o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8081 (http)
+2026-03-28 17:31:08.906 INFO  [main] o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-03-28 17:31:08.906 INFO  [main] o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.36]
+2026-03-28 17:31:08.982 INFO  [main] o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2026-03-28 17:31:08.983 INFO  [main] o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2017 ms
+2026-03-28 17:31:09.234 INFO  [main] o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-03-28 17:31:09.318 INFO  [main] org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.8.Final
+2026-03-28 17:31:09.372 INFO  [main] o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2026-03-28 17:31:09.711 INFO  [main] o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-03-28 17:31:09.743 INFO  [main] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-03-28 17:31:10.040 INFO  [main] com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@6da646b8
+2026-03-28 17:31:10.043 INFO  [main] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-03-28 17:31:10.108 WARN  [main] org.hibernate.orm.deprecation - HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-03-28 17:31:10.125 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0.44
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-03-28 17:31:11.098 INFO  [main] o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-03-28 17:31:11.246 INFO  [main] o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-03-28 17:31:12.252 WARN  [main] o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-03-28 17:31:12.284 INFO  [main] o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
+2026-03-28 17:31:13.425 INFO  [main] o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8081 (http) with context path '/'
+2026-03-28 17:31:13.432 INFO  [main] c.cts.openbankx.OpenBankXApplication - Started OpenBankXApplication in 6.932 seconds (process running for 7.314)

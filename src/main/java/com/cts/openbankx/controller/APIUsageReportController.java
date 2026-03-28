@@ -1,0 +1,29 @@
+package com.cts.openbankx.controller;
+
+import com.cts.openbankx.model.APIUsageReport;
+import com.cts.openbankx.service.APIUsageReportService;
+import org.springframework.web.bind.annotation.*;
+
+@RestController
+@RequestMapping("/api/v1")
+public class APIUsageReportController {
+
+    private final APIUsageReportService reportService;
+
+    public APIUsageReportController(APIUsageReportService reportService) {
+        this.reportService = reportService;
+    }
+
+    // Generate report from APILog (admin/system)
+    @PostMapping("/reports/apps/{tppAppId}")
+    public APIUsageReport generateReport(@PathVariable Long tppAppId) {
+        return reportService.generateReportForApp(tppAppId);
+    }
+
+    // ✅ REQUIRED ENDPOINT
+    // GET /api/v1/apps/{id}/stats
+    @GetMapping("/apps/{id}/stats")
+    public APIUsageReport getAppStats(@PathVariable Long id) {
+        return reportService.getLatestReportForApp(id);
+    }
+}
