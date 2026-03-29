@@ -11,6 +11,6 @@ import com.cts.openbankx.model.TPPApp;
 public interface ApiGateWayRepo extends JpaRepository<ApiGateWay, Long>
 {
 	
-	//List<ApiGateWay> findByTppApp_TppAppID(Long tppAppId);
+
 	
 }

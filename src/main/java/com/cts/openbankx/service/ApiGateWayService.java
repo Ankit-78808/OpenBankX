@@ -53,8 +53,7 @@ public class ApiGateWayService
 	
 	public ApiGateWay getById(Long id)
 	{
-	    return repo.findById(id)
-	               .orElseThrow(() -> new RuntimeException("ApiGateway record not found with ID: " + id));
+		return repo.findById(id).orElseThrow(()->new RuntimeException("ApiGateway record not found with ID: " + id));
 	}
 		
 	
